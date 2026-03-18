@@ -168,6 +168,26 @@ Client-facing reference for all dashboard objects and metrics.
 
 ---
 
+#### 11. **13_OUTPUT_TO_DASHBOARD_LINEAGE.md**
+Complete data lineage from Alteryx workflow outputs to Tableau dashboard visualizations.
+- Data flow from 5 output file types (Tableau Extract, Client File, QA Report, Archive, Executive Summary)
+- Field lineage mappings (input → stage → output → dashboard)
+- Calculated metrics lineage with formulas (Risk_Score, LTV, Delinquency_Rate, Charge_Off_Rate)
+- Data download tabs lineage (RE Value, Auto Value, Credit Score)
+- Dashboard object lineage with detailed data sources
+- Impact analysis examples (data quality changes, collateral updates, charge-off spikes)
+- Troubleshooting guide using lineage for problem resolution
+- Monthly refresh cycle and data freshness tracking
+
+**Read this** to understand:
+- How data flows from the workflow into dashboards
+- Which fields feed which charts
+- How calculations cascade through stages
+- How to troubleshoot data discrepancies
+- Impact of upstream changes on dashboard metrics
+
+---
+
 ## Quick Start Guide
 
 ### For Different User Roles
@@ -358,6 +378,7 @@ For questions about:
 | 10_LOGICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** |
 | 11_PHYSICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** |
 | 12_TABLEAU_DASHBOARD_GLOSSARY.md | 1.0 | 2026-03-18 | **NEW** |
+| 13_OUTPUT_TO_DASHBOARD_LINEAGE.md | 1.0 | 2026-03-18 | **NEW** |
 
 ---
 

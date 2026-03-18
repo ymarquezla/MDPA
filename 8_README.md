@@ -336,6 +336,20 @@ Frequently asked questions with complete answers.
 
 ---
 
+#### 21. **23_BUSINESS_FRIENDLY_TABLEAU_MACROS.md** ⭐ FOR NON-TECHNICAL STAKEHOLDERS
+Simple, non-technical explanation of the Tableau macros and what they do.
+- Everyday analogies (delivery trucks, mail carriers)
+- Three active macros explained in business terms
+- Why old macros were disabled (software upgrade)
+- Big picture workflow overview
+- Why this matters to stakeholders (portfolio management, quality assurance, risk monitoring)
+- Common business questions and answers
+- 30-second summary for quick sharing
+
+**Read this** to explain macro functions to business users, loan managers, and executives who don't need technical details.
+
+---
+
 ## Quick Start Guide
 
 ### For Different User Roles

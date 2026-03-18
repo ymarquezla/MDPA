@@ -336,7 +336,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### Session 1A: Monday 3/24 - John Wagner (1 hour)
+### WK1-1: Monday 3/24 - John Wagner (1 hour)
 **Topic: MDPA Purpose, Scope & Overall Architecture**
 
 **Pre-Session Prep:** (15 min)
@@ -363,7 +363,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### Session 1B: Wednesday 3/27 - Chris Lindsay (1 hour)
+### WK1-2: Wednesday 3/27 - Chris Lindsay (1 hour)
 **Topic: Workflow Architecture Deep Dive**
 
 **Pre-Session Prep:** (15 min)
@@ -399,7 +399,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### Session 2A: Monday 3/31 - John Wagner (1 hour)
+### WK2-1: Monday 3/31 - John Wagner (1 hour)
 **Topic: Input Data Sources & Field Inventory**
 
 **Pre-Session Prep:** (15 min)
@@ -426,7 +426,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### Session 2B: Wednesday 4/3 - Chris Lindsay (1 hour)
+### WK2-2: Wednesday 4/3 - Chris Lindsay (1 hour)
 **Topic: Field Transformations & 7-Stage Pipeline**
 
 **Pre-Session Prep:** (15 min)
@@ -462,7 +462,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### Session 3A: Monday 4/7 - John Wagner (1 hour)
+### WK3-1: Monday 4/7 - John Wagner (1 hour)
 **Topic: Macro Inventory & Usage Frequency**
 
 **Pre-Session Prep:** (15 min)
@@ -489,7 +489,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### Session 3B: Wednesday 4/10 - Chris Lindsay (1 hour)
+### WK3-2: Wednesday 4/10 - Chris Lindsay (1 hour)
 **Topic: Macro Nesting & Complexity Analysis**
 
 **Pre-Session Prep:** (15 min)
@@ -527,7 +527,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### Session 4A: Monday 4/14 - John Wagner (1 hour)
+### WK4-1: Monday 4/14 - John Wagner (1 hour)
 **Topic: Validation Rules & Quality Gates**
 
 **Pre-Session Prep:** (15 min)
@@ -555,7 +555,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### Session 4B: Wednesday 4/17 - Chris Lindsay (1 hour)
+### WK4-2: Wednesday 4/17 - Chris Lindsay (1 hour)
 **Topic: Error Handling, Alerts & Final Sign-Off**
 
 **Pre-Session Prep:** (15 min)
@@ -616,26 +616,26 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 ## Weekly Session Schedule
 
 ### Week 1 (Mar 24-27)
-- **Mon 3/24, 1 hr (John):** MDPA purpose, 7-stage workflow
-- **Wed 3/27, 1 hr (Chris):** Architecture details, tool inventory
+- **WK1-1 (Mon 3/24, John, 1 hr):** MDPA purpose, 7-stage workflow
+- **WK1-2 (Wed 3/27, Chris, 1 hr):** Architecture details, tool inventory
 
 ### Week 2 (Mar 31 - Apr 3)
-- **Mon 3/31, 1 hr (John):** Input sources, field inventory
-- **Wed 4/3, 1 hr (Chris):** Field transformations, 7-stage mappings
+- **WK2-1 (Mon 3/31, John, 1 hr):** Input sources, field inventory
+- **WK2-2 (Wed 4/3, Chris, 1 hr):** Field transformations, 7-stage mappings
 
 ### Week 3 (Apr 7-10)
-- **Mon 4/7, 1 hr (John):** Macro inventory, usage frequency
-- **Wed 4/10, 1 hr (Chris):** Macro nesting, complexity ranking
+- **WK3-1 (Mon 4/7, John, 1 hr):** Macro inventory, usage frequency
+- **WK3-2 (Wed 4/10, Chris, 1 hr):** Macro nesting, complexity ranking
 
 ### Week 4 (Apr 14-17)
-- **Mon 4/14, 1 hr (John):** Validation rules, quality gates
-- **Wed 4/17, 1 hr (Chris):** Error handling, alerts, final sign-off
+- **WK4-1 (Mon 4/14, John, 1 hr):** Validation rules, quality gates
+- **WK4-2 (Wed 4/17, Chris, 1 hr):** Error handling, alerts, final sign-off
 
 ---
 
 ## Documentation Validation Checklist
 
-### Session 1A & 1B: Foundation ✓
+### WK1-1 & WK1-2: Foundation ✓
 - [ ] MDPA purpose & scope validated
 - [ ] 7-stage workflow verified
 - [ ] 300+ tools breakdown confirmed
@@ -643,7 +643,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 - [ ] No critical gaps identified
 - [ ] Architecture sign-off obtained
 
-### Session 2A & 2B: Data ✓
+### WK2-1 & WK2-2: Data ✓
 - [ ] All 4 input data sources confirmed
 - [ ] Field inventory complete & accurate
 - [ ] 7-stage transformation chain validated
@@ -651,7 +651,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 - [ ] Data quality baseline established
 - [ ] Field mapping sign-off obtained
 
-### Session 3A & 3B: Macros ✓
+### WK3-1 & WK3-2: Macros ✓
 - [ ] 23 unique macros identified & documented
 - [ ] Macro usage frequency accurate
 - [ ] Macro nesting analysis validated
@@ -659,7 +659,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 - [ ] Dependencies identified
 - [ ] Macro sign-off obtained
 
-### Session 4A & 4B: QA & Sign-Off ✓
+### WK4-1 & WK4-2: QA & Sign-Off ✓
 - [ ] Validation rules complete
 - [ ] Quality gates appropriate
 - [ ] Error handling documented

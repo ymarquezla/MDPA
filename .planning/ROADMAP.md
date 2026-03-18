@@ -30,7 +30,10 @@ This project produces four structured analysis artifacts for the MDPA Alteryx wo
   1. Analyst can read a list of workflow behaviors and logic present in the .yxmd XML that are not described in any of the 14 existing docs
   2. Analyst can see every broken or at-risk dependency flagged with its risk type (hard path, CReW library, missing macro, deployment blocker)
   3. Analyst can see every doc section that is incomplete, ambiguous, or directly contradicts the workflow XML
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 01-01-PLAN.md — Create GAP_ANALYSIS.md stub and populate GAP-01 undocumented logic findings
+- [ ] 01-02-PLAN.md — Populate GAP-02 dependencies, GAP-03 contradictions, appendices, and human review
 
 ### Phase 2: Gap Analysis — Prioritization and Report
 **Goal**: Gap findings are triaged by severity and assembled into a single readable report
@@ -126,7 +129,7 @@ Phases execute with the following dependencies:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Gap Analysis — Documentation Audit | 0/TBD | Not started | - |
+| 1. Gap Analysis — Documentation Audit | 0/2 | Not started | - |
 | 2. Gap Analysis — Prioritization and Report | 0/TBD | Not started | - |
 | 3. Gap Analysis — Confluence Publication | 0/TBD | Not started | - |
 | 4. Data Lineage — Field Tracing and Stage Mapping | 0/TBD | Not started | - |

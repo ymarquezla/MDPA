@@ -39,7 +39,8 @@ Origin ID:    53624fc9-1399-48da-a4ac-555debb40f42
 - **2022-08-05** - Added "Years until Charge off" formula tool (860) for Tableau reporting
 - **2022-11-09** - Added bypass for prior period data to avoid recomputation; kept vintage values static
 - **[Later dates]** - Added Vintage Adjustment and Vintage Adjusted Expected Losses fields
-- **Current** - Version 5.2 (as of upload date)
+- **2026-03-18** - ⚠️ **CRITICAL REMEDIATION:** Migrated from legacy TDE publish (v1.08.1) to new Tableau Output macros (v1.5.4) using Hyper format and DCM authentication. Disabled Container 1049 (old publish). Configured Tableau Output macros 1055, 1056, 1057 with DCM credential sharing.
+- **Current** - Version 5.2 (as of 2026-03-18 with Tableau publish remediation)
 
 ---
 
@@ -214,12 +215,14 @@ See `DATA_SOURCES_AND_LOCATIONS.md` for complete list:
 - Allowance amounts
 - All enhanced/transformed fields
 
-### Output 2: Tableau Extracts
+### Output 2: Tableau Extracts (Hyper Format)
 **Location:** `\\10.2.7.56\Shared\PortfolioAnalysis\03_Results\02_TDE\`
-**Naming:** `[PeerNo]_[YYYYMMDD]_CLIENT_FILE.tde`
-**Format:** Tableau Data Extract (.tde)
-**Consumers:** Tableau dashboards, portal analytics
-**Use:** Fast refresh for dashboard rendering
+**Naming:** `[PeerNo]_[YYYYMMDD]_CLIENT_FILE.hyper`
+**Format:** Tableau Hyper Extract (.hyper) — *Changed from .tde in v5.2 remediation (2026-03-18)*
+**Consumers:** Tableau dashboards via Tableau Server
+**Use:** High-performance refresh for dashboard rendering
+**Publication Method:** Tableau Output macros (1055, 1056, 1057) with DCM authentication
+**Note:** As of March 18, 2026, uses new Tableau Output tool (v1.5.4) with Hyper format instead of legacy TDE format (v1.08.1). See remediation notes below.
 
 ### Output 3: Quality Assurance Files
 **Location:** `\\10.2.7.56\Shared\PortfolioAnalysis\03_Results\06_DROP_RECORDS\`
@@ -269,8 +272,10 @@ See `DATA_SOURCES_AND_LOCATIONS.md` for complete list:
 
 ### Tableau Dashboards
 - **Purpose:** Analytics and reporting UI
-- **Data Source:** Tableau Data Extracts (.tde files)
-- **Refresh:** After each MDPA monthly run
+- **Data Source:** Tableau Data Extracts (.hyper files as of March 2026)
+- **Historical Note:** Previously used .tde format (TDE), replaced with Hyper format in v5.2 remediation (March 18, 2026) due to Alteryx Designer 2024.2 removing TDE support
+- **Refresh:** After each MDPA monthly run via Tableau Output macros (1055, 1056, 1057)
+- **Authentication:** DCM (Data Connection Manager) with Personal Access Token
 - **Consumers:** Business users, analysts, executives
 
 ### Network File Shares
@@ -290,6 +295,11 @@ See `DATA_SOURCES_AND_LOCATIONS.md` for complete list:
 | 2022-08-05 | Added years-until-charge-off calculation | Formula (860) | Enable charge-off trend analysis in Tableau |
 | 2022-11-09 | Bypass prior period recalculation | Control flow | Preserve vintage calculation accuracy |
 | 2024+ | Added Vintage Adjustment fields | Formula | Improve loss estimation methodology |
+| **2026-03-18** | **⚠️ CRITICAL: Migrated Tableau publish (TDE → Hyper)** | **Containers 1049, 1055-1057** | **Alteryx Designer 2024.2 removed TDE support; updated to Tableau Output v1.5.4 with Hyper format and DCM authentication** |
+| 2026-03-18 | Disabled legacy TDE publish container | Container 1049 | No longer compatible with Designer 2024.2 |
+| 2026-03-18 | Activated new Tableau Output macros | Macros 1055, 1056, 1057 | CLIENTFILE, DROPPED, SECURITIES publish via Hyper |
+| 2026-03-18 | Configured DCM credential sharing | Gallery Admin | JTodd service account now has access to Tableau credentials |
+| 2026-03-18 | Fixed Securities macro empty data | Macro 1057 | Added Sample → Filter gating to prevent errors when 0 securities records |
 
 ### Version Control
 - **Current:** v5.2 (in GitHub)
@@ -340,6 +350,87 @@ See `DATA_SOURCES_AND_LOCATIONS.md` for complete list:
 - **Parallel Execution:** Could run multiple instances (different CUs) simultaneously
 - **Scheduling:** Serial monthly run OR parallel daily processing
 - **Load Balancing:** Alteryx Server can distribute across multiple engines
+
+---
+
+## 2026 Tableau Publish Remediation (Critical)
+
+### Background
+On March 6, 2026, the MDPA workflow stopped functioning with 8 errors occurring on each run, specifically during the Tableau publish stage. The root cause was identified as Alteryx Designer version 2024.2, which removed native support for Tableau Data Extract (TDE) files.
+
+### Root Causes Identified
+1. **Alteryx Designer 2024.2 Removed TDE Support**
+   - Legacy "Publish to Tableau Server" connector v1.08.1 no longer works
+   - Designer would fail attempting to write .tde files
+   - Error: "TDE not supported in this version"
+
+2. **Tableau DCM Credential Not Shared**
+   - Credential "Tableau Integration — Zevs Token" was not shared with JTodd service account
+   - Web application API calls using JTodd account received 403 Unauthorized errors
+   - Users could not trigger workflow via web portal
+
+3. **Securities Macro Empty Data Handling**
+   - Macro 1057 (Securities) would error when 0 securities records provided
+   - Error: '#1' from Tableau Output SDK with no data to publish
+   - Batch macro invoked even when no data existed
+
+### Remediation Applied (March 18, 2026)
+
+**1. Migrated from Legacy TDE to New Tableau Output Macros**
+- Disabled: Container 1049 (old publish tools)
+  - Tool 287: 2020 Publish to Tableau (CLIENTFILE)
+  - Tool 369: 2020 Publish Dropped to Tableau (DROPPED)
+  - Tool 929: 2020 Publish Securities to Tableau (SECURITIES)
+- Activated: New Tableau Output macros (v1.5.4 with Hyper format)
+  - Macro 1055: Tableau New Macro (CLIENTFILE)
+  - Macro 1056: Tableau New Macro Dropped (DROPPED)
+  - Macro 1057: Tableau New Macro Securities (SECURITIES)
+
+**2. Configured DCM (Data Connection Manager) Authentication**
+- Created DCM connection: "Tableau Integration — Zevs Token" (Personal Access Token)
+- Configured all three macros to use DCM instead of embedded credentials
+- Shared credential with JTodd service account via Alteryx Gallery Admin
+
+**3. Fixed Securities Macro (1057)**
+- Added Block Until Done tool to match CLIENTFILE/DROPPED structure
+- Configured Action tool to update ProjectName on Tableau Output tool (ToolID 19)
+- Set FileAction to Overwrite
+- Implemented Sample → Append Fields → Filter gating to prevent macro invocation when 0 securities records
+
+**4. Updated File Format**
+- Changed from .tde (Tableau Data Extract) to .hyper (Tableau Hyper format)
+- Hyper is newer format supported by current Alteryx and Tableau versions
+- Provides better performance and compression than legacy TDE
+
+### Current Status (As of March 18, 2026)
+✅ **All publish macros functional**
+- CLIENTFILE publish: ✅ Working
+- DROPPED records publish: ✅ Working
+- SECURITIES publish: ✅ Working (when data exists)
+- Workflow runtime: ~3:23 minutes
+- Errors: 0 (when Securities data exists), 1 non-fatal (when empty)
+- API authentication: ✅ Resolved (DCM credential shared)
+
+### Remaining Action Items
+1. **Update web application API key** — Currently pending configuration to match new credential setup
+2. **Update Alteryx Designer** — Newer version (2024.3+) available; may resolve remaining SDK rendering issues
+3. **Configure Email tool (953)** — Set up SMTP connection to eliminate email notification errors
+4. **Simplify Securities handling** — If Securities data becomes consistently present, can simplify gating mechanism
+
+### Lessons Learned
+- Monitor Designer version upgrades for breaking changes (TDE support removal)
+- Maintain credential sharing matrix (DCM credentials must be accessible to service accounts)
+- Test empty data scenarios for batch macros (Securities data may not always exist)
+- Document publish path changes (old vs. new macros)
+
+### Technical Details
+| Component | Old Method | New Method |
+|-----------|-----------|-----------|
+| **Connector** | Publish to Tableau Server v1.08.1 | Tableau Output tool v1.5.4 |
+| **Format** | .tde (Tableau Data Extract) | .hyper (Tableau Hyper format) |
+| **Authentication** | Embedded token | DCM (Data Connection Manager) |
+| **Service Account** | Direct call | JTodd account with shared credential |
+| **Container** | 1049 (disabled) | 1055, 1056, 1057 (active) |
 
 ---
 

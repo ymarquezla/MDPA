@@ -1286,6 +1286,120 @@ This guide walks through the **7-stage MDPA processing pipeline** from data subm
 
 ---
 
+#### Issue 29: Tableau Publishing Fails (TDE/DCM Authentication) ⚠️ CRITICAL
+
+**Symptoms:**
+- Workflow fails at Tableau publish stage
+- Error: "Could not publish to Tableau Server"
+- Error: "403 Forbidden" or "Authentication failed"
+- Tableau extract not updating
+- Multiple publish errors (CLIENTFILE, DROPPED, SECURITIES)
+
+**Root Cause Analysis:**
+This issue occurred March 6-18, 2026 when Alteryx Designer upgraded to v2024.2, which removed native TDE (Tableau Data Extract) support. The workflow relied on legacy "Publish to Tableau Server" connector v1.08.1 that no longer works.
+
+Additionally, Tableau DCM (Data Connection Manager) credential was not shared with the JTodd service account used by the web application API.
+
+**How to Pinpoint:**
+1. Check Alteryx Designer version:
+   - Open Designer → Help → About
+   - If v2024.2 or later: This is the culprit
+2. Check Tableau publish containers:
+   - Look for old Container 1049 (should be disabled)
+   - Check if new Tableau Output macros are active (1055, 1056, 1057)
+3. Check DCM credential sharing:
+   - In Alteryx Gallery Admin → Settings
+   - Find "Tableau Integration — Zevs Token" credential
+   - Verify it's shared with JTodd service account
+4. Check workflow logs for specific errors:
+   - "TDE not supported" → Designer version issue
+   - "403 Unauthorized" → Credential sharing issue
+
+**Resolution Steps:**
+
+**Step 1: Verify New Tableau Output Macros Are Active**
+1. Open workflow in Alteryx Designer
+2. Locate the three output macros:
+   - Tableau New Macro (1055) — CLIENTFILE
+   - Tableau New Macro Dropped (1056) — DROPPED
+   - Tableau New Macro Securities (1057) — SECURITIES
+3. Verify they are connected and NOT disabled
+4. If old Container 1049 still exists, verify it's disabled
+
+**Step 2: Verify DCM Credential Configuration**
+1. In each macro, check that Action tool is configured to:
+   - ToolID: 19 (Tableau Output tool within macro)
+   - Action: Update tool property
+   - Property: Tableau Output tool configuration
+   - FileAction: Overwrite
+2. Verify DCM connection name is "Tableau Integration — Zevs Token"
+3. Verify credential is using Personal Access Token (PAT) authentication
+
+**Step 3: Share DCM Credential with Service Account**
+1. Log into Alteryx Gallery as Admin
+2. Navigate to: Admin → Settings → Data Connections
+3. Find "Tableau Integration — Zevs Token"
+4. Share with JTodd account and any other service accounts that run workflows
+5. Verify "Can use credential in scheduled workflows" is checked
+
+**Step 4: Update Designer If Needed**
+1. Check if newer Alteryx Designer version available:
+   - Designer → Help → Check for Updates
+2. If v2024.3 or later available: Install
+3. Updated version may resolve Tableau Output SDK issues
+
+**Step 5: Verify Securities Macro Data Handling**
+1. For Tableau New Macro Securities (1057):
+   - Check that Block Until Done tool exists (added in remediation)
+   - Verify Sample → Append Fields → Filter gating mechanism
+   - This prevents errors when Securities data is empty
+2. If Securities data is consistently empty:
+   - Macro may produce non-fatal '#1' error
+   - This is expected and can be ignored if no securities portfolio
+
+**Step 6: Test Workflow**
+1. Run workflow with test data
+2. Monitor Tableau publish stage
+3. Verify all three publish macros complete without errors
+4. Check Tableau Server to confirm extract updated
+
+**If Still Failing:**
+1. Check that web API key matches credential configuration
+2. Verify Alteryx Server can reach Tableau Server (network connectivity)
+3. Check Tableau Server status page for alerts
+4. Contact Tableau admin to verify extract permissions
+
+**Workflow Reference:**
+- **Old (Disabled) Container:** 1049
+  - Tool 287: 2020 Publish to Tableau (CLIENTFILE)
+  - Tool 369: 2020 Publish Dropped to Tableau (DROPPED)
+  - Tool 929: 2020 Publish Securities to Tableau (SECURITIES)
+
+- **New (Active) Macros:**
+  - Macro 1055: Tableau New Macro (CLIENTFILE)
+  - Macro 1056: Tableau New Macro Dropped (DROPPED)
+  - Macro 1057: Tableau New Macro Securities (SECURITIES)
+  - All use Tableau Output tool (v1.5.4) with Hyper format and DCM authentication
+
+**Known Issues & Workarounds:**
+- **Securities empty data:** Non-fatal '#1' error when 0 securities records. Normal behavior—gating mechanism prevents this from breaking workflow.
+- **Email tool error:** Tool 953 (email notification) may fail if SMTP connection not configured. See Step 7 in Output Stage for email setup.
+
+**Historical Context:**
+- **Date Issue Occurred:** March 6, 2026
+- **Root Cause:** Alteryx Designer 2024.2 removed native TDE support
+- **Secondary Cause:** DCM credential not shared with JTodd service account
+- **Remediation Date:** March 18, 2026
+- **Remediation By:** Zev Butler (DevOps)
+- **Test Status:** ✅ All publish macros working (when data exists)
+
+**Related Documentation:**
+- See `2_WORKFLOW_ARCHITECTURE.md` for updated output architecture
+- See `5_ALERTS_AND_NOTIFICATIONS.md` for alert configuration
+- See `22_FAQ_COMMON_QUESTIONS.md` for Tableau refresh troubleshooting (Question 13)
+
+---
+
 ## Quick Escalation Guide
 
 **Use this when you need to quickly escalate an issue:**

@@ -71,10 +71,26 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| GAP-01 through GAP-05 | Phase 1 | Pending |
-| LIN-01 through LIN-05 | Phase 2 | Pending |
-| MAC-01 through MAC-05 | Phase 3 | Pending |
-| VAL-01 through VAL-05 | Phase 4 | Pending |
+| GAP-01 | Phase 1 — Gap Analysis: Documentation Audit | Pending |
+| GAP-02 | Phase 1 — Gap Analysis: Documentation Audit | Pending |
+| GAP-03 | Phase 1 — Gap Analysis: Documentation Audit | Pending |
+| GAP-04 | Phase 2 — Gap Analysis: Prioritization and Report | Pending |
+| GAP-05 | Phase 3 — Gap Analysis: Confluence Publication | Pending |
+| LIN-01 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Pending |
+| LIN-02 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Pending |
+| LIN-03 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Pending |
+| LIN-04 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Pending |
+| LIN-05 | Phase 5 — Data Lineage: Confluence Publication | Pending |
+| MAC-01 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |
+| MAC-02 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |
+| MAC-03 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |
+| MAC-04 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |
+| MAC-05 | Phase 7 — Macro Inventory: Confluence Publication | Pending |
+| VAL-01 | Phase 8 — Validation Test Suite: Rules Authoring | Pending |
+| VAL-02 | Phase 8 — Validation Test Suite: Rules Authoring | Pending |
+| VAL-03 | Phase 8 — Validation Test Suite: Rules Authoring | Pending |
+| VAL-04 | Phase 8 — Validation Test Suite: Rules Authoring | Pending |
+| VAL-05 | Phase 9 — Validation Test Suite: Confluence Publication | Pending |
 
 **Coverage:**
 - v1 requirements: 20 total
@@ -83,4 +99,4 @@
 
 ---
 *Requirements defined: 2026-03-18*
-*Last updated: 2026-03-18 after initial definition*
+*Last updated: 2026-03-18 — traceability updated after roadmap creation (9-phase structure)*

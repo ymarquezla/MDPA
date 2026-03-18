@@ -188,6 +188,39 @@ Complete data lineage from Alteryx workflow outputs to Tableau dashboard visuali
 
 ---
 
+#### 12. **14_SECURITIES_COLLATERAL_GUIDE.md**
+Comprehensive reference for securities collateral data capture, valuation, and processing.
+- Types of securities (stocks, bonds, mutual funds, ETFs, REITs, commodities)
+- Securities collateral data fields (ticker, quantity, pricing, haircut, LTV)
+- Valuation methodology and pricing sources (real-time, end-of-day, broker API, custodian)
+- Haircut application by security type and risk level
+- Daily mark-to-market and price change monitoring
+- Securities collateral through 7-stage MDPA workflow:
+  * Stage 1: Ingestion from brokers and pricing services
+  * Stage 2: Validation (pricing staleness, data quality, LTV thresholds)
+  * Stage 3: Enrichment (price changes, LTV calculation, margin call detection)
+  * Stage 4: Consolidation (joining securities to loan records)
+  * Stage 5: Compliance (concentration risk, stress testing)
+  * Stage 6: Output prep (client files, QA reports, Tableau extract)
+  * Stage 7: Delivery (dashboard loading and alerts)
+- Securities-specific dashboard objects:
+  * Portfolio overview, composition, LTV distribution
+  * Margin call monitoring and alerts
+  * Performance analytics and sector analysis
+- Risk monitoring and automatic alerts (margin calls, concentration, volatility, stress tests)
+- Best practices for pricing, risk monitoring, data management
+- Troubleshooting guide (pricing discrepancies, double-counting, haircut updates)
+
+**Read this** to understand:
+- How securities-backed loans differ from auto/RE in valuation
+- Daily pricing requirements and sources
+- Margin call mechanics and thresholds
+- How securities flow through MDPA processing
+- Risk dashboards specific to securities collateral
+- Regulatory and risk monitoring for securities portfolios
+
+---
+
 ## Quick Start Guide
 
 ### For Different User Roles
@@ -364,21 +397,23 @@ For questions about:
 
 ## Document Versions
 
-| Document | Version | Last Updated | Status |
-|---|---|---|---|
-| 8_README.md | 1.0 | 2026-03-18 | Current |
-| 1_MDPA_PROCESS_DOCUMENTATION.md | 1.0 | 2026-03-11 | Current |
-| 2_WORKFLOW_ARCHITECTURE.md | 1.0 | 2026-03-11 | Current |
-| 3_MACROS_AND_DEPENDENCIES.md | 1.0 | 2026-03-11 | Current |
-| 4_DATA_SOURCES_AND_LOCATIONS.md | 1.0 | 2026-03-11 | Current |
-| 5_ALERTS_AND_NOTIFICATIONS.md | 1.0 | 2026-03-17 | Current |
-| 6_FIELD_MAPPING_AND_DATA_LINEAGE.md | 1.0 | 2026-03-17 | Current |
-| 7_MACROS_DEEP_DIVE.md | 1.0 | 2026-03-17 | Current |
-| 9_BUSINESS_DATA_GLOSSARY.md | 1.0 | 2026-03-17 | Current |
-| 10_LOGICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** |
-| 11_PHYSICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** |
-| 12_TABLEAU_DASHBOARD_GLOSSARY.md | 1.0 | 2026-03-18 | **NEW** |
-| 13_OUTPUT_TO_DASHBOARD_LINEAGE.md | 1.0 | 2026-03-18 | **NEW** |
+| Document | Version | Last Updated | Status | Pages |
+|---|---|---|---|---|
+| 8_README.md | 1.0 | 2026-03-18 | Current | 5 |
+| 1_MDPA_PROCESS_DOCUMENTATION.md | 1.0 | 2026-03-11 | Current | 25 |
+| 2_WORKFLOW_ARCHITECTURE.md | 1.0 | 2026-03-11 | Current | 35 |
+| 3_MACROS_AND_DEPENDENCIES.md | 1.0 | 2026-03-11 | Current | 20 |
+| 4_DATA_SOURCES_AND_LOCATIONS.md | 1.0 | 2026-03-11 | Current | 15 |
+| 5_ALERTS_AND_NOTIFICATIONS.md | 1.0 | 2026-03-17 | Current | 18 |
+| 6_FIELD_MAPPING_AND_DATA_LINEAGE.md | 1.0 | 2026-03-17 | Current | 45 |
+| 7_MACROS_DEEP_DIVE.md | 1.0 | 2026-03-17 | Current | 30 |
+| 9_BUSINESS_DATA_GLOSSARY.md | 1.0 | 2026-03-17 | Current | 55 |
+| 10_LOGICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** | 65 |
+| 11_PHYSICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** | 80 |
+| 12_TABLEAU_DASHBOARD_GLOSSARY.md | 1.0 | 2026-03-18 | **NEW** | 110 |
+| 13_OUTPUT_TO_DASHBOARD_LINEAGE.md | 1.0 | 2026-03-18 | **NEW** | 95 |
+| 14_SECURITIES_COLLATERAL_GUIDE.md | 1.0 | 2026-03-18 | **NEW** | 75 |
+| **TOTAL** | | | | **673 pages** |
 
 ---
 

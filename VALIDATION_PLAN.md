@@ -1,9 +1,9 @@
 # MDPA Documentation Validation Plan
 
-**Duration:** 4 Weeks (Mon 3/24 - Fri 4/18/2026)
+**Duration:** 4 Weeks (TBD - to be scheduled per availability)
 **Subject Matter Experts:** John Wagner, Chris Lindsay
-**Session Format:** Two 1-hour sessions per SME per week
-**Weekly Schedule:** Monday & Wednesday (1 hr each SME)
+**Session Format:** Two 1-hour sessions per SME per week (varied weekday schedule)
+**Weekly Schedule:** 2 sessions per week × 4 weeks = 8 total sessions
 **Total Available Hours:** 16 hours (2 hrs/week × 2 SMEs × 4 weeks)
 
 ---
@@ -336,7 +336,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK1-1: Monday 3/24 - John Wagner (1 hour)
+### WK1-1 - John Wagner (1 hour)
 **Topic: MDPA Purpose, Scope & Overall Architecture**
 
 **Pre-Session Prep:** (15 min)
@@ -363,7 +363,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK1-2: Wednesday 3/27 - Chris Lindsay (1 hour)
+### WK1-2 - Chris Lindsay (1 hour)
 **Topic: Workflow Architecture Deep Dive**
 
 **Pre-Session Prep:** (15 min)
@@ -399,7 +399,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK2-1: Monday 3/31 - John Wagner (1 hour)
+### WK2-1 - John Wagner (1 hour)
 **Topic: Input Data Sources & Field Inventory**
 
 **Pre-Session Prep:** (15 min)
@@ -426,7 +426,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK2-2: Wednesday 4/3 - Chris Lindsay (1 hour)
+### WK2-2 - Chris Lindsay (1 hour)
 **Topic: Field Transformations & 7-Stage Pipeline**
 
 **Pre-Session Prep:** (15 min)
@@ -462,7 +462,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK3-1: Monday 4/7 - John Wagner (1 hour)
+### WK3-1 - John Wagner (1 hour)
 **Topic: Macro Inventory & Usage Frequency**
 
 **Pre-Session Prep:** (15 min)
@@ -489,7 +489,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK3-2: Wednesday 4/10 - Chris Lindsay (1 hour)
+### WK3-2 - Chris Lindsay (1 hour)
 **Topic: Macro Nesting & Complexity Analysis**
 
 **Pre-Session Prep:** (15 min)
@@ -527,7 +527,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK4-1: Monday 4/14 - John Wagner (1 hour)
+### WK4-1 - John Wagner (1 hour)
 **Topic: Validation Rules & Quality Gates**
 
 **Pre-Session Prep:** (15 min)
@@ -555,7 +555,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK4-2: Wednesday 4/17 - Chris Lindsay (1 hour)
+### WK4-2 - Chris Lindsay (1 hour)
 **Topic: Error Handling, Alerts & Final Sign-Off**
 
 **Pre-Session Prep:** (15 min)
@@ -615,21 +615,21 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ## Weekly Session Schedule
 
-### Week 1 (Mar 24-27)
-- **WK1-1 (Mon 3/24, John, 1 hr):** MDPA purpose, 7-stage workflow
-- **WK1-2 (Wed 3/27, Chris, 1 hr):** Architecture details, tool inventory
+### Week 1
+- **WK1-1 (John, 1 hr):** MDPA purpose, 7-stage workflow
+- **WK1-2 (Chris, 1 hr):** Architecture details, tool inventory
 
-### Week 2 (Mar 31 - Apr 3)
-- **WK2-1 (Mon 3/31, John, 1 hr):** Input sources, field inventory
-- **WK2-2 (Wed 4/3, Chris, 1 hr):** Field transformations, 7-stage mappings
+### Week 2
+- **WK2-1 (John, 1 hr):** Input sources, field inventory
+- **WK2-2 (Chris, 1 hr):** Field transformations, 7-stage mappings
 
-### Week 3 (Apr 7-10)
-- **WK3-1 (Mon 4/7, John, 1 hr):** Macro inventory, usage frequency
-- **WK3-2 (Wed 4/10, Chris, 1 hr):** Macro nesting, complexity ranking
+### Week 3
+- **WK3-1 (John, 1 hr):** Macro inventory, usage frequency
+- **WK3-2 (Chris, 1 hr):** Macro nesting, complexity ranking
 
-### Week 4 (Apr 14-17)
-- **WK4-1 (Mon 4/14, John, 1 hr):** Validation rules, quality gates
-- **WK4-2 (Wed 4/17, Chris, 1 hr):** Error handling, alerts, final sign-off
+### Week 4
+- **WK4-1 (John, 1 hr):** Validation rules, quality gates
+- **WK4-2 (Chris, 1 hr):** Error handling, alerts, final sign-off
 
 ---
 
@@ -714,12 +714,12 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ## Key Contacts & Schedule
 
-| Name | Role | Session Days | Session Times |
+| Name | Role | Sessions | Session Times |
 |---|---|---|---|
-| John Wagner | SME #1 | Mon, Mon, Mon, Mon | 1 hour each |
-| Chris Lindsay | SME #2 | Wed, Wed, Wed, Wed | 1 hour each |
+| John Wagner | SME #1 | WK1-1, WK2-1, WK3-1, WK4-1 | 1 hour each |
+| Chris Lindsay | SME #2 | WK1-2, WK2-2, WK3-2, WK4-2 | 1 hour each |
 
-**Validation Period:** March 24 - April 18, 2026
+**Validation Period:** 4 weeks (TBD - to be scheduled per availability)
 **Total Sessions:** 8 (2 per week × 4 weeks)
 **Total Hours:** 16 (1 hr × 2 SMEs × 8 sessions)
 

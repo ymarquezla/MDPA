@@ -13,9 +13,9 @@
 | Gap Type | Count |
 |----------|-------|
 | GAP-01: Undocumented Logic | 11 |
-| GAP-02: Broken/At-Risk Dependencies | TBD |
-| GAP-03: Incomplete/Contradictory Coverage | TBD |
-| **Total** | **TBD** |
+| GAP-02: Broken/At-Risk Dependencies | 20 |
+| GAP-03: Incomplete/Contradictory Coverage | 10 |
+| **Total** | **41** |
 
 ---
 
@@ -67,12 +67,107 @@
 ## GAP-03: Incomplete, Ambiguous, or Contradictory Documentation
 
 | Gap ID | Document | Section | Issue Type | Details |
+|--------|----------|---------|------------|---------|
+| G03-001 | 6_FIELD_MAPPING_AND_DATA_LINEAGE.md | Stage 2 Calculations / Net Charge Off Amount | contradiction | Doc states formula: [Charge Off Amount] - [Recovery Amount]. XML active formula: if !IsEmpty([Max_Report Date]) then [Net Charge Off Amount] else [Charge Offs] endif. The commented-out formula in the XML matches the doc, but the active formula is a conditional that substitutes [Charge Offs] when Max_Report Date is empty — different logic, different field names. |
+| G03-002 | 6_FIELD_MAPPING_AND_DATA_LINEAGE.md | Risk Scoring | contradiction | Doc describes a Risk_Score field calculated from DTI_Ratio, Credit_Score, and Age_of_Loan_Days as a composite numeric score. No field named Risk_Score appears in the XML. The XML uses Decision FICO Grade (letter grades A+/A/B/C/D/E) derived from Original Credit Score thresholds — a fundamentally different risk representation (categorical grades, not a composite numeric score). |
+| G03-003 | 7_MACROS_DEEP_DIVE.md | Macro Count Summary | count-discrepancy | Doc 7 claims 23 unique macros / 42 total instances. XML has 20 unique macro file names across 41 instances. The count difference arises from: (1) 2020_PublishSecurities2Server.yxmc is present in XML but absent from both doc 3 and doc 7; (2) Macro="False" is a boolean attribute on non-macro XML elements that was likely miscounted as a macro reference. Doc 3 claims "15+" — also not exact. |
+| G03-004 | 3_MACROS_AND_DEPENDENCIES.md | Macro Inventory table | missing | 2020_PublishSecurities2Server.yxmc is present in the XML (1 instance, path: _externals\1\ subdirectory) but is completely absent from the doc 3 macro inventory table. Also absent from doc 7 macro inventory. This macro publishes securities data to the server and represents a distinct publishing output type not reflected in the macro documentation. |
+| G03-005 | 6_FIELD_MAPPING_AND_DATA_LINEAGE.md | Derived Fields | missing | Vintage Adjusted Expected Losses = [Vintage Expected Losses] * [Vintage Adjustment] is an explicit formula in the XML that does not appear in any doc. Related: the Vintage Adjustment cap formula (plus/minus 5% dampening relative to PP Vintage Adjustment) and its six flag values (First Value, Actual Increase, Prior +5%, Prior -5%, Actual Decrease, Same) are completely undescribed. |
+| G03-006 | 2_WORKFLOW_ARCHITECTURE.md | Input Processing | ambiguous | Doc 2 describes the JSON input processing as "portal API calls routed to appropriate files" without describing the mechanics. XML shows a specific pipeline: JSONParse tool parses the input JSON, RegEx and Filter tools extract FileGroupNum / Info / RowNum / Header fields, then DynamicInput tools use FileGroupNum to route to specific institution files. The doc's description is too general to be actionable for troubleshooting. |
+| G03-007 | 4_DATA_SOURCES_AND_LOCATIONS.md | Output Files | ambiguous | Doc 4 lists 5 output types (Client Files, Tableau Extracts, Dropped Records, Regulatory Data, Intermediate/Working Files) but describes CallReportDataShort.yxdb only as an output. The XML shows it is also a DbFileInput (read at start of the securities module). The doc's omission of the read creates an incomplete picture of the file's role — it is both input and output. |
+| G03-008 | 5_ALERTS_AND_NOTIFICATIONS.md | Email Alert Trigger Conditions | missing | Doc 5 documents the PortfolioEmail tool and its recipients list but does not describe the PortfolioComposerTable tool that assembles the table body sent in the email. The mechanism by which portfolio metrics are aggregated and formatted into the email content is undocumented — the table composition logic is only visible in XML. |
+| G03-009 | 9_BUSINESS_DATA_GLOSSARY.md | Calculated Flag Fields | missing | The glossary defines core loan fields and business terms but omits two calculated boolean flag fields confirmed in XML: "Charged off past 36 Months?" (true if charge-off within 36 months of report date) and "Originated Past 5 Years?" (true if origination date within 5 years of report date). These flags are used for downstream segmentation and filtering but have no glossary entry or formula description in any of the 14 docs. |
+| G03-010 | 12_TABLEAU_DASHBOARD_GLOSSARY.md | Vintage Year / Expected Loss fields | ambiguous | Doc 12 references Vintage Year as a Tableau dimension and Expected Loss Year 1–7 fields as dashboard metrics, but does not describe how Year 0–Year 6 boolean cohort flags are computed from origination dates, nor the formula chain from boolean flags to Expected Loss Year values. Tableau consumers have metric names without the underlying derivation logic. |
 
 ---
 
 ## Appendix A: XML Extraction Summary
 
-<!-- Populated by Plan 02 -->
+**Source:** 2020_DataProcess_v5.2.yxmd (49,082 lines XML)
+**Extraction date:** 2026-03-18
+**Total nodes:** 412 | **Total connections:** 335
+
+### Tool Inventory (extracted from XML)
+
+| Tool Type | Count | Notes |
+|-----------|-------|-------|
+| Select | 67 | Field selection and renaming |
+| Formula | 60 | Calculated field expressions |
+| TextBox | 35 | Workflow annotations and documentation blocks |
+| Filter | 27 | Row-level filtering and branching |
+| ToolContainer | 25 | Logical grouping of processing stages |
+| Summarize | 24 | Aggregation and grouping |
+| Union | 24 | Record set merging |
+| Join | 21 | Field-level record matching |
+| AppendFields | 11 | Cross-join / cartesian append |
+| TextInput | 11 | Inline static data entry |
+| MultiFieldFormula | 10 | Bulk formula applied across multiple fields |
+| Sort | 8 | Record ordering |
+| CrossTab | 6 | Pivot / cross-tabulation |
+| DbFileInput | 5 | Binary .yxdb file reads |
+| 2020_Date_Converter macro | 5 | Date conversion (embedded macro, 5 instances) |
+| DynamicInput | 4 | Runtime file routing based on FileGroupNum |
+| DynamicRename | 4 | Runtime field renaming |
+| MultiRowFormula | 4 | Calculations referencing adjacent rows |
+| RegEx | 2 | Pattern matching and extraction |
+| Unique | 2 | Record de-duplication |
+| Sample | 2 | Row sampling (likely validation/testing subsets) |
+| BrowseV2 | 2 | Development-time data preview (present in production) |
+| DynamicSelect | 2 | Runtime field selection |
+| JSONParse | 1 | Parses portal JSON input payload |
+| GenerateRows | 1 | Generates row sequences |
+| FindReplace | 1 | Value substitution |
+| RecordID | 1 | Sequential row identifier |
+| PortfolioComposerTable | 1 | Assembles portfolio summary table for email |
+| PortfolioEmail | 1 | Email alert delivery |
+
+### Macro Summary (20 unique files, 41 instances)
+
+#### Temp-Path Embedded Macros (D:\Users\vnekkanti\AppData\Local\Temp\...\Macros\)
+
+| Macro File | Instances |
+|-----------|-----------|
+| Contingent File Input.yxmc | 8 |
+| 2020_Date_Converter.yxmc | 5 |
+| Union Subset Prior Period.yxmc | 1 |
+| Generate Unique ID.yxmc | 1 |
+| Dropped Records Prep.yxmc | 1 |
+| Last Name Comma First Name Cleaner_v2.yxmc | 1 |
+| Preliminary Client File Match.yxmc | 1 |
+| Append Charge Offs and Matching.yxmc | 1 |
+| Append RE Values.yxmc | 1 |
+| Auto Value Append.yxmc | 1 |
+| TransUnion Mask_FICO Only_v2.yxmc | 1 |
+| 2020_Publish2Server.yxmc | 1 |
+| 2020_PublishDropped2Server.yxmc | 1 |
+| PreProcess_Iterative.yxmc | 1 |
+| Only Prior Period.yxmc | 1 |
+
+**Subtotal:** 15 files, 26 instances
+
+#### External Add-On Macro (_externals\1\ subdirectory)
+
+| Macro File | Instances |
+|-----------|-----------|
+| 2020_PublishSecurities2Server.yxmc | 1 |
+
+**Subtotal:** 1 file, 1 instance
+
+#### External Library Macros (no path prefix — requires CReW library + Tableau macros on server)
+
+| Macro File | Instances |
+|-----------|-----------|
+| CReW_EnsureFields.yxmc | 8 |
+| Ethnic and Gender ID.yxmc | 1 |
+| Cleanse.yxmc | 2 |
+| CReW_ParallelBlockUntilDone.yxmc | 1 |
+| Tableau New Macro.yxmc | 1 |
+| Tableau New Macro Dropped.yxmc | 1 |
+| Tableau New Macro Securities.yxmc | 1 |
+
+**Subtotal:** 7 files (4 CReW + 3 Tableau), 15 instances — **Note:** 4 CReW files are the primary external-library risk (G02-017); Tableau macros are separate dependency.
+
+**Grand total:** 20 unique macro files, 41 instances (1 Macro="False" boolean attribute was miscounted as instance in doc 7, giving their erroneous 42 count)
 
 ## Appendix B: Coverage Matrix
 

@@ -43,7 +43,9 @@ Plans:
   1. Analyst can see every gap from Phase 1 assigned to exactly one priority tier (critical, medium, or low)
   2. Analyst can read the complete gap analysis report as a single coherent Markdown document in the repo
   3. The report includes a remediation list that an engineer could act on without needing to re-read the source docs
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 02-01-PLAN.md — Add Priority columns to all gap tables, insert Prioritized Findings Summary and Remediation List, populate Appendix B
 
 ### Phase 3: Gap Analysis — Confluence Publication
 **Goal**: The gap report is live and readable in Confluence under the MDPA parent page
@@ -130,7 +132,7 @@ Phases execute with the following dependencies:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Gap Analysis — Documentation Audit | 2/2 | Complete    | 2026-03-18 |
-| 2. Gap Analysis — Prioritization and Report | 0/TBD | Not started | - |
+| 2. Gap Analysis — Prioritization and Report | 0/1 | Not started | - |
 | 3. Gap Analysis — Confluence Publication | 0/TBD | Not started | - |
 | 4. Data Lineage — Field Tracing and Stage Mapping | 0/TBD | Not started | - |
 | 5. Data Lineage — Confluence Publication | 0/TBD | Not started | - |

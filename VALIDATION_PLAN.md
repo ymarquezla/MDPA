@@ -2,8 +2,9 @@
 
 **Duration:** 4 Weeks (Mon 3/24 - Fri 4/18/2026)
 **Subject Matter Experts:** John Wagner, Chris Lindsay
-**Availability:** 2 hours/week per SME = 4 hours/week total
-**Total Available Hours:** 16 hours
+**Session Format:** Two 1-hour sessions per SME per week
+**Weekly Schedule:** Monday & Wednesday (1 hr each SME)
+**Total Available Hours:** 16 hours (2 hrs/week × 2 SMEs × 4 weeks)
 
 ---
 
@@ -11,402 +12,402 @@
 
 **Objective:** Validate high-level workflow design, process flow accuracy, and overall architecture
 
-**Hours Allocation:** 4 hours total
-
-### Monday 3/24 - John Wagner (2 hours)
-**Session: MDPA Overview & Workflow Architecture**
-
-**Pre-Session:** Review documents
-- 1_MDPA_PROCESS_DOCUMENTATION.md
-- 2_WORKFLOW_ARCHITECTURE.md
-
-**Discussion Topics:**
-1. Overall workflow purpose and scope (15 min)
-   - Is the MDPA mission statement accurate?
-   - Are the 7 processing stages correct?
-   - Any missing major stages?
-
-2. Workflow architecture review (30 min)
-   - 300+ tools breakdown - accurate?
-   - Tool distribution across stages - realistic?
-   - Data flow connections - correct?
-
-3. Performance & cycle time (20 min)
-   - ~2.5 hour typical cycle time - accurate?
-   - Any bottlenecks identified?
-   - Any performance concerns?
-
-4. Key metrics validation (15 min)
-   - Records processed (10K-50K+ loans) - correct?
-   - Data quality thresholds - appropriate?
-
-**Deliverables:**
-- Sign-off on architecture accuracy
-- List of clarifications needed
-- Any corrections/amendments
+**Topics:** MDPA purpose, 7-stage workflow, architecture overview, basic metrics
 
 ---
 
-### Thursday 3/27 - Chris Lindsay (2 hours)
-**Session: Architecture Validation & Gap Identification**
+### Session 1A: Monday 3/24 - John Wagner (1 hour)
+**Topic: MDPA Purpose, Scope & Overall Architecture**
 
-**Pre-Session:** Review John's notes + documents
+**Pre-Session Prep:** (15 min)
+- Read: 1_MDPA_PROCESS_DOCUMENTATION.md (Overview section)
 
-**Discussion Topics:**
-1. Architecture verification (20 min)
-   - Cross-check John's feedback
-   - Validate stage definitions
-   - Verify tool categories
+**Discussion Topics:** (45 min)
+1. MDPA mission & scope (15 min)
+   - Purpose statement accurate?
+   - Intended use cases clear?
+   - Scope boundaries correct?
 
-2. Data flow validation (30 min)
-   - Does data move correctly through all stages?
-   - Are transformations in correct sequence?
-   - Any missing intermediate steps?
+2. 7-stage processing pipeline (20 min)
+   - Stage names & sequence correct?
+   - Any missing stages?
+   - Stage purposes align with documentation?
 
-3. Dependencies & integrations (20 min)
-   - External system connections correct?
-   - Source system integrations accurate?
-   - Output destinations complete?
+3. High-level questions (10 min)
+   - Any inaccuracies so far?
+   - Anything unclear?
 
-4. Gap analysis (30 min)
-   - What's missing from current documentation?
-   - What needs clarification?
-   - Any inaccuracies identified?
+**Deliverables:**
+- Notes on accuracy/gaps
+- List of clarifications needed
+
+---
+
+### Session 1B: Wednesday 3/27 - Chris Lindsay (1 hour)
+**Topic: Workflow Architecture Deep Dive**
+
+**Pre-Session Prep:** (15 min)
+- Read: 2_WORKFLOW_ARCHITECTURE.md
+- Review John's notes from 3/24
+
+**Discussion Topics:** (45 min)
+1. Tool inventory validation (15 min)
+   - 300+ tools breakdown accurate?
+   - Tool distribution realistic?
+   - Any major categories missing?
+
+2. Data flow & connections (20 min)
+   - Does data flow through stages correctly?
+   - Sequence of transformations logical?
+   - Any missing connections?
+
+3. Clarifications & sign-off (10 min)
+   - Architecture validated ✓?
+   - Corrections needed?
 
 **Deliverables:**
 - Architecture validation sign-off
-- Gap assessment report
-- Priority corrections list
+- Corrections/amendments list
 
 ---
 
-## Week 2: Data Sources & Field Mapping
+## Week 2: Data Sources & Input Fields
 
-**Objective:** Validate data sources, field inventory, and transformation accuracy
+**Objective:** Validate data sources, input fields, and data transformation accuracy
 
-**Hours Allocation:** 4 hours total
+**Topics:** Input sources, field inventory, 7-stage transformations, field mapping
 
-### Monday 3/31 - John Wagner (2 hours)
-**Session: Data Sources & Input Validation**
+---
 
-**Pre-Session:** Review documents
-- 4_DATA_SOURCES_AND_LOCATIONS.md
-- 6_FIELD_MAPPING_AND_DATA_LINEAGE.md (first half)
+### Session 2A: Monday 3/31 - John Wagner (1 hour)
+**Topic: Input Data Sources & Field Inventory**
 
-**Discussion Topics:**
-1. Input data sources review (25 min)
-   - Loan Portfolio Master - all fields correct?
-   - Charge-Off & Recovery data - complete?
-   - Real Estate Valuation data - accurate?
-   - TransUnion credit bureau data - up to date?
+**Pre-Session Prep:** (15 min)
+- Read: 4_DATA_SOURCES_AND_LOCATIONS.md
 
-2. Source system connections (20 min)
-   - File locations and paths correct?
-   - Data refresh schedules accurate?
-   - SLAs appropriate?
+**Discussion Topics:** (45 min)
+1. Input data sources review (15 min)
+   - All 4 primary sources documented?
+   - Source system connections correct?
+   - File paths/locations accurate?
 
-3. Field inventory validation (25 min)
-   - All required fields documented?
+2. Field inventory validation (20 min)
+   - Required fields documented?
    - Data types correct?
-   - Field purposes accurate?
+   - Field purposes match actual usage?
 
-4. Data quality issues (10 min)
-   - Known issues listed correctly?
-   - Workarounds appropriate?
+3. Data quality baseline (10 min)
+   - Known issues documented?
+   - Data refresh cycles accurate?
 
 **Deliverables:**
-- Source data validation sign-off
-- Field inventory corrections (if any)
-- Missing fields identified
+- Input source validation notes
+- Field inventory corrections (if needed)
 
 ---
 
-### Thursday 4/3 - Chris Lindsay (2 hours)
-**Session: Field Mapping & Transformation Validation**
+### Session 2B: Wednesday 4/3 - Chris Lindsay (1 hour)
+**Topic: Field Transformations & 7-Stage Pipeline**
 
-**Pre-Session:** Review John's notes + complete field mapping doc
+**Pre-Session Prep:** (15 min)
+- Read: 6_FIELD_MAPPING_AND_DATA_LINEAGE.md (first half)
+- Review John's input source notes
 
-**Discussion Topics:**
-1. Field mapping verification (25 min)
-   - Each source field mapped correctly?
-   - Transformations accurate?
-   - Calculation formulas correct?
+**Discussion Topics:** (45 min)
+1. 7-stage transformation sequence (20 min)
+   - Cleanse → Enrich → Consolidate → Comply → Output correct?
+   - Field additions at each stage accurate?
+   - Transformation logic sound?
 
-2. 7-stage transformation chain (25 min)
-   - Data flow through stages correct?
-   - Cleanse → Enrich → Consolidate → Comply → Output sequence valid?
-   - Field additions/modifications at each stage accurate?
-
-3. Output field mappings (20 min)
+2. Output field mappings (15 min)
    - Client deliverable fields correct?
-   - QA report calculations accurate?
-   - Tableau extract transformations valid?
+   - QA report fields accurate?
+   - Tableau fields complete?
 
-4. Data quality metrics (10 min)
-   - Validation rules appropriate?
-   - Quality gates correct thresholds?
-   - Completeness checks sufficient?
+3. Sign-off & gaps (10 min)
+   - Data transformation validated ✓?
+   - Any missing transformations?
 
 **Deliverables:**
 - Field mapping validation sign-off
 - Transformation accuracy confirmation
-- Any formula/calculation corrections
 
 ---
 
-## Week 3: Macros & Processing Logic
+## Week 3: Macros & Dependencies
 
-**Objective:** Validate macro documentation, macro nesting analysis, and processing logic
+**Objective:** Validate macro inventory, usage frequency, and macro nesting analysis
 
-**Hours Allocation:** 4 hours total
+**Topics:** Macro documentation, macro usage patterns, nesting analysis, complexity ranking
 
-### Monday 4/7 - John Wagner (2 hours)
-**Session: Macro Documentation & Inventory**
+---
 
-**Pre-Session:** Review documents
-- 3_MACROS_AND_DEPENDENCIES.md
-- 7_MACROS_DEEP_DIVE.md (first half)
+### Session 3A: Monday 4/7 - John Wagner (1 hour)
+**Topic: Macro Inventory & Usage Frequency**
 
-**Discussion Topics:**
-1. Macro inventory review (20 min)
-   - All 23 unique macros identified?
+**Pre-Session Prep:** (15 min)
+- Read: 3_MACROS_AND_DEPENDENCIES.md (macro inventory section)
+
+**Discussion Topics:** (45 min)
+1. Macro inventory completeness (15 min)
+   - All 23 unique macros documented?
    - Macro categories correct?
    - Embedded vs. external distinction accurate?
 
-2. High-usage macros validation (25 min)
+2. High-usage macros validation (20 min)
    - CReW_EnsureFields (8 instances) - correct?
    - Contingent File Input (8 instances) - accurate?
    - 2020_Date_Converter (5 instances) - complete?
 
-3. Single-use macro purposes (20 min)
-   - Each macro's purpose accurate?
-   - Macro locations/paths correct?
-   - Any missing macros?
-
-4. CReW library dependencies (15 min)
-   - CReW macros identified correctly?
-   - Any version dependencies?
-   - Library availability confirmed?
+3. Missing/incorrect macros (10 min)
+   - Any macros not documented?
+   - Any incorrect counts?
 
 **Deliverables:**
-- Macro inventory sign-off
-- Missing/incorrect macros identified
-- CReW library verification complete
+- Macro inventory validation notes
+- Usage frequency corrections (if any)
 
 ---
 
-### Thursday 4/10 - Chris Lindsay (2 hours)
-**Session: Macro Nesting & Complexity Analysis**
+### Session 3B: Wednesday 4/10 - Chris Lindsay (1 hour)
+**Topic: Macro Nesting & Complexity Analysis**
 
-**Pre-Session:** Review John's notes + macro deep dive doc
+**Pre-Session Prep:** (15 min)
+- Read: 7_MACROS_DEEP_DIVE.md (Nesting Analysis section)
+- Review John's macro inventory notes
 
-**Discussion Topics:**
-1. Macro nesting investigation (25 min)
-   - Do macros contain nested calls?
-   - Is nesting analysis accurate?
-   - HIGH confidence candidates validated?
+**Discussion Topics:** (45 min)
+1. Macro nesting investigation (20 min)
+   - Do any macros call other macros?
+   - HIGH confidence nesting candidates validated?
      - CReW_EnsureFields
-     - CReW_ParallelBlockUntilDone
      - PreProcess_Iterative
      - Append Charge Offs and Matching
 
-2. Macro complexity ranking (20 min)
+2. Macro complexity & dependencies (15 min)
    - Complexity tiers accurate?
-   - Dependencies correctly identified?
+   - Dependencies identified correctly?
    - Any hidden dependencies?
 
-3. Macro usage patterns (20 min)
-   - Frequency analysis correct?
-   - Usage locations validated?
-   - Any redundant macro calls?
-
-4. Performance implications (15 min)
+3. Performance & optimization (10 min)
    - Bottleneck candidates identified?
-   - Performance optimization opportunities?
-   - Testing strategy for macro changes?
+   - Testing strategy appropriate?
 
 **Deliverables:**
 - Macro nesting analysis validation
-- Complexity ranking confirmation
-- Performance optimization recommendations
+- Complexity ranking sign-off
 
 ---
 
-## Week 4: Validation Rules, QA, & Sign-Off
+## Week 4: Quality Validation & Sign-Off
 
-**Objective:** Final validation of quality gates, error handling, alerts, and comprehensive sign-off
+**Objective:** Validate quality gates, error handling, alerts, and obtain final sign-off
 
-**Hours Allocation:** 4 hours total
+**Topics:** Validation rules, error handling, alerts/notifications, final review
 
-### Monday 4/14 - John Wagner (2 hours)
-**Session: Validation Rules & Quality Gates**
+---
 
-**Pre-Session:** Review documents
-- 5_ALERTS_AND_NOTIFICATIONS.md
-- 6_FIELD_MAPPING_AND_DATA_LINEAGE.md (second half - quality metrics)
+### Session 4A: Monday 4/14 - John Wagner (1 hour)
+**Topic: Validation Rules & Quality Gates**
 
-**Discussion Topics:**
-1. Data validation rules review (25 min)
-   - Field-level validation rules correct?
-   - Acceptable thresholds appropriate?
-   - Date/numeric range checks sufficient?
+**Pre-Session Prep:** (15 min)
+- Read: 6_FIELD_MAPPING_AND_DATA_LINEAGE.md (Quality Metrics section)
+
+**Discussion Topics:** (45 min)
+1. Data validation rules (15 min)
+   - Field-level validation rules appropriate?
+   - Numeric range checks sufficient?
+   - Date format validation complete?
 
 2. Quality gates by stage (20 min)
-   - Input validation complete?
-   - Processing validation adequate?
-   - Output validation sufficient?
+   - Input validation adequate?
+   - Processing validation sufficient?
+   - Output validation complete?
 
-3. Error handling & recovery (20 min)
-   - 4 error categories correct?
-   - Recovery procedures documented?
-   - Escalation paths appropriate?
-
-4. Alerts & notifications (15 min)
-   - Alert triggers documented?
-   - Recipient lists complete?
-   - Notification timing correct?
+3. Thresholds & acceptability (10 min)
+   - Acceptable error rates defined?
+   - Quality thresholds appropriate?
 
 **Deliverables:**
-- Validation rules sign-off
-- Quality gates confirmation
-- Error handling procedures approved
-- Alert configuration verified
+- Validation rules approval
+- Quality gates sign-off
+- Threshold recommendations
 
 ---
 
-### Thursday 4/17 - Chris Lindsay (2 hours)
-**Session: Final Review, Gaps, & Sign-Off**
+### Session 4B: Wednesday 4/17 - Chris Lindsay (1 hour)
+**Topic: Error Handling, Alerts & Final Sign-Off**
 
-**Pre-Session:** Review all previous session notes
+**Pre-Session Prep:** (15 min)
+- Read: 5_ALERTS_AND_NOTIFICATIONS.md
+- Review all previous session notes
+- Review John's validation rules notes
 
-**Discussion Topics:**
-1. Comprehensive validation summary (20 min)
-   - All 7 documents reviewed? ✓
-   - Major gaps identified?
-   - Critical corrections needed?
+**Discussion Topics:** (45 min)
+1. Error handling & recovery (15 min)
+   - 4 error categories documented?
+   - Recovery procedures appropriate?
+   - Escalation paths clear?
 
-2. Documentation completeness (20 min)
-   - Is anything missing from documentation?
-   - Are there any ambiguities?
-   - Any needed clarifications?
+2. Alerts & notifications (15 min)
+   - Alert triggers complete?
+   - Notification recipients correct?
+   - Alert timing appropriate?
 
-3. Accuracy assessment (20 min)
-   - How confident are we (0-100%)?
-   - What would increase confidence?
-   - Any areas needing deeper investigation?
-
-4. Next steps & sign-off (40 min)
-   - Final corrections to make?
-   - Who reviews corrected sections?
-   - Timeline for final approval?
-   - Formal sign-off checklist
+3. Final validation & sign-off (15 min)
+   - Overall documentation accuracy validated ✓?
+   - All major gaps closed?
+   - Ready for team distribution?
+   - **Formal SME sign-off**
 
 **Deliverables:**
+- Error handling & alerts approval
 - Final validation report
-- Sign-off documentation
-- Approved corrections list
-- Action items for post-validation
-- Documentation confidence rating
-- Formal SME sign-off signatures
+- **Formal sign-off signature**
 
 ---
 
-## Session Structure (Each 2-Hour Session)
+## Session Structure (Each 1-Hour Session)
 
-### Before Session
-- Reviewer reads assigned documents (30-45 min advance prep)
-- Prepares questions/concerns
-- Reviews previous session notes (if applicable)
+### Pre-Session (15 min - before meeting)
+- Read assigned documentation section
+- Prepare questions/concerns
+- Review relevant notes from previous sessions
 
-### During Session (120 minutes)
-- Opening summary (5 min)
-- Content discussion topics (90-100 min)
-  - ~20-25 min per major topic
-  - Feedback on accuracy
+### During Session (45 min)
+- **Discussion Topics:** 2-3 focused topics
+  - ~15-20 min per topic
+  - Q&A and feedback
+  - Accuracy assessment
   - Gap identification
-  - Clarification questions
-- Closing & action items (10-15 min)
-  - Document findings
-  - Identify corrections needed
-  - Confirm next steps
+- **Wrap-up:** (5-10 min)
+  - Summarize findings
+  - Document notes
+  - Confirm next session focus
 
-### After Session
-- Document notes & sign-off
-- Share corrections list with other reviewer
-- Update documentation as needed
+### After Session (async)
+- Update validation checklist
+- Share session notes with other reviewer
+- Document corrections needed
+- Prepare for next session
+
+---
+
+## Weekly Session Schedule
+
+### Week 1 (Mar 24-27)
+- **Mon 3/24, 1 hr (John):** MDPA purpose, 7-stage workflow
+- **Wed 3/27, 1 hr (Chris):** Architecture details, tool inventory
+
+### Week 2 (Mar 31 - Apr 3)
+- **Mon 3/31, 1 hr (John):** Input sources, field inventory
+- **Wed 4/3, 1 hr (Chris):** Field transformations, 7-stage mappings
+
+### Week 3 (Apr 7-10)
+- **Mon 4/7, 1 hr (John):** Macro inventory, usage frequency
+- **Wed 4/10, 1 hr (Chris):** Macro nesting, complexity ranking
+
+### Week 4 (Apr 14-17)
+- **Mon 4/14, 1 hr (John):** Validation rules, quality gates
+- **Wed 4/17, 1 hr (Chris):** Error handling, alerts, final sign-off
 
 ---
 
 ## Documentation Validation Checklist
 
-### Week 1: Foundation ✓
+### Session 1A & 1B: Foundation ✓
 - [ ] MDPA purpose & scope validated
-- [ ] 7-stage workflow architecture verified
-- [ ] 300+ tools categorization confirmed
+- [ ] 7-stage workflow verified
+- [ ] 300+ tools breakdown confirmed
 - [ ] Data flow sequence approved
-- [ ] Performance metrics validated
-- [ ] No major gaps identified
+- [ ] No critical gaps identified
+- [ ] Architecture sign-off obtained
 
-### Week 2: Data ✓
+### Session 2A & 2B: Data ✓
 - [ ] All 4 input data sources confirmed
 - [ ] Field inventory complete & accurate
 - [ ] 7-stage transformation chain validated
 - [ ] Output field mappings correct
-- [ ] Data quality rules appropriate
-- [ ] Known issues workarounds acceptable
+- [ ] Data quality baseline established
+- [ ] Field mapping sign-off obtained
 
-### Week 3: Macros ✓
+### Session 3A & 3B: Macros ✓
 - [ ] 23 unique macros identified & documented
-- [ ] Macro usage frequency accurate (8x, 8x, 5x, etc.)
+- [ ] Macro usage frequency accurate
 - [ ] Macro nesting analysis validated
-- [ ] Complex macros identified
-- [ ] CReW library dependencies confirmed
-- [ ] No missing macro documentation
+- [ ] Macro complexity ranking confirmed
+- [ ] Dependencies identified
+- [ ] Macro sign-off obtained
 
-### Week 4: QA & Sign-Off ✓
+### Session 4A & 4B: QA & Sign-Off ✓
 - [ ] Validation rules complete
 - [ ] Quality gates appropriate
-- [ ] Error handling procedures documented
+- [ ] Error handling documented
 - [ ] Alert/notification system understood
-- [ ] Overall documentation accuracy ≥ 90%
-- [ ] SME sign-off obtained
-- [ ] Corrections & action items tracked
+- [ ] Overall accuracy ≥ 90%
+- [ ] **Both SME formal sign-offs obtained** ✓
 
 ---
 
 ## Success Criteria
 
 ✅ **Validation Complete When:**
-1. All 7 documentation sections reviewed by both SMEs
-2. Accuracy confidence ≥ 90% (across all sections)
-3. All identified corrections completed
-4. No critical gaps remaining
-5. Both SME formal sign-offs obtained
-6. Action items for improvements documented
+1. All 8 sessions completed (4 weeks × 2 sessions/week)
+2. All 7 documentation sections reviewed by both SMEs
+3. Accuracy confidence ≥ 90% (across all sections)
+4. All identified corrections completed
+5. No critical gaps remaining
+6. **Both SME formal sign-offs obtained**
+7. Final validation report documented
 
 ---
 
-## Post-Validation (After Week 4)
+## Communication Between Sessions
 
-**Week 5 Actions:**
-- Implement approved corrections
-- Update GitHub with corrections
-- Create "Validated" release/tag
-- Share with broader team
-- Schedule ongoing maintenance reviews (quarterly?)
+**John → Chris Handoff (Mon evening):**
+- John's session notes shared
+- Key findings/corrections highlighted
+- Chris reads relevant docs + John's notes before Wed session
 
-**Ongoing Maintenance:**
-- Schedule monthly check-ins for updates
-- Document any workflow changes
+**Chris → John Handoff (Wed evening):**
+- Chris's session notes shared
+- Validation sign-offs documented
+- John reviews before next Mon session
+
+---
+
+## Post-Validation (Week 5+)
+
+**Immediate (Apr 21):**
+- Compile all corrections
+- Update GitHub documentation
+- Create "Validated" release tag
+- Share final report with Loan Analytics team
+
+**Ongoing:**
+- Schedule quarterly review sessions
+- Update docs as workflow evolves
 - Maintain macro inventory
-- Update as Alteryx workflow evolves
+- Track any new macros/changes
 
 ---
 
-**Prepared for:** Yomar Marquez
-**Reviewers:** John Wagner, Chris Lindsay
-**Start Date:** Monday, March 24, 2026
-**End Date:** Friday, April 18, 2026
-**Total Duration:** 4 weeks, 16 hours
+## Key Contacts & Schedule
+
+| Name | Role | Session Days | Session Times |
+|---|---|---|---|
+| John Wagner | SME #1 | Mon, Mon, Mon, Mon | 1 hour each |
+| Chris Lindsay | SME #2 | Wed, Wed, Wed, Wed | 1 hour each |
+
+**Validation Period:** March 24 - April 18, 2026
+**Total Sessions:** 8 (2 per week × 4 weeks)
+**Total Hours:** 16 (1 hr × 2 SMEs × 8 sessions)
+
+---
+
+**Document prepared for:** Yomar Marquez
+**Validation reviewers:** John Wagner, Chris Lindsay
+**Status:** Ready to schedule
+**Last updated:** 2026-03-17
 
 ---

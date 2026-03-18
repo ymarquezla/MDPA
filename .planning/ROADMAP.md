@@ -55,7 +55,9 @@ Plans:
   1. A Confluence page titled "Gap Analysis Report" exists under MDPA parent page ID 4244045841 in the TREL space
   2. The page content matches the finalized Markdown report from Phase 2 (no stale or partial content)
   3. A stakeholder with Confluence access can read the full gap report without accessing the repo
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 03-01-PLAN.md — Write publish-gap-analysis.js script and publish GAP_ANALYSIS.md to Confluence
 
 ### Phase 4: Data Lineage — Field Tracing and Stage Mapping
 **Goal**: Every key field in the workflow is fully traced from its source system through all transformations to its output destination
@@ -133,7 +135,7 @@ Phases execute with the following dependencies:
 |-------|----------------|--------|-----------|
 | 1. Gap Analysis — Documentation Audit | 2/2 | Complete    | 2026-03-18 |
 | 2. Gap Analysis — Prioritization and Report | 0/1 | Complete    | 2026-03-18 |
-| 3. Gap Analysis — Confluence Publication | 0/TBD | Not started | - |
+| 3. Gap Analysis — Confluence Publication | 0/1 | Not started | - |
 | 4. Data Lineage — Field Tracing and Stage Mapping | 0/TBD | Not started | - |
 | 5. Data Lineage — Confluence Publication | 0/TBD | Not started | - |
 | 6. Macro Inventory — Cataloguing and Risk Rating | 0/TBD | Not started | - |

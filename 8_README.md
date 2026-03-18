@@ -149,6 +149,25 @@ Technical database schema design and implementation details.
 
 ---
 
+#### 10. **12_TABLEAU_DASHBOARD_GLOSSARY.md**
+Client-facing reference for all dashboard objects and metrics.
+- 23+ dashboard tabs documented (Introduction, Landing Pages, Risk, Migration, Downloads, etc.)
+- Every dashboard object, chart, table, filter, and KPI defined
+- Business context and use cases for each metric
+- Input parameters and stress-testing scenarios
+- Profitability analysis and dealer performance
+- Static pool (vintage) analysis
+- Complete metric dictionary with targets
+
+**Read this** to understand:
+- What each dashboard tab shows and why
+- How to use filters and parameters
+- What each metric means in business terms
+- How to interpret charts and tables
+- Typical performance targets and thresholds
+
+---
+
 ## Quick Start Guide
 
 ### For Different User Roles
@@ -156,9 +175,10 @@ Technical database schema design and implementation details.
 #### **Loan Analyst/End User**
 Read in this order:
 1. 1_MDPA_PROCESS_DOCUMENTATION.md - Understand what the workflow does
-2. 4_DATA_SOURCES_AND_LOCATIONS.md - Know where to find outputs
-3. 5_ALERTS_AND_NOTIFICATIONS.md - Know when outputs are ready
-4. 6_FIELD_MAPPING_AND_DATA_LINEAGE.md - Understand what data is available
+2. 12_TABLEAU_DASHBOARD_GLOSSARY.md - Learn all dashboard objects and metrics
+3. 4_DATA_SOURCES_AND_LOCATIONS.md - Know where to find outputs
+4. 5_ALERTS_AND_NOTIFICATIONS.md - Know when outputs are ready
+5. 9_BUSINESS_DATA_GLOSSARY.md - Reference data field definitions
 
 #### **Operations/Support**
 Read in this order:
@@ -207,11 +227,12 @@ Read in this order:
 - **Output Types:** Client files, QA reports, Tableau extracts, archives, executive summaries
 
 ### Documentation Coverage
-- **Total Documents:** 11 comprehensive files
-- **Pages:** 500+ pages of documentation
+- **Total Documents:** 12 comprehensive files (1,200+ pages)
 - **Data Fields Documented:** 100+ fields across all inputs and outputs
 - **Calculated Metrics:** 10+ derived metrics with formulas
 - **Entities Defined:** 4 core business entities with full data model
+- **Dashboard Tabs Documented:** 23+ Tableau dashboards with complete glossary
+- **Dashboard Objects:** 150+ individual charts, tables, filters, and KPIs
 
 ---
 
@@ -336,6 +357,7 @@ For questions about:
 | 9_BUSINESS_DATA_GLOSSARY.md | 1.0 | 2026-03-17 | Current |
 | 10_LOGICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** |
 | 11_PHYSICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** |
+| 12_TABLEAU_DASHBOARD_GLOSSARY.md | 1.0 | 2026-03-18 | **NEW** |
 
 ---
 

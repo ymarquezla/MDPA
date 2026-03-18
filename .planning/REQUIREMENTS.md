@@ -10,8 +10,8 @@
 ### Gap Analysis
 
 - [x] **GAP-01**: Analyst can read a gap analysis report identifying undocumented logic in the workflow that is not covered by the 14 existing docs
-- [ ] **GAP-02**: Analyst can see a list of broken or at-risk dependencies (macro paths, CReW library, deployment blockers)
-- [ ] **GAP-03**: Analyst can see coverage gaps — areas where documentation exists but is incomplete, ambiguous, or contradicts the workflow XML
+- [x] **GAP-02**: Analyst can see a list of broken or at-risk dependencies (macro paths, CReW library, deployment blockers)
+- [x] **GAP-03**: Analyst can see coverage gaps — areas where documentation exists but is incomplete, ambiguous, or contradicts the workflow XML
 - [ ] **GAP-04**: Analyst can see a prioritized remediation list (critical / medium / low gaps)
 - [ ] **GAP-05**: Gap report is published to Confluence TREL space under MDPA parent page
 
@@ -72,8 +72,8 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | GAP-01 | Phase 1 — Gap Analysis: Documentation Audit | Complete |
-| GAP-02 | Phase 1 — Gap Analysis: Documentation Audit | Pending |
-| GAP-03 | Phase 1 — Gap Analysis: Documentation Audit | Pending |
+| GAP-02 | Phase 1 — Gap Analysis: Documentation Audit | Complete |
+| GAP-03 | Phase 1 — Gap Analysis: Documentation Audit | Complete |
 | GAP-04 | Phase 2 — Gap Analysis: Prioritization and Report | Pending |
 | GAP-05 | Phase 3 — Gap Analysis: Confluence Publication | Pending |
 | LIN-01 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Pending |

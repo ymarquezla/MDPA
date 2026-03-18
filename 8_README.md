@@ -19,7 +19,7 @@ This repository contains complete technical documentation for the **MDPA (Monthl
 
 ### Core Documentation Files
 
-#### 1. **MDPA_PROCESS_DOCUMENTATION.md** (START HERE)
+#### 1. **1_MDPA_PROCESS_DOCUMENTATION.md** (START HERE)
 Main overview of the entire MDPA workflow.
 - High-level process flow
 - Workflow architecture summary (300+ tools)
@@ -31,7 +31,7 @@ Main overview of the entire MDPA workflow.
 
 ---
 
-#### 2. **WORKFLOW_ARCHITECTURE.md**
+#### 2. **2_WORKFLOW_ARCHITECTURE.md**
 Detailed architectural documentation with visual flow diagrams.
 - Processing pipeline stages
 - Tool configuration details
@@ -43,7 +43,7 @@ Detailed architectural documentation with visual flow diagrams.
 
 ---
 
-#### 3. **MACROS_AND_DEPENDENCIES.md**
+#### 3. **3_MACROS_AND_DEPENDENCIES.md**
 Complete inventory of all macros used in the workflow.
 - All 15+ macros documented with purpose
 - Macro categories (transformation, cleansing, output, etc.)
@@ -55,7 +55,7 @@ Complete inventory of all macros used in the workflow.
 
 ---
 
-#### 4. **DATA_SOURCES_AND_LOCATIONS.md**
+#### 4. **4_DATA_SOURCES_AND_LOCATIONS.md**
 Catalog of all input data sources and output file locations.
 - Primary data sources (loan portfolio, charge-offs, RE valuations, credit bureau)
 - File locations and naming conventions
@@ -67,7 +67,7 @@ Catalog of all input data sources and output file locations.
 
 ---
 
-#### 5. **6_ALERTS_AND_NOTIFICATIONS.md**
+#### 5. **5_ALERTS_AND_NOTIFICATIONS.md**
 Documentation of automated alerts and completion notifications.
 - Alerts triggered during processing
 - Error alerts and escalation procedures
@@ -79,7 +79,7 @@ Documentation of automated alerts and completion notifications.
 
 ---
 
-#### 6. **7_FIELD_MAPPING_AND_DATA_LINEAGE.md**
+#### 6. **6_FIELD_MAPPING_AND_DATA_LINEAGE.md**
 Complete field tracking from source to output.
 - Field inventory by source system
 - Data transformation chain (7 stages)
@@ -102,31 +102,31 @@ Complete field tracking from source to output.
 
 #### **Loan Analyst/End User**
 Read in this order:
-1. MDPA_PROCESS_DOCUMENTATION.md - Understand what the workflow does
-2. DATA_SOURCES_AND_LOCATIONS.md - Know where to find outputs
-3. 6_ALERTS_AND_NOTIFICATIONS.md - Know when outputs are ready
-4. 7_FIELD_MAPPING_AND_DATA_LINEAGE.md - Understand what data is available
+1. 1_MDPA_PROCESS_DOCUMENTATION.md - Understand what the workflow does
+2. 4_DATA_SOURCES_AND_LOCATIONS.md - Know where to find outputs
+3. 5_ALERTS_AND_NOTIFICATIONS.md - Know when outputs are ready
+4. 6_FIELD_MAPPING_AND_DATA_LINEAGE.md - Understand what data is available
 
 #### **Operations/Support**
 Read in this order:
-1. WORKFLOW_ARCHITECTURE.md - Understand the technical flow
-2. MACROS_AND_DEPENDENCIES.md - Know what dependencies exist
-3. 6_ALERTS_AND_NOTIFICATIONS.md - Know error handling
-4. 7_FIELD_MAPPING_AND_DATA_LINEAGE.md - Understand quality rules
+1. 2_WORKFLOW_ARCHITECTURE.md - Understand the technical flow
+2. 3_MACROS_AND_DEPENDENCIES.md - Know what dependencies exist
+3. 5_ALERTS_AND_NOTIFICATIONS.md - Know error handling
+4. 6_FIELD_MAPPING_AND_DATA_LINEAGE.md - Understand quality rules
 
 #### **Developer/Data Engineer**
 Read in this order:
-1. MDPA_PROCESS_DOCUMENTATION.md - Understand purpose
-2. WORKFLOW_ARCHITECTURE.md - Understand technical design
-3. MACROS_AND_DEPENDENCIES.md - Understand external dependencies
-4. 7_FIELD_MAPPING_AND_DATA_LINEAGE.md - Understand calculations
-5. DATA_SOURCES_AND_LOCATIONS.md - Understand integrations
+1. 1_MDPA_PROCESS_DOCUMENTATION.md - Understand purpose
+2. 2_WORKFLOW_ARCHITECTURE.md - Understand technical design
+3. 3_MACROS_AND_DEPENDENCIES.md - Understand external dependencies
+4. 6_FIELD_MAPPING_AND_DATA_LINEAGE.md - Understand calculations
+5. 4_DATA_SOURCES_AND_LOCATIONS.md - Understand integrations
 
 #### **Loan Analytics Team**
 Read in this order:
 1. All 7 files in order
-2. Focus on 7_FIELD_MAPPING_AND_DATA_LINEAGE.md for reporting
-3. Focus on 6_ALERTS_AND_NOTIFICATIONS.md for operations
+2. Focus on 6_FIELD_MAPPING_AND_DATA_LINEAGE.md for reporting
+3. Focus on 5_ALERTS_AND_NOTIFICATIONS.md for operations
 
 ---
 
@@ -168,7 +168,7 @@ Read in this order:
    - Manually execute from Alteryx Server
 
 3. **Monitor Progress**
-   - Check alerts for errors (see 6_ALERTS_AND_NOTIFICATIONS.md)
+   - Check alerts for errors (see 5_ALERTS_AND_NOTIFICATIONS.md)
    - Monitor cycle completion
    - Verify output data quality
 
@@ -180,13 +180,13 @@ Read in this order:
 
 ### Troubleshooting Common Issues
 
-See **6_ALERTS_AND_NOTIFICATIONS.md** for:
+See **5_ALERTS_AND_NOTIFICATIONS.md** for:
 - File input errors (missing source data)
 - Data quality failures (invalid values, mismatches)
 - Processing failures (calculation errors)
 - Delivery errors (output destination issues)
 
-See **7_FIELD_MAPPING_AND_DATA_LINEAGE.md** for:
+See **6_FIELD_MAPPING_AND_DATA_LINEAGE.md** for:
 - Field validation rules
 - Calculation verification
 - Data lineage tracking
@@ -210,7 +210,7 @@ See **7_FIELD_MAPPING_AND_DATA_LINEAGE.md** for:
 - Tableau Server (dashboards)
 - File gallery (QA reports, archives)
 
-See **MACROS_AND_DEPENDENCIES.md** and **DATA_SOURCES_AND_LOCATIONS.md** for complete details.
+See **3_MACROS_AND_DEPENDENCIES.md** and **4_DATA_SOURCES_AND_LOCATIONS.md** for complete details.
 
 ---
 
@@ -222,7 +222,7 @@ See **MACROS_AND_DEPENDENCIES.md** and **DATA_SOURCES_AND_LOCATIONS.md** for com
 - **Output Validation:** Final records validated against acceptance criteria
 
 ### Known Issues & Limitations
-See **7_FIELD_MAPPING_AND_DATA_LINEAGE.md** for:
+See **6_FIELD_MAPPING_AND_DATA_LINEAGE.md** for:
 - Current data quality issues (TransUnion lag, etc.)
 - Workarounds in place
 - Future enhancements planned
@@ -233,14 +233,14 @@ See **7_FIELD_MAPPING_AND_DATA_LINEAGE.md** for:
 
 ### Adding a New Field
 1. Identify source and purpose
-2. Add to inventory in 7_FIELD_MAPPING_AND_DATA_LINEAGE.md
+2. Add to inventory in 6_FIELD_MAPPING_AND_DATA_LINEAGE.md
 3. Add to appropriate transformation stage
 4. Update output mappings
 5. Add quality validation rule
 6. Test with sample data
 
 ### Modifying Calculations
-1. Document change in 7_FIELD_MAPPING_AND_DATA_LINEAGE.md
+1. Document change in 6_FIELD_MAPPING_AND_DATA_LINEAGE.md
 2. Update workflow in Alteryx
 3. Test against known scenarios
 4. Verify output impact
@@ -251,11 +251,11 @@ See **7_FIELD_MAPPING_AND_DATA_LINEAGE.md** for:
 ## Contact & Support
 
 For questions about:
-- **Data availability:** See DATA_SOURCES_AND_LOCATIONS.md
-- **Processing flow:** See WORKFLOW_ARCHITECTURE.md
-- **Field definitions:** See 7_FIELD_MAPPING_AND_DATA_LINEAGE.md
-- **Error handling:** See 6_ALERTS_AND_NOTIFICATIONS.md
-- **Workflow design:** See MDPA_PROCESS_DOCUMENTATION.md
+- **Data availability:** See 4_DATA_SOURCES_AND_LOCATIONS.md
+- **Processing flow:** See 2_WORKFLOW_ARCHITECTURE.md
+- **Field definitions:** See 6_FIELD_MAPPING_AND_DATA_LINEAGE.md
+- **Error handling:** See 5_ALERTS_AND_NOTIFICATIONS.md
+- **Workflow design:** See 1_MDPA_PROCESS_DOCUMENTATION.md
 
 ---
 
@@ -263,19 +263,19 @@ For questions about:
 
 | Document | Version | Last Updated | Status |
 |---|---|---|---|
-| README.md | 1.0 | 2026-03-17 | Current |
-| MDPA_PROCESS_DOCUMENTATION.md | 1.0 | 2026-03-11 | Current |
-| WORKFLOW_ARCHITECTURE.md | 1.0 | 2026-03-11 | Current |
-| MACROS_AND_DEPENDENCIES.md | 1.0 | 2026-03-11 | Current |
-| DATA_SOURCES_AND_LOCATIONS.md | 1.0 | 2026-03-11 | Current |
-| 6_ALERTS_AND_NOTIFICATIONS.md | 1.0 | 2026-03-17 | Current |
-| 7_FIELD_MAPPING_AND_DATA_LINEAGE.md | 1.0 | 2026-03-17 | Current |
+| 8_README.md | 1.0 | 2026-03-17 | Current |
+| 1_MDPA_PROCESS_DOCUMENTATION.md | 1.0 | 2026-03-11 | Current |
+| 2_WORKFLOW_ARCHITECTURE.md | 1.0 | 2026-03-11 | Current |
+| 3_MACROS_AND_DEPENDENCIES.md | 1.0 | 2026-03-11 | Current |
+| 4_DATA_SOURCES_AND_LOCATIONS.md | 1.0 | 2026-03-11 | Current |
+| 5_ALERTS_AND_NOTIFICATIONS.md | 1.0 | 2026-03-17 | Current |
+| 6_FIELD_MAPPING_AND_DATA_LINEAGE.md | 1.0 | 2026-03-17 | Current |
 
 ---
 
 ## Navigation Tips
 
-- **Start with README.md** (this file) to understand the documentation structure
+- **Start with 8_README.md** (this file) to understand the documentation structure
 - **Use the table above** to find specific documents by topic
 - **Follow the "Read this" guidance** for your role
 - **Cross-reference documents** when you need detailed information on a specific topic

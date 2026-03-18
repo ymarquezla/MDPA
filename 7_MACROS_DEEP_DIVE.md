@@ -2,9 +2,10 @@
 
 **Comprehensive Analysis of Macro Architecture, Nesting, and Complexity**
 
-**Document Version:** 1.0
-**Last Updated:** 2026-03-17
+**Document Version:** 1.1
+**Last Updated:** 2026-03-18
 **Purpose:** Detailed investigation of all 23 macros, their internal structure, nesting patterns, and interdependencies
+**Recent Updates:** Added comprehensive documentation of March 18, 2026 Tableau macro remediation (migration from TDE to Hyper format with DCM authentication)
 
 ---
 
@@ -217,14 +218,184 @@ Output: Fully preprocessed data
 
 #### Output & Reporting Macros
 
-| Macro | Purpose |
-|---|---|
-| **Tableau New Macro.yxmc** | Transforms data to Tableau format |
-| **Tableau New Macro Dropped.yxmc** | Tableau format for exception records |
-| **Tableau New Macro Securities.yxmc** | Tableau format for securities data |
-| **2020_Publish2Server.yxmc** | Publishes results to Alteryx Server |
-| **2020_PublishDropped2Server.yxmc** | Publishes exception records to server |
-| **2020_PublishSecurities2Server.yxmc** | Publishes securities data to server |
+| Macro | Purpose | Status | Notes |
+|---|---|---|---|
+| **Tableau New Macro.yxmc** | Transforms data to Tableau format (Hyper) | ✅ ACTIVE | Macro 1055 in Container 1055 |
+| **Tableau New Macro Dropped.yxmc** | Tableau format for exception records (Hyper) | ✅ ACTIVE | Macro 1056 in Container 1056 |
+| **Tableau New Macro Securities.yxmc** | Tableau format for securities data (Hyper) | ✅ ACTIVE | Macro 1057 in Container 1057 |
+| **2020_Publish2Server.yxmc** | Publishes to Alteryx Server (legacy) | ⚠️ DISABLED | Container 1049 (old TDE format) |
+| **2020_PublishDropped2Server.yxmc** | Publishes exception records (legacy) | ⚠️ DISABLED | Container 1049 (old TDE format) |
+| **2020_PublishSecurities2Server.yxmc** | Publishes securities data (legacy) | ⚠️ DISABLED | Container 1049 (old TDE format) |
+
+**⚠️ CRITICAL UPDATE (March 18, 2026):** See "Tableau Macro Remediation" section below.
+
+---
+
+## Tableau Macro Remediation (March 18, 2026) ⚠️ CRITICAL
+
+### Background
+The workflow relied on legacy "Publish to Tableau Server" macros (2020_Publish2Server, etc.) using TDE (Tableau Data Extract) format. When Alteryx Designer upgraded to v2024.2, native TDE support was removed, breaking the entire publish pipeline.
+
+### Remediation Summary
+
+**Old Publishing Path (DISABLED - Container 1049):**
+- **Macro 287:** 2020_Publish2Server.yxmc (CLIENTFILE)
+- **Macro 369:** 2020_PublishDropped2Server.yxmc (DROPPED)
+- **Macro 929:** 2020_PublishSecurities2Server.yxmc (SECURITIES)
+- **Format:** Tableau Data Extract (.tde)
+- **Authentication:** Embedded credentials
+- **Status:** ❌ NO LONGER COMPATIBLE with Designer 2024.2+
+
+**New Publishing Path (ACTIVE - Macros 1055, 1056, 1057):**
+- **Macro 1055:** Tableau New Macro.yxmc (CLIENTFILE)
+- **Macro 1056:** Tableau New Macro Dropped.yxmc (DROPPED)
+- **Macro 1057:** Tableau New Macro Securities.yxmc (SECURITIES)
+- **Format:** Tableau Hyper (.hyper)
+- **Authentication:** DCM (Data Connection Manager) with Personal Access Token
+- **Status:** ✅ WORKING
+
+### New Macro Details
+
+#### Tableau New Macro (1055) — CLIENTFILE
+**Container:** Container 1055
+**Location:** Main output path in workflow
+**Internal Structure:**
+```
+Input: Processed loan records
+  ↓
+[Sample tool] - Takes first N records (if gating)
+  ↓
+[Append Fields] - Adds control parameters (project name)
+  ↓
+[Tableau Output SDK tool (ToolID 19)]
+  Configuration:
+    - DCM Connection: "Tableau Integration — Zevs Token"
+    - Format: Hyper
+    - Action: Overwrite
+    - Publish to: Tableau Server
+  ↓
+[Block Until Done] - Wait for publish completion
+  ↓
+Output: Success/Failure notification
+```
+
+**Purpose:** Publish processed client file data to Tableau Server as Hyper extract
+
+**Key Differences from Old:**
+- Uses Hyper format instead of TDE
+- Tableau Output SDK tool (v1.5.4) instead of legacy Publish connector (v1.08.1)
+- DCM-based authentication instead of embedded token
+- Service account access via credential sharing
+
+#### Tableau New Macro Dropped (1056) — DROPPED RECORDS
+**Container:** Container 1056
+**Internal Structure:** Same as 1055 (CLIENTFILE), but for dropped/exception records
+**Purpose:** Publish QA data (records that failed validation) to Tableau
+
+#### Tableau New Macro Securities (1057) — SECURITIES
+**Container:** Container 1057
+**Internal Structure:**
+```
+Input: Securities portfolio data
+  ↓
+[Sample tool] - Takes first N records
+  ↓
+[Filter tool] - CRITICAL: Filters out if 0 records
+  (Prevents empty batch macro invocation)
+  ↓
+[Append Fields] - Adds project name (if data exists)
+  ↓
+[Tableau Output SDK tool (ToolID 19)]
+  Configuration:
+    - DCM Connection: "Tableau Integration — Zevs Token"
+    - Format: Hyper
+    - Action: Overwrite
+    - Publish to: Tableau Server
+  ↓
+[Block Until Done] - Wait for publish completion
+  ↓
+Output: Success/Failure notification
+```
+
+**Special Handling:** Securities data may be empty (0 records) for some runs
+- **Filter gating mechanism:** Prevents batch macro from invoking with no data
+- **Known behavior:** Non-fatal '#1' error when empty (but doesn't break workflow)
+- **Recommended fix:** If securities data always present, gating can be simplified
+
+### Authentication Configuration
+
+**DCM Connection:** "Tableau Integration — Zevs Token"
+- **Type:** Personal Access Token (PAT)
+- **Scope:** Tableau Server publishing
+- **Credential Sharing:** Shared with JTodd service account
+  - Allows web application to trigger workflow via API
+  - Resolves 403 Unauthorized errors
+
+**Configuration in Each Macro:**
+- Action tool configured to update Tableau Output tool (ToolID 19)
+- Sets DCM connection to "Tableau Integration — Zevs Token"
+- Property "FileAction" set to "Overwrite"
+
+### Impact on Workflow
+
+**Runtime:**
+- **Before:** ~2.5 hours (with TDE errors breaking publish)
+- **After:** ~3:23 minutes (all publish steps complete successfully)
+
+**Error Status:**
+- **Before:** 8 errors on each run (TDE not supported)
+- **After:** 0 errors (when data exists), 1 non-fatal (when securities empty)
+
+**Reliability:**
+- **Before:** Workflow failed 100% of time after Designer 2024.2 upgrade
+- **After:** Workflow succeeds 100% of time with valid data
+
+### Testing & Validation
+
+**Test Scenarios:**
+1. ✅ Publish CLIENTFILE data — SUCCESS
+2. ✅ Publish DROPPED records — SUCCESS
+3. ✅ Publish SECURITIES (with data) — SUCCESS
+4. ✅ Publish SECURITIES (empty data) — SUCCESS with expected non-fatal error
+
+**Tableau Server Verification:**
+- Hyper extracts confirmed on Tableau Server
+- Dashboard data refreshing correctly
+- All three publish paths functional
+
+### Remaining Known Issues
+
+**1. Email Tool (953) Not Configured**
+- Tool exists but SMTP connection not set up
+- Non-critical (workflow completes)
+- Action: Configure SMTP for email notifications
+
+**2. Designer Version Update Recommended**
+- v2024.3+ available
+- May resolve remaining Tableau Output SDK rendering issues
+- Current v2024.2.1.162 (Patch 7) is functional but older
+
+**3. Web API Key Pending Update**
+- Web application's API key needs reconfiguration
+- Aligns with new DCM credential setup
+- Currently pending IT configuration
+
+### Historical Context
+
+| Date | Event |
+|------|-------|
+| 2024-02-XX | Alteryx Designer 2024.2 released (removed TDE support) |
+| 2026-03-06 | Workflow started failing (8 errors/run) |
+| 2026-03-18 | Remediation completed by Zev Butler (DevOps) |
+| 2026-03-18 | All publish macros tested and validated |
+
+### Future Considerations
+
+1. **Simplify Securities Handling:** If securities data always present, remove filter gating
+2. **Upgrade Designer:** Update to v2024.3+ when available
+3. **Email Configuration:** Configure SMTP connection for Tool 953
+4. **API Key Update:** Complete web application API key configuration
+5. **Monitor Hyper Format:** Track performance of Hyper vs. legacy TDE format
 
 ---
 

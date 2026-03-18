@@ -221,6 +221,121 @@ Comprehensive reference for securities collateral data capture, valuation, and p
 
 ---
 
+#### 13. **15_MISSING_SECURITIES_SCENARIOS.md**
+Edge case documentation for missing or delayed securities collateral data.
+- 4 types of missing securities scenarios
+- Workflow detection points and validation responses
+- Immediate actions and escalation procedures
+- Impact on loan status progression
+- Compliance and regulatory implications
+- Step-by-step collections procedures with timelines
+- Dashboard and reporting implications
+- Prevention best practices and early warning signals
+
+**Read this** to understand:
+- What happens when securities data is missing or late
+- How to detect and respond to collateral gaps
+- Regulatory requirements for missing collateral
+- Collections procedures for securities-backed loans
+
+---
+
+#### 14. **16_OPERATIONAL_TROUBLESHOOTING_GUIDE.md** ⭐ FOR SME VALIDATION & CLIENT SUPPORT
+Comprehensive end-to-end troubleshooting guide for the 7-stage MDPA workflow.
+- 7-stage pipeline walkthrough with detailed problem solving
+- 28 specific issues organized by workflow stage
+- How to pinpoint problems (detection methods and tools)
+- Step-by-step resolution with specific workflow/macro references
+- Common scenarios and quick fixes
+- Escalation guide with escalation paths
+- Data quality checks and diagnostic checklists
+
+**Read this** to understand:
+- How to troubleshoot any MDPA issue systematically
+- Which workflow tools to examine for specific problems
+- How to communicate issues to technical teams
+- When and how to escalate
+
+---
+
+#### 15. **17_QUICK_REF_COLLATERAL_VALUATION.md** ⭐ FOR INTERNAL TEAMS
+Fast reference for collateral valuation and LTV calculations.
+- Collateral types and update frequencies
+- LTV calculation and interpretation (by collateral type)
+- Real estate, auto, and securities collateral specifics
+- Haircut application by security type
+- Quick diagnostic checklist
+
+**Read this** for quick lookups on collateral questions.
+
+---
+
+#### 16. **18_QUICK_REF_DELINQUENCY_RISK.md** ⭐ FOR INTERNAL TEAMS
+Fast reference for loan status, delinquency, and risk classification.
+- Loan status hierarchy and definitions
+- Delinquency status transitions and triggers
+- Risk score calculation with examples
+- Credit score interpretation
+- Delinquency and charge-off rate targets
+- Quick status lookup guide
+
+**Read this** for quick lookups on delinquency and risk questions.
+
+---
+
+#### 17. **19_QUICK_REF_DATA_QUALITY.md** ⭐ FOR INTERNAL TEAMS
+Fast reference for data validation rules and quality gates.
+- Field-level validation rules by source
+- Valid ranges for each data element
+- Cross-field validation rules
+- Data quality issues and resolutions
+- Quality gate thresholds
+- Data quality checklist
+
+**Read this** for quick lookups on data quality and validation.
+
+---
+
+#### 18. **20_QUICK_REF_DASHBOARD_METRICS.md** ⭐ FOR INTERNAL TEAMS
+Fast reference for understanding and interpreting dashboard KPIs.
+- Key metrics and targets by portfolio type
+- Portfolio health metrics and risk metrics
+- Dashboard tab purposes and usage
+- Metric formulas and calculation examples
+- Common questions and interpretation guides
+- Diagnostic checklist for validation
+
+**Read this** for quick lookups on metric interpretation and dashboard usage.
+
+---
+
+#### 19. **21_QUICK_REF_LOAN_LIFECYCLE.md** ⭐ FOR INTERNAL TEAMS
+Fast reference for loan lifecycle and status progression.
+- Complete loan lifecycle flow diagram
+- Status definitions and durations
+- Automatic vs. manual status transitions
+- Common scenarios and resolution paths
+- Data quality checks for status tracking
+- Diagnostic checklist
+
+**Read this** for quick lookups on loan status and lifecycle events.
+
+---
+
+#### 20. **22_FAQ_COMMON_QUESTIONS.md** ⭐ FOR SME VALIDATION & CLIENT SUPPORT
+Frequently asked questions with complete answers.
+- Data & Processing (6 questions)
+- Portfolio Metrics (5 questions)
+- Troubleshooting (4 questions)
+- Securities & Collateral (3 questions)
+- Dashboard & Reporting (3 questions)
+- Compliance & Regulatory (3 questions)
+- 23 total Q&As with cross-references to detailed documentation
+
+**Read this** to prepare for SME validation sessions or client presentations.
+
+---
+
 ## Quick Start Guide
 
 ### For Different User Roles
@@ -280,12 +395,15 @@ Read in this order:
 - **Output Types:** Client files, QA reports, Tableau extracts, archives, executive summaries
 
 ### Documentation Coverage
-- **Total Documents:** 12 comprehensive files (1,200+ pages)
+- **Total Documents:** 20 comprehensive files (1,600+ pages)
 - **Data Fields Documented:** 100+ fields across all inputs and outputs
 - **Calculated Metrics:** 10+ derived metrics with formulas
 - **Entities Defined:** 4 core business entities with full data model
 - **Dashboard Tabs Documented:** 23+ Tableau dashboards with complete glossary
 - **Dashboard Objects:** 150+ individual charts, tables, filters, and KPIs
+- **Troubleshooting Issues:** 28 specific issues with step-by-step solutions
+- **FAQ Questions:** 23 common questions with complete answers
+- **Quick Reference Guides:** 5 topic-specific quick lookup guides
 
 ---
 
@@ -315,6 +433,17 @@ Read in this order:
    - Archive backup created
 
 ### Troubleshooting Common Issues
+
+See **16_OPERATIONAL_TROUBLESHOOTING_GUIDE.md** for:
+- Complete 7-stage pipeline troubleshooting
+- 28 specific issues with detection and resolution
+- Step-by-step resolution with workflow/macro references
+- Quick escalation guide
+
+See **22_FAQ_COMMON_QUESTIONS.md** for:
+- 23 common Q&As
+- Quick answers to typical questions
+- References to detailed documentation
 
 See **5_ALERTS_AND_NOTIFICATIONS.md** for:
 - File input errors (missing source data)
@@ -399,7 +528,7 @@ For questions about:
 
 | Document | Version | Last Updated | Status | Pages |
 |---|---|---|---|---|
-| 8_README.md | 1.0 | 2026-03-18 | Current | 5 |
+| 8_README.md | 1.1 | 2026-03-18 | Current | 8 |
 | 1_MDPA_PROCESS_DOCUMENTATION.md | 1.0 | 2026-03-11 | Current | 25 |
 | 2_WORKFLOW_ARCHITECTURE.md | 1.0 | 2026-03-11 | Current | 35 |
 | 3_MACROS_AND_DEPENDENCIES.md | 1.0 | 2026-03-11 | Current | 20 |
@@ -408,12 +537,20 @@ For questions about:
 | 6_FIELD_MAPPING_AND_DATA_LINEAGE.md | 1.0 | 2026-03-17 | Current | 45 |
 | 7_MACROS_DEEP_DIVE.md | 1.0 | 2026-03-17 | Current | 30 |
 | 9_BUSINESS_DATA_GLOSSARY.md | 1.0 | 2026-03-17 | Current | 55 |
-| 10_LOGICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** | 65 |
-| 11_PHYSICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** | 80 |
-| 12_TABLEAU_DASHBOARD_GLOSSARY.md | 1.0 | 2026-03-18 | **NEW** | 110 |
-| 13_OUTPUT_TO_DASHBOARD_LINEAGE.md | 1.0 | 2026-03-18 | **NEW** | 95 |
-| 14_SECURITIES_COLLATERAL_GUIDE.md | 1.0 | 2026-03-18 | **NEW** | 75 |
-| **TOTAL** | | | | **673 pages** |
+| 10_LOGICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | Current | 65 |
+| 11_PHYSICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | Current | 80 |
+| 12_TABLEAU_DASHBOARD_GLOSSARY.md | 1.0 | 2026-03-18 | Current | 110 |
+| 13_OUTPUT_TO_DASHBOARD_LINEAGE.md | 1.0 | 2026-03-18 | Current | 95 |
+| 14_SECURITIES_COLLATERAL_GUIDE.md | 1.0 | 2026-03-18 | Current | 75 |
+| 15_MISSING_SECURITIES_SCENARIOS.md | 1.0 | 2026-03-18 | Current | 45 |
+| 16_OPERATIONAL_TROUBLESHOOTING_GUIDE.md | 1.0 | 2026-03-18 | **NEW** | 120 |
+| 17_QUICK_REF_COLLATERAL_VALUATION.md | 1.0 | 2026-03-18 | **NEW** | 12 |
+| 18_QUICK_REF_DELINQUENCY_RISK.md | 1.0 | 2026-03-18 | **NEW** | 15 |
+| 19_QUICK_REF_DATA_QUALITY.md | 1.0 | 2026-03-18 | **NEW** | 20 |
+| 20_QUICK_REF_DASHBOARD_METRICS.md | 1.0 | 2026-03-18 | **NEW** | 18 |
+| 21_QUICK_REF_LOAN_LIFECYCLE.md | 1.0 | 2026-03-18 | **NEW** | 22 |
+| 22_FAQ_COMMON_QUESTIONS.md | 1.0 | 2026-03-18 | **NEW** | 85 |
+| **TOTAL** | | | | **928 pages** |
 
 ---
 
@@ -426,6 +563,7 @@ For questions about:
 
 ---
 
-**Last Updated:** 2026-03-17
+**Last Updated:** 2026-03-18
 **Repository:** MDPA Alteryx Workflow Documentation
 **Maintained by:** Loan Analytics Team
+**Total Pages:** 928 (20 comprehensive documents)

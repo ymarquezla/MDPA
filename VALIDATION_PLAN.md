@@ -8,6 +8,326 @@
 
 ---
 
+## End-to-End MDPA Process Flow (The 7 W's)
+
+**Complete process from customer file submission through dashboard delivery**
+
+### WHO
+
+| Role | Responsibility | Timing |
+|---|---|---|
+| **Credit Union Client** | Submits source data files (portfolio, charge-offs, RE valuations) | Daily/weekly uploads |
+| **Alteryx Scheduler** | Triggers automated workflow execution | Per schedule (typically nightly) |
+| **MDPA Workflow** | Processes data through 7-stage pipeline | Runtime: ~2.5 hours |
+| **Loan Analytics Team** | Monitors execution, reviews QA reports, distributes outputs | Post-execution |
+| **Business Users** | Accesses client files, QA reports, Tableau dashboards | Immediately after completion |
+| **Compliance/Audit** | Reviews archive files and audit trail | Monthly/as-needed |
+
+---
+
+### WHAT
+
+**The Complete Process Breakdown**
+
+#### Stage 1: DATA INGESTION & VALIDATION
+**What Happens:**
+- Client source files retrieved from designated locations
+- File format validation (CSV/Excel format correct?)
+- Field structure validation (all expected columns present?)
+- Row count verification (compare to previous period ±10%)
+- Data type validation (dates are dates, currency is numeric, etc.)
+
+**Key Files:**
+- Input: Loan Portfolio Master, Charge-Off Data, RE Valuations, Credit Bureau data
+- Output: Validated dataset, error log
+
+**Macros Involved:** Contingent File Input (8x), CReW_EnsureFields (8x)
+
+---
+
+#### Stage 2: DATA CLEANSING & STANDARDIZATION
+**What Happens:**
+- Whitespace trimming from text fields
+- Date format standardization (all → YYYY-MM-DD)
+- Currency format standardization (remove $, commas → decimal)
+- Text casing standardization
+- NULL/empty value handling
+- Remove special characters where appropriate
+- Remove duplicate records (if any)
+
+**Quality Gate:** >99% of records pass cleansing rules
+
+**Macros Involved:** Cleanse.yxmc (2x), 2020_Date_Converter.yxmc (5x)
+
+---
+
+#### Stage 3: DATA ENRICHMENT & CALCULATIONS
+**What Happens:**
+- Calculate loan age (TODAY - Origination_Date)
+- Calculate months to maturity
+- Calculate payment history score (from delinquency status)
+- Calculate risk score (composite of credit score, DTI, age)
+- Append TransUnion credit bureau data
+- Calculate LTV ratio (Current_Balance / Collateral_Value)
+- Generate unique loan identifiers
+- Append calculated flags (recovery status, at-risk indicators)
+
+**Quality Gate:** All calculations complete; no null values in required fields
+
+**Macros Involved:** 2020_Date_Converter (5x), Generate Unique ID (1x), CReW_EnsureFields (8x)
+
+---
+
+#### Stage 4: DATA MATCHING & CONSOLIDATION
+**What Happens:**
+- Match charge-off records to active portfolio (by Loan_ID, fallback to Member_ID)
+- Append charge-off and recovery details to portfolio records
+- Match real estate valuations to collateral properties
+- Consolidate prior period data for comparison
+- Handle unmatched records (exception queue)
+- Aggregate multiple source records into single loan record
+- Union current period + prior period data
+
+**Quality Gate:** >98% match rate; exceptions logged for manual review
+
+**Macros Involved:**
+- Append Charge Offs and Matching (1x) - Most Complex
+- Append RE Values (1x)
+- Union Subset Prior Period (1x)
+- Preliminary Client File Match (1x)
+
+---
+
+#### Stage 5: COMPLIANCE & PII MASKING
+**What Happens:**
+- Apply regulatory filters (exclude loans not subject to disclosure)
+- Mask PII (member names, SSN, addresses) using standardized formats
+- Mask credit scores (FICO Only masking applied)
+- Create compliance flags (CRA reporting status, Fair Lending flags)
+- Validate against regulatory requirements
+- Create audit trail (user, timestamp, action)
+- Generate compliance exception report
+
+**Quality Gate:** 100% of client-facing records have PII masked; 100% regulatory filters applied
+
+**Macros Involved:**
+- TransUnion Mask_FICO Only_v2 (1x)
+- Ethnic & Gender ID (1x)
+
+---
+
+#### Stage 6: OUTPUT PREPARATION & FORMATTING
+**What Happens:**
+- Format for CLIENT DELIVERABLE (select specific fields, Excel format, name formatting)
+- Format for QA REPORT (aggregate metrics, summary tables, quality scores)
+- Format for TABLEAU EXTRACT (denormalize to star schema, calculate aggregates)
+- Format for ARCHIVE (compress with metadata, checksums, data dictionary)
+- Format for SUMMARY METRICS (calculate KPIs for executive dashboard)
+- Apply final validation rules
+- Generate processing log
+- Calculate data quality score
+
+**Quality Gate:** >99% data quality score; all outputs validated
+
+**Macros Involved:**
+- Tableau New Macro (1x)
+- Tableau New Macro Dropped (1x)
+- Tableau New Macro Securities (1x)
+- Last Name Comma First Name Cleaner_v2 (1x)
+- Dropped Records Prep (1x)
+- Auto Value Append (1x)
+
+---
+
+#### Stage 7: DELIVERY & PUBLICATION
+**What Happens:**
+- Publish CLIENT FILE to designated delivery location (SFTP, share drive, etc.)
+- Publish QA REPORT to internal team
+- Publish TABLEAU EXTRACT to analytics server (dashboard refresh triggered)
+- Archive all files (inputs, processing log, outputs) with checksums
+- Generate completion notification (email alerts)
+- Send alerts if any exceptions/errors
+- Update audit trail
+
+**Quality Gate:** All outputs successfully delivered; confirmation received
+
+**Macros Involved:**
+- 2020_Publish2Server (1x)
+- 2020_PublishDropped2Server (1x)
+- 2020_PublishSecurities2Server (1x)
+- CReW_ParallelBlockUntilDone (1x) - Synchronization
+
+---
+
+### WHEN
+
+| Step | Timing | Frequency | SLA |
+|---|---|---|---|
+| **Client submits files** | Daily/weekly schedule | Recurring | EOD previous day |
+| **Workflow triggered** | Nightly (10 PM) or per schedule | Automated | Consistent time |
+| **Stage 1-3 Complete** | First 30-45 minutes | Per run | < 45 min target |
+| **Stage 4-5 Complete** | Next 45-60 minutes | Per run | < 60 min target |
+| **Stage 6-7 Complete** | Final 15-30 minutes | Per run | < 30 min target |
+| **All outputs delivered** | 2.5 hours from start | Per run | < 2.5 hours total |
+| **Client accesses files** | Morning (can start immediately) | Daily | Same-day delivery |
+| **Tableau dashboard updates** | Automatic upon file delivery | Daily | Real-time refresh |
+| **Monthly archive stored** | Post-execution last day of month | Monthly | 5+ years retention |
+
+---
+
+### WHERE
+
+| Component | Location | Storage Type | Access |
+|---|---|---|---|
+| **Input Files** | `/data/mdpa/input/` | Shared drive or SFTP | Credit Union uploads |
+| **Processing Workflow** | Alteryx Server Gallery | Alteryx Platform | Scheduled execution |
+| **Processing Logs** | `/logs/mdpa/` | Server disk | QA team access |
+| **Client Deliverable** | `/delivery/client_files/` | SFTP or secure share | Client downloads |
+| **QA Reports** | `/reports/qa/` | Shared drive | Internal team only |
+| **Tableau Extract** | Tableau Server (MDPA data source) | Tableau Platform | Dashboard consumers |
+| **Archive Files** | `/archive/mdpa/YYYY-MM/` | Compressed backup | Compliance access |
+| **Audit Trail** | Database log tables | SQL database | Compliance review |
+
+---
+
+### WHY
+
+| Business Driver | Impact | Success Measure |
+|---|---|---|
+| **Regulatory Compliance** | CRA reporting, Fair Lending analysis, capital adequacy | 100% regulatory data accuracy |
+| **Member Service** | Accurate loan tracking, transparent communication | <0.1% data discrepancy with member statements |
+| **Risk Management** | Early delinquency detection, loss prediction | >95% delinquency rate accuracy |
+| **Portfolio Valuation** | Balance sheet reporting, financial accuracy | Reconcile to GL within $0.01 |
+| **Collection Effectiveness** | Identify charge-offs, track recoveries | >20% recovery success rate |
+| **Operational Visibility** | Daily dashboard of portfolio health | <2.5 hour delivery SLA |
+| **Compliance Documentation** | Audit trail, data lineage, governance | Zero missing audit records |
+
+---
+
+### WHICH
+
+**Which Data Sources Are Used At Each Stage**
+
+| Stage | Input Sources | Data Used |
+|---|---|---|
+| **1. Ingestion** | Portfolio, Charge-Off, RE, Credit Bureau | All raw files |
+| **2. Cleansing** | All sources | Raw data fields |
+| **3. Enrichment** | Portfolio + Credit Bureau | Scores, DTI, dates |
+| **4. Consolidation** | Charge-Off + RE + Portfolio | Matching keys, detail data |
+| **5. Compliance** | Portfolio + Names/Addresses | PII, regulatory status |
+| **6. Output Prep** | Consolidated enriched data | Selected fields per deliverable |
+| **7. Delivery** | Final outputs + logs | All processed/archived data |
+
+---
+
+### HOW
+
+**Detailed Step-by-Step Workflow**
+
+**Pre-Execution:**
+```
+1. Client prepares source files (Portfolio Master, Charge-Offs, RE Valuations)
+2. Client uploads to designated SFTP/share location
+3. Files validated for format (CSV/Excel)
+4. Scheduler detects files (or manual trigger)
+```
+
+**Execution Phase:**
+```
+STAGE 1 (0:00-0:20): INGESTION & VALIDATION
+├─ Read portfolio file
+├─ Read charge-off file
+├─ Read RE valuation file
+├─ Read credit bureau file
+├─ Validate schemas
+├─ Check for duplicates
+└─ Create consolidated staging table
+
+STAGE 2 (0:20-0:35): CLEANSING & STANDARDIZATION
+├─ Trim whitespace
+├─ Standardize date formats
+├─ Standardize currency formats
+├─ Handle nulls
+├─ Remove special characters
+└─ Quality check (99%+ pass)
+
+STAGE 3 (0:35-0:50): ENRICHMENT & CALCULATIONS
+├─ Calculate Age_of_Loan_Days
+├─ Calculate Months_to_Maturity
+├─ Calculate Risk_Score
+├─ Append credit bureau data
+├─ Calculate LTV_Ratio
+├─ Generate unique IDs
+└─ Quality check (no null calcs)
+
+STAGE 4 (0:50-1:35): MATCHING & CONSOLIDATION
+├─ Match charge-offs to portfolio
+│  ├─ Primary: Loan_ID
+│  ├─ Fallback: Member_ID + Loan_Type
+│  └─ Fallback: Loan_Amount + Date (fuzzy)
+├─ Append real estate valuations
+├─ Consolidate prior period
+├─ Union current + prior
+├─ Handle exceptions
+└─ Quality check (98%+ match rate)
+
+STAGE 5 (1:35-1:50): COMPLIANCE & MASKING
+├─ Apply regulatory filters
+├─ Mask member names
+├─ Mask SSNs
+├─ Mask addresses
+├─ Mask FICO scores
+├─ Create audit trail
+└─ Quality check (100% compliance)
+
+STAGE 6 (1:50-2:15): OUTPUT PREPARATION
+├─ CLIENT FILE
+│  ├─ Select fields (Loan_ID, Balance, Status, Risk_Level)
+│  ├─ Apply name formatting
+│  └─ Round to 2 decimals
+├─ QA REPORT
+│  ├─ Aggregate by loan_type, status
+│  ├─ Calculate summary metrics
+│  └─ Generate charts
+├─ TABLEAU EXTRACT
+│  ├─ Denormalize to star schema
+│  ├─ Create dimensions
+│  └─ Pre-aggregate for performance
+├─ ARCHIVE
+│  └─ Compress inputs + logs + outputs
+└─ SUMMARY METRICS
+   └─ Calculate 15+ KPIs for board
+
+STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
+├─ Publish CLIENT FILE to SFTP
+├─ Publish QA REPORT to share
+├─ Publish TABLEAU EXTRACT to server
+├─ Archive all files with checksums
+├─ Send completion notification
+└─ Update audit trail
+```
+
+**Post-Execution:**
+```
+1. Business users download client file
+2. QA team reviews report
+3. Dashboards refresh automatically
+4. Compliance archives files
+5. Alerts sent if any errors
+6. Monthly process repeats
+```
+
+---
+
+### Validation Focus Points
+
+**Week 1 Validation:** Confirm Stages 1-3 sequence and logic
+**Week 2 Validation:** Confirm Stages 4-5 data matching and compliance
+**Week 3 Validation:** Confirm output formatting (Stages 6-7)
+**Week 4 Validation:** Confirm overall end-to-end flow accuracy
+
+---
+
 ## Week 1: Foundation & Architecture Review
 
 **Objective:** Validate high-level workflow design, process flow accuracy, and overall architecture

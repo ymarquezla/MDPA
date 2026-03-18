@@ -96,6 +96,59 @@ Complete field tracking from source to output.
 
 ---
 
+#### 7. **9_BUSINESS_DATA_GLOSSARY.md**
+Comprehensive business reference for all data elements.
+- Input data glossary (4 sources: Loan Portfolio, Charge-Off/Recovery, Real Estate, Credit Bureau)
+- Output data glossary (5 deliverables: Client File, QA Report, Tableau, Archive, Executive Summary)
+- 100+ data fields with business context
+- Calculated fields with formulas
+- Data quality standards and validation rules
+- Cross-references to related documentation
+
+**Read this** to understand:
+- What each data field means in business terms
+- Valid values and acceptable ranges
+- How fields are used in outputs
+- Data governance and quality requirements
+
+---
+
+#### 8. **10_LOGICAL_DATA_MODEL.md**
+Conceptual entity-relationship model independent of technology.
+- Core business entities (LOAN, CHARGE_OFF_RECOVERY, PROPERTY_COLLATERAL, CREDIT_BUREAU_PROFILE)
+- Entity relationships and cardinality
+- Business rules and constraints
+- Data flow through processing stages
+- Entity lifecycle and state transitions
+- Data governance and ownership
+
+**Read this** to understand:
+- What business entities and concepts exist
+- How they relate to each other
+- Business rules governing the data
+- Data flow through the 7 processing stages
+
+---
+
+#### 9. **11_PHYSICAL_DATA_MODEL.md**
+Technical database schema design and implementation details.
+- Production table structures (LOAN, CHARGE_OFF_RECOVERY, PROPERTY_COLLATERAL, CREDIT_BUREAU_PROFILE)
+- Staging and archive tables
+- Column definitions with data types and constraints
+- Indexes and query optimization
+- Stored procedures and ETL logic
+- Data retention and archival strategy
+- Calculated columns and aggregate views
+
+**Read this** to understand:
+- How data is physically stored in databases
+- Table structures and relationships
+- Data types and constraints
+- Query performance optimization
+- ETL load procedures
+
+---
+
 ## Quick Start Guide
 
 ### For Different User Roles
@@ -118,9 +171,11 @@ Read in this order:
 Read in this order:
 1. 1_MDPA_PROCESS_DOCUMENTATION.md - Understand purpose
 2. 2_WORKFLOW_ARCHITECTURE.md - Understand technical design
-3. 3_MACROS_AND_DEPENDENCIES.md - Understand external dependencies
-4. 6_FIELD_MAPPING_AND_DATA_LINEAGE.md - Understand calculations
-5. 4_DATA_SOURCES_AND_LOCATIONS.md - Understand integrations
+3. 10_LOGICAL_DATA_MODEL.md - Understand conceptual entities and relationships
+4. 11_PHYSICAL_DATA_MODEL.md - Understand database implementation
+5. 3_MACROS_AND_DEPENDENCIES.md - Understand external dependencies
+6. 6_FIELD_MAPPING_AND_DATA_LINEAGE.md - Understand calculations
+7. 4_DATA_SOURCES_AND_LOCATIONS.md - Understand integrations
 
 #### **Loan Analytics Team**
 Read in this order:
@@ -134,22 +189,29 @@ Read in this order:
 
 ### Workflow Complexity
 - **Total Tools:** 300+
-- **Macro Instances:** 25-30
-- **Unique Macros:** 15+
+- **Macro Instances:** 42 total across 23 unique macros
+- **Most Frequent Macros:** CReW_EnsureFields (8x), Contingent File Input (8x), 2020_Date_Converter (5x)
 - **Data Sources:** 4 primary systems
 - **Processing Stages:** 7 major stages
 - **Output Files:** 5+ types
 
 ### Data Processing
-- **Typical Cycle Time:** ~2.5 hours
+- **Typical Cycle Time:** ~2.5 hours (150 minutes)
 - **Records Processed:** 10,000-50,000+ loans per run
-- **Data Quality Rules:** 10+ validation rules per stage
-- **Output Destinations:** Server galleries, Excel files, Tableau extracts
+- **Data Quality Rules:** 14+ validation rules
+- **Output Destinations:** Server galleries, Excel files, Tableau extracts, archives
 
 ### Data Flows
-- **Input Sources:** Loan portfolio, charge-offs, real estate valuations, credit bureau
-- **Transformation Stages:** Cleanse → Enrich → Consolidate → Comply → Output
-- **Output Types:** Client files, QA reports, Tableau extracts, archives
+- **Input Sources:** Loan portfolio (10K-50K), charge-offs (1K-5K), properties (3K-10K), credit bureau (8K-40K)
+- **Transformation Stages:** Ingestion → Cleansing → Enrichment → Consolidation → Compliance → Output Prep → Delivery
+- **Output Types:** Client files, QA reports, Tableau extracts, archives, executive summaries
+
+### Documentation Coverage
+- **Total Documents:** 11 comprehensive files
+- **Pages:** 500+ pages of documentation
+- **Data Fields Documented:** 100+ fields across all inputs and outputs
+- **Calculated Metrics:** 10+ derived metrics with formulas
+- **Entities Defined:** 4 core business entities with full data model
 
 ---
 
@@ -263,13 +325,17 @@ For questions about:
 
 | Document | Version | Last Updated | Status |
 |---|---|---|---|
-| 8_README.md | 1.0 | 2026-03-17 | Current |
+| 8_README.md | 1.0 | 2026-03-18 | Current |
 | 1_MDPA_PROCESS_DOCUMENTATION.md | 1.0 | 2026-03-11 | Current |
 | 2_WORKFLOW_ARCHITECTURE.md | 1.0 | 2026-03-11 | Current |
 | 3_MACROS_AND_DEPENDENCIES.md | 1.0 | 2026-03-11 | Current |
 | 4_DATA_SOURCES_AND_LOCATIONS.md | 1.0 | 2026-03-11 | Current |
 | 5_ALERTS_AND_NOTIFICATIONS.md | 1.0 | 2026-03-17 | Current |
 | 6_FIELD_MAPPING_AND_DATA_LINEAGE.md | 1.0 | 2026-03-17 | Current |
+| 7_MACROS_DEEP_DIVE.md | 1.0 | 2026-03-17 | Current |
+| 9_BUSINESS_DATA_GLOSSARY.md | 1.0 | 2026-03-17 | Current |
+| 10_LOGICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** |
+| 11_PHYSICAL_DATA_MODEL.md | 1.0 | 2026-03-18 | **NEW** |
 
 ---
 

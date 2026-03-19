@@ -574,10 +574,126 @@ Every macro in the workflow carries CRITICAL deployment risk. The 15 Tier A macr
 
 ## Deployment Risk Register
 
-> This section is populated in Phase 6, Plan 02.
+All 20 unique macros in the MDPA v5.2 workflow carry CRITICAL deployment risk. The three risk tiers below map each macro to its failure mode, the GAP finding that identified it, and the remediation action required. All remediation actions are defined in GAP_ANALYSIS.md.
+
+#### Tier A — Temp-Path Embedded (15 macros)
+
+Path pattern: `D:\Users\vnekkanti\AppData\Local\Temp\1\Staging\a6b96bdf-...\Macros\`. These macros were embedded in the workflow and extracted to the original developer's machine-specific temp directory when the workflow was opened. The path does not exist on any other machine. Remediation: **REM-001** — Relocate all 15 macros to shared UNC path `\\10.2.7.56\Shared\Prod\Macros\MDPA\` and update all 15 `EngineSettings Macro=` references in the .yxmd XML.
+
+| Macro | GAP Finding | Instances | Status | Required Action |
+|-------|------------|-----------|--------|-----------------|
+| Contingent File Input.yxmc | G02-015 | 8 | Active | REM-001: Relocate to UNC path |
+| Union Subset Prior Period.yxmc | G02-001 | 1 | Active | REM-001: Relocate to UNC path |
+| PreProcess_Iterative.yxmc | G02-013 | 1 | Active | REM-001: Relocate to UNC path |
+| Generate Unique ID.yxmc | G02-002 | 1 | Active | REM-001: Relocate to UNC path |
+| Dropped Records Prep.yxmc | G02-003 | 1 | Active | REM-001: Relocate to UNC path |
+| Last Name Comma First Name Cleaner_v2.yxmc | G02-004 | 1 | Active | REM-001: Relocate to UNC path |
+| Preliminary Client File Match.yxmc | G02-005 | 1 | Active | REM-001: Relocate to UNC path |
+| 2020_Date_Converter.yxmc | G02-006 | 5 | Active | REM-001: Relocate to UNC path |
+| Append Charge Offs and Matching.yxmc | G02-007 | 1 | Active | REM-001: Relocate to UNC path |
+| Append RE Values.yxmc | G02-008 | 1 | Active | REM-001: Relocate to UNC path |
+| Auto Value Append.yxmc | G02-009 | 1 | Active | REM-001: Relocate to UNC path |
+| TransUnion Mask_FICO Only_v2.yxmc | G02-010 | 1 | Active | REM-001: Relocate to UNC path |
+| Only Prior Period.yxmc | G02-014 | 1 | Active | REM-001: Relocate to UNC path |
+| 2020_Publish2Server.yxmc | G02-011 | 1 | DISABLED | REM-001 (if re-enabled); also requires TDE format support |
+| 2020_PublishDropped2Server.yxmc | G02-012 | 1 | DISABLED | REM-001 (if re-enabled); also requires TDE format support |
+
+#### Tier B — External Add-On / Non-Standard Path (1 macro)
+
+Path pattern: `D:\Users\vnekkanti\AppData\Local\Temp\1\Staging\a6b96bdf-..._externals\1\`. This macro was packaged as an external add-on (not embedded with the standard macro set) and extracted to a non-standard `_externals\1\` subdirectory. The source .yxmc file location is unknown — it was not committed to a shared location and was discovered only via XML inspection (GAP G01-009). Remediation: **REM-002** — Locate the source .yxmc file on the original developer's workstation or in source control; relocate to shared UNC path.
+
+| Macro | GAP Finding | Instances | Status | Required Action |
+|-------|------------|-----------|--------|-----------------|
+| 2020_PublishSecurities2Server.yxmc | G02-016 | 1 | DISABLED | REM-002: Locate source file; source .yxmc location unknown |
+
+#### Tier C — External Library / No Path Prefix (7 macros)
+
+No path prefix in XML — these macros are resolved from the Alteryx Server macro search path at runtime. They require external software libraries to be installed and registered: CReW Runner (for 4 CReW macros) and Tableau Connector (for 3 Tableau macros). If either library is absent, all dependent macro instances fail at runtime with no fallback. Remediation: **REM-003** — Install CReW Runner library on Alteryx Server; verify Tableau Connector SDK is installed; confirm macro search path includes both library directories.
+
+| Macro | Library | GAP Finding | Instances | Status | Required Action |
+|-------|---------|------------|-----------|--------|-----------------|
+| CReW_EnsureFields.yxmc | CReW Runner | G02-017 | 8 | Active | REM-003: Install CReW Runner |
+| CReW_ParallelBlockUntilDone.yxmc | CReW Runner | G02-017 | 1 | Active | REM-003: Install CReW Runner |
+| Cleanse.yxmc | CReW Runner | G02-017 | 2 | Active | REM-003: Install CReW Runner |
+| Ethnic & Gender ID.yxmc | CReW Runner | G02-017 | 1 | Active | REM-003: Install CReW Runner + Zip Code Ethnicity Index CSV (G02-018) |
+| Tableau New Macro.yxmc | Tableau Connector | G02-017 | 1 | Active | REM-003: Install Tableau Connector; configure DCM PAT connection |
+| Tableau New Macro Dropped.yxmc | Tableau Connector | G02-017 | 1 | Active | REM-003: Install Tableau Connector; configure DCM PAT connection |
+| Tableau New Macro Securities.yxmc | Tableau Connector | G02-017 | 1 | Active | REM-003: Install Tableau Connector; configure DCM PAT connection |
+
+**Remediation Summary:**
+- REM-001: Update 15 macro paths in the .yxmd XML to UNC path `\\10.2.7.56\Shared\Prod\Macros\MDPA\`
+- REM-002: Locate 2020_PublishSecurities2Server.yxmc source file; relocate to UNC path
+- REM-003: Install CReW Runner + Tableau Connector on execution server; configure DCM PAT connection
+
+See GAP_ANALYSIS.md Remediation List for full action steps.
 
 ---
 
 ## Macro Dependency Map
 
-> This section is populated in Phase 6, Plan 02.
+The dependency map groups macros by their approximate execution stage, derived from XML declaration line numbers in the 49,082-line workflow file. Stage ordering is reliable; intra-stage ordering within Stage 5 (Data Transformation) is approximate — Alteryx's parallel processing engine does not guarantee strict serial execution within a stage. All execution line numbers are from the 2020_DataProcess_v5.2.yxmd XML file, verified 2026-03-19.
+
+```
+MDPA v5.2 Workflow — Macro Execution Map
+========================================
+
+Stage 1 — Input Loading (XML lines ~46,000+)
+  └── Contingent File Input.yxmc [x8] — 8 parallel client file groups
+
+Stage 2 — Data Union / Prior Period (XML lines ~319)
+  └── Union Subset Prior Period.yxmc [x1] — merges current + prior period records
+
+Stage 3 — Preprocessing (XML lines ~43,550)
+  └── PreProcess_Iterative.yxmc [x1] — iterative field standardization
+
+Stage 4 — Validation Gates (XML lines ~4,633; ~38,092–41,528)
+  └── CReW_EnsureFields.yxmc [x8] — 8 field validation checkpoints
+
+Stage 5 — Data Transformation (XML lines ~36,560–40,793) [approximate intra-stage order]
+  ├── Generate Unique ID.yxmc [x1]
+  ├── Dropped Records Prep.yxmc [x1]
+  ├── Last Name Comma First Name Cleaner_v2.yxmc [x1]
+  ├── Cleanse.yxmc [x2]
+  ├── Preliminary Client File Match.yxmc [x1]
+  ├── 2020_Date_Converter.yxmc [x5]
+  ├── Append Charge Offs and Matching.yxmc [x1]
+  ├── Ethnic & Gender ID.yxmc [x1]
+  ├── TransUnion Mask_FICO Only_v2.yxmc [x1]
+  ├── Append RE Values.yxmc [x1]
+  └── Auto Value Append.yxmc [x1]
+
+Stage 6 — Period Filtering (XML lines ~43,978)
+  └── Only Prior Period.yxmc [x1] — extracts prior-period subset for comparison
+
+Stage 7 — Flow Control (XML lines ~16,923)
+  └── CReW_ParallelBlockUntilDone.yxmc [x1] — synchronizes parallel branches
+
+Stage 8 — Output Formatting / Active Publishing (XML lines ~29,339)
+  ├── Tableau New Macro.yxmc [x1] — main client file → Hyper → Tableau Server
+  ├── Tableau New Macro Dropped.yxmc [x1] — dropped records → Hyper → Tableau Server
+  └── Tableau New Macro Securities.yxmc [x1] — securities data → Hyper → Tableau Server
+
+Stage 9 — Legacy Publishing [DISABLED] (Container 1049, XML lines ~47,237–47,321)
+  ├── 2020_Publish2Server.yxmc [x1] — DISABLED (TDE format, superseded by Stage 8)
+  ├── 2020_PublishDropped2Server.yxmc [x1] — DISABLED (TDE format, superseded by Stage 8)
+  └── 2020_PublishSecurities2Server.yxmc [x1] — DISABLED (TDE format, _externals\1\ path)
+```
+
+#### Stage-to-Output Mapping
+
+| Output File | Producing Stages | Key Macros in Chain |
+|-------------|-----------------|---------------------|
+| Client File (.yxdb) | Stages 1–7 | Contingent File Input → Validate → Transform → Tableau New Macro |
+| Dropped Records (.yxdb) | Stages 1–5 (rejected) | Contingent File Input → Preliminary Client File Match (reject) → Dropped Records Prep → Tableau New Macro Dropped |
+| Securities Extract | Stages 1–5, 8 | Contingent File Input → Append RE Values → Auto Value Append → Tableau New Macro Securities |
+| QA Report | Stages 1–7 | Full pipeline summary — feeds PortfolioComposerTable (non-macro tool) |
+| Executive Summary | Stages 1–7 | Full pipeline — feeds PortfolioEmail (non-macro tool) |
+
+#### Key Dependency Notes
+
+- Stage 1 (Contingent File Input x8) must complete before Stage 2 — all 8 client file groups must be loaded before union.
+- Stage 4 (CReW_EnsureFields x8) gates entry to Stage 5 — transformation macros in Stage 5 receive only validated records.
+- Stage 7 (CReW_ParallelBlockUntilDone) synchronizes Stage 5 parallel branches before Stage 8 publishing begins.
+- Stage 8 and Stage 9 are mutually exclusive — Stage 9 (Container 1049) is DISABLED. Stage 8 is the active publishing path.
+- Stage 5 contains 11 distinct macro types running as parallel sub-streams — intra-stage ordering is approximate.
+- The three CReW validation macros (Stages 4 and 7) require CReW Runner library (Tier C risk). If CReW Runner is absent, the workflow halts at Stage 4 — no output is produced.

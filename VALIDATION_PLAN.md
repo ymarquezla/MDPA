@@ -338,6 +338,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ### WK1-1 - John Wagner (1 hour)
 **Topic: MDPA Purpose, Scope & Overall Architecture**
+**Day:** Monday (example)
 
 **Pre-Session Prep:** (15 min)
 - Read: 1_MDPA_PROCESS_DOCUMENTATION.md (Overview section)
@@ -363,44 +364,9 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK1-2 - Chris Lindsay (1 hour)
-**Topic: Workflow Architecture Deep Dive**
-
-**Pre-Session Prep:** (15 min)
-- Read: 2_WORKFLOW_ARCHITECTURE.md
-- Review John's notes from 3/24
-
-**Discussion Topics:** (45 min)
-1. Tool inventory validation (15 min)
-   - 300+ tools breakdown accurate?
-   - Tool distribution realistic?
-   - Any major categories missing?
-
-2. Data flow & connections (20 min)
-   - Does data flow through stages correctly?
-   - Sequence of transformations logical?
-   - Any missing connections?
-
-3. Clarifications & sign-off (10 min)
-   - Architecture validated ✓?
-   - Corrections needed?
-
-**Deliverables:**
-- Architecture validation sign-off
-- Corrections/amendments list
-
----
-
-## Week 2: Data Sources & Input Fields
-
-**Objective:** Validate data sources, input fields, and data transformation accuracy
-
-**Topics:** Input sources, field inventory, 7-stage transformations, field mapping
-
----
-
-### WK2-1 - John Wagner (1 hour)
+### WK1-1 - Chris Lindsay (1 hour)
 **Topic: Input Data Sources & Field Inventory**
+**Day:** Tuesday (example - different day from John)
 
 **Pre-Session Prep:** (15 min)
 - Read: 4_DATA_SOURCES_AND_LOCATIONS.md
@@ -426,12 +392,42 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK2-2 - Chris Lindsay (1 hour)
+### WK1-2 - John Wagner (1 hour)
+**Topic: Workflow Architecture Deep Dive**
+**Day:** Thursday (example - different day from Monday)
+
+**Pre-Session Prep:** (15 min)
+- Read: 2_WORKFLOW_ARCHITECTURE.md
+- Review Chris's notes from Tuesday
+
+**Discussion Topics:** (45 min)
+1. Tool inventory validation (15 min)
+   - 300+ tools breakdown accurate?
+   - Tool distribution realistic?
+   - Any major categories missing?
+
+2. Data flow & connections (20 min)
+   - Does data flow through stages correctly?
+   - Sequence of transformations logical?
+   - Any missing connections?
+
+3. Clarifications & sign-off (10 min)
+   - Architecture validated ✓?
+   - Corrections needed?
+
+**Deliverables:**
+- Architecture validation sign-off
+- Corrections/amendments list
+
+---
+
+### WK1-2 - Chris Lindsay (1 hour)
 **Topic: Field Transformations & 7-Stage Pipeline**
+**Day:** Friday (example - different day from Tuesday)
 
 **Pre-Session Prep:** (15 min)
 - Read: 6_FIELD_MAPPING_AND_DATA_LINEAGE.md (first half)
-- Review John's input source notes
+- Review John's architecture notes
 
 **Discussion Topics:** (45 min)
 1. 7-stage transformation sequence (20 min)
@@ -454,16 +450,17 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-## Week 3: Macros & Dependencies
+## Week 2: Macro Inventory & Dependencies
 
-**Objective:** Validate macro inventory, usage frequency, and macro nesting analysis
+**Objective:** Validate macro inventory, usage frequency, nesting analysis, and dependencies
 
 **Topics:** Macro documentation, macro usage patterns, nesting analysis, complexity ranking
 
 ---
 
-### WK3-1 - John Wagner (1 hour)
+### WK2-1 - John Wagner (1 hour)
 **Topic: Macro Inventory & Usage Frequency**
+**Day:** Monday (example)
 
 **Pre-Session Prep:** (15 min)
 - Read: 3_MACROS_AND_DEPENDENCIES.md (macro inventory section)
@@ -489,46 +486,9 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK3-2 - Chris Lindsay (1 hour)
-**Topic: Macro Nesting & Complexity Analysis**
-
-**Pre-Session Prep:** (15 min)
-- Read: 7_MACROS_DEEP_DIVE.md (Nesting Analysis section)
-- Review John's macro inventory notes
-
-**Discussion Topics:** (45 min)
-1. Macro nesting investigation (20 min)
-   - Do any macros call other macros?
-   - HIGH confidence nesting candidates validated?
-     - CReW_EnsureFields
-     - PreProcess_Iterative
-     - Append Charge Offs and Matching
-
-2. Macro complexity & dependencies (15 min)
-   - Complexity tiers accurate?
-   - Dependencies identified correctly?
-   - Any hidden dependencies?
-
-3. Performance & optimization (10 min)
-   - Bottleneck candidates identified?
-   - Testing strategy appropriate?
-
-**Deliverables:**
-- Macro nesting analysis validation
-- Complexity ranking sign-off
-
----
-
-## Week 4: Quality Validation & Sign-Off
-
-**Objective:** Validate quality gates, error handling, alerts, and obtain final sign-off
-
-**Topics:** Validation rules, error handling, alerts/notifications, final review
-
----
-
-### WK4-1 - John Wagner (1 hour)
-**Topic: Validation Rules & Quality Gates**
+### WK2-1 - Chris Lindsay (1 hour)
+**Topic: Data Quality Rules & Validation Gates**
+**Day:** Tuesday (example - different day from John)
 
 **Pre-Session Prep:** (15 min)
 - Read: 6_FIELD_MAPPING_AND_DATA_LINEAGE.md (Quality Metrics section)
@@ -555,13 +515,44 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK4-2 - Chris Lindsay (1 hour)
-**Topic: Error Handling, Alerts & Final Sign-Off**
+### WK2-2 - John Wagner (1 hour)
+**Topic: Macro Nesting & Complexity Analysis**
+**Day:** Thursday (example - different day from Monday)
+
+**Pre-Session Prep:** (15 min)
+- Read: 7_MACROS_DEEP_DIVE.md (Nesting Analysis section)
+- Review Chris's quality gates notes
+
+**Discussion Topics:** (45 min)
+1. Macro nesting investigation (20 min)
+   - Do any macros call other macros?
+   - HIGH confidence nesting candidates validated?
+     - CReW_EnsureFields
+     - PreProcess_Iterative
+     - Append Charge Offs and Matching
+
+2. Macro complexity & dependencies (15 min)
+   - Complexity tiers accurate?
+   - Dependencies identified correctly?
+   - Any hidden dependencies?
+
+3. Performance & optimization (10 min)
+   - Bottleneck candidates identified?
+   - Testing strategy appropriate?
+
+**Deliverables:**
+- Macro nesting analysis validation
+- Complexity ranking sign-off
+
+---
+
+### WK2-2 - Chris Lindsay (1 hour)
+**Topic: Error Handling & Alerts**
+**Day:** Friday (example - different day from Tuesday)
 
 **Pre-Session Prep:** (15 min)
 - Read: 5_ALERTS_AND_NOTIFICATIONS.md
-- Review all previous session notes
-- Review John's validation rules notes
+- Review John's macro nesting notes
 
 **Discussion Topics:** (45 min)
 1. Error handling & recovery (15 min)
@@ -574,16 +565,269 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
    - Notification recipients correct?
    - Alert timing appropriate?
 
-3. Final validation & sign-off (15 min)
-   - Overall documentation accuracy validated ✓?
-   - All major gaps closed?
-   - Ready for team distribution?
-   - **Formal SME sign-off**
+3. Implementation readiness (10 min)
+   - Error handling validated ✓?
+   - Alert system approved?
 
 **Deliverables:**
 - Error handling & alerts approval
+- Implementation readiness sign-off
+
+---
+
+## Week 3: Macro Dependencies & System Integration
+
+**Objective:** Validate macro dependencies, system integrations, and overall architecture consistency
+
+**Topics:** Macro dependencies, external systems, cross-macro relationships, system integrations
+
+---
+
+### WK3-1 - John Wagner (1 hour)
+**Topic: Macro Dependencies & External Systems**
+**Day:** Monday (example)
+
+**Pre-Session Prep:** (15 min)
+- Read: 24_MACRO_INVENTORY_WITH_LOGIC.md (Macro Nesting & Dependency Analysis section)
+
+**Discussion Topics:** (45 min)
+1. External system dependencies (15 min)
+   - All dependencies to Tableau, DCM, APIs identified?
+   - CReW library dependencies documented?
+   - File share and database dependencies correct?
+
+2. Macro cross-dependencies (20 min)
+   - Upstream/downstream relationships accurate?
+   - Data flow between macros correct?
+   - Any missing macro linkages?
+
+3. Dependency validation (10 min)
+   - Dependencies complete ✓?
+   - Any hidden dependencies identified?
+
+**Deliverables:**
+- System dependency validation notes
+- Cross-macro dependency confirmation
+
+---
+
+### WK3-1 - Chris Lindsay (1 hour)
+**Topic: Dashboard & Reporting Validation**
+**Day:** Tuesday (example - different day from John)
+
+**Pre-Session Prep:** (15 min)
+- Read: 23_BUSINESS_FRIENDLY_TABLEAU_MACROS.md
+- Review John's dependency notes
+
+**Discussion Topics:** (45 min)
+1. Dashboard business objectives (15 min)
+   - Main portfolio dashboard purpose clear?
+   - QA/dropped records dashboard value understood?
+   - Securities dashboard alerts appropriate?
+
+2. Data-to-dashboard flow (20 min)
+   - Tableau macro outputs accurate?
+   - Dashboard data refresh timing appropriate?
+   - KPIs and metrics correct for business users?
+
+3. User adoption readiness (10 min)
+   - Documentation clear for business users?
+   - Training materials sufficient?
+
+**Deliverables:**
+- Dashboard validation sign-off
+- User adoption readiness confirmation
+
+---
+
+### WK3-2 - John Wagner (1 hour)
+**Topic: Documentation Completeness & Accuracy**
+**Day:** Thursday (example - different day from Monday)
+
+**Pre-Session Prep:** (15 min)
+- Read: All major documentation files (summary review)
+- Review Chris's dashboard notes
+
+**Discussion Topics:** (45 min)
+1. Documentation coverage (15 min)
+   - All 24 documentation files reviewed?
+   - Content accuracy across all sections?
+   - Consistency across documents?
+
+2. Technical accuracy (20 min)
+   - Workflow descriptions match actual implementation?
+   - Macro descriptions align with code behavior?
+   - Data transformations documented correctly?
+
+3. Completeness assessment (10 min)
+   - Any major gaps remaining?
+   - Overall accuracy confidence level?
+
+**Deliverables:**
+- Documentation completeness assessment
+- Accuracy confidence rating
+
+---
+
+### WK3-2 - Chris Lindsay (1 hour)
+**Topic: Operational Readiness & Support**
+**Day:** Friday (example - different day from Tuesday)
+
+**Pre-Session Prep:** (15 min)
+- Read: 16_OPERATIONAL_TROUBLESHOOTING_GUIDE.md
+- Review John's documentation notes
+
+**Discussion Topics:** (45 min)
+1. Troubleshooting readiness (15 min)
+   - All known issues documented?
+   - Troubleshooting procedures clear?
+   - Escalation paths defined?
+
+2. Operational support (20 min)
+   - On-call support procedures documented?
+   - SLA expectations clear?
+   - Monitoring/alerting sufficient?
+
+3. Production readiness (10 min)
+   - Operational documentation complete ✓?
+   - Support team trained and ready?
+
+**Deliverables:**
+- Operational readiness sign-off
+- Support documentation approval
+
+---
+
+## Week 4: Final Review & Sign-Off
+
+**Objective:** Comprehensive final review, validation of all previous findings, and formal sign-off
+
+**Topics:** End-to-end process validation, findings review, corrections verification, formal sign-off
+
+---
+
+### WK4-1 - John Wagner (1 hour)
+**Topic: End-to-End Process Validation**
+**Day:** Monday (example)
+
+**Pre-Session Prep:** (15 min)
+- Review notes from all WK1-1, WK2-1, WK3-1 sessions
+- Review partner's (Chris's) parallel session notes
+
+**Discussion Topics:** (45 min)
+1. John's session track summary (15 min)
+   - All topics covered adequately?
+   - All clarifications received?
+   - Any unresolved questions?
+
+2. Cross-SME alignment (20 min)
+   - Chris's findings consistent with John's observations?
+   - Any conflicting feedback?
+   - Overall coherence of documentation?
+
+3. Final validation & sign-off (10 min)
+   - Overall accuracy confidence: ≥90%?
+   - Ready for formal sign-off ✓?
+
+**Deliverables:**
+- Session track summary
+- Final validation sign-off (John)
+- Confidence rating
+
+---
+
+### WK4-1 - Chris Lindsay (1 hour)
+**Topic: Implementation Recommendations & Improvements**
+**Day:** Tuesday (example - different day from John)
+
+**Pre-Session Prep:** (15 min)
+- Review notes from all WK1-2, WK2-2, WK3-2 sessions
+- Review John's parallel session notes
+- Identify improvement recommendations
+
+**Discussion Topics:** (45 min)
+1. Chris's session track summary (15 min)
+   - All topics covered adequately?
+   - All technical validations complete?
+   - Any outstanding concerns?
+
+2. Recommendations & improvements (20 min)
+   - Process improvements identified?
+   - Documentation enhancements suggested?
+   - Implementation priorities?
+
+3. Final validation & sign-off (10 min)
+   - Overall accuracy confidence: ≥90%?
+   - Ready for formal sign-off ✓?
+
+**Deliverables:**
+- Session track summary
+- Improvement recommendations
+- Final validation sign-off (Chris)
+- Confidence rating
+
+---
+
+### WK4-2 - John Wagner (1 hour)
+**Topic: Formal Sign-Off & Documentation Closure**
+**Day:** Thursday (example - different day from Monday)
+
+**Pre-Session Prep:** (15 min)
+- Review Chris's recommendations from Tuesday
+- Prepare for formal sign-off
+
+**Discussion Topics:** (45 min)
+1. Recommendations review (15 min)
+   - Chris's improvement recommendations evaluated?
+   - Implementation timeline agreed?
+   - Owner assignments clear?
+
+2. Final questions & clarifications (15 min)
+   - Any final questions before sign-off?
+   - All concerns addressed?
+
+3. **Formal Sign-Off** (15 min)
+   - Documentation accuracy validated ✓
+   - Ready for team distribution ✓
+   - **John Wagner formal SME sign-off**
+
+**Deliverables:**
+- Signed approval
 - Final validation report
-- **Formal sign-off signature**
+- **Formal SME sign-off signature (John)**
+
+---
+
+### WK4-2 - Chris Lindsay (1 hour)
+**Topic: Formal Sign-Off & Project Closure**
+**Day:** Friday (example - different day from Tuesday)
+
+**Pre-Session Prep:** (15 min)
+- Review John's final session notes
+- Prepare for formal sign-off closure
+
+**Discussion Topics:** (45 min)
+1. Final findings compilation (15 min)
+   - All corrections completed?
+   - Documentation updated?
+   - No outstanding items?
+
+2. Release readiness (15 min)
+   - Ready to publish validated documentation?
+   - Team communication plan ready?
+   - Archives created ✓?
+
+3. **Formal Sign-Off & Closure** (15 min)
+   - Overall documentation accuracy validated ✓
+   - All validation objectives met ✓
+   - **Chris Lindsay formal SME sign-off**
+   - Project closure confirmed
+
+**Deliverables:**
+- Final corrections verification
+- Signed approval
+- **Formal SME sign-off signature (Chris)**
+- **Validation project closure**
 
 ---
 
@@ -615,21 +859,29 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ## Weekly Session Schedule
 
-### Week 1
-- **WK1-1 (John, 1 hr):** MDPA purpose, 7-stage workflow
-- **WK1-2 (Chris, 1 hr):** Architecture details, tool inventory
+### Week 1 (4 sessions on different days)
+- **WK1-1 John (Monday, 1 hr):** MDPA purpose, scope, 7-stage workflow
+- **WK1-1 Chris (Tuesday, 1 hr):** Input data sources, field inventory
+- **WK1-2 John (Thursday, 1 hr):** Workflow architecture, tool inventory
+- **WK1-2 Chris (Friday, 1 hr):** Field transformations, 7-stage mappings
 
-### Week 2
-- **WK2-1 (John, 1 hr):** Input sources, field inventory
-- **WK2-2 (Chris, 1 hr):** Field transformations, 7-stage mappings
+### Week 2 (4 sessions on different days)
+- **WK2-1 John (Monday, 1 hr):** Macro inventory, usage frequency
+- **WK2-1 Chris (Tuesday, 1 hr):** Data quality rules, validation gates
+- **WK2-2 John (Thursday, 1 hr):** Macro nesting, complexity analysis
+- **WK2-2 Chris (Friday, 1 hr):** Error handling, alert system
 
-### Week 3
-- **WK3-1 (John, 1 hr):** Macro inventory, usage frequency
-- **WK3-2 (Chris, 1 hr):** Macro nesting, complexity ranking
+### Week 3 (4 sessions on different days)
+- **WK3-1 John (Monday, 1 hr):** Macro dependencies, external systems
+- **WK3-1 Chris (Tuesday, 1 hr):** Dashboard validation, reporting
+- **WK3-2 John (Thursday, 1 hr):** Documentation completeness, accuracy
+- **WK3-2 Chris (Friday, 1 hr):** Operational readiness, support
 
-### Week 4
-- **WK4-1 (John, 1 hr):** Validation rules, quality gates
-- **WK4-2 (Chris, 1 hr):** Error handling, alerts, final sign-off
+### Week 4 (4 sessions on different days)
+- **WK4-1 John (Monday, 1 hr):** End-to-end validation, sign-off prep
+- **WK4-1 Chris (Tuesday, 1 hr):** Recommendations, final validation
+- **WK4-2 John (Thursday, 1 hr):** Formal sign-off, documentation closure
+- **WK4-2 Chris (Friday, 1 hr):** Formal sign-off, project closure
 
 ---
 
@@ -714,14 +966,15 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ## Key Contacts & Schedule
 
-| Name | Role | Sessions | Session Times |
-|---|---|---|---|
-| John Wagner | SME #1 | WK1-1, WK2-1, WK3-1, WK4-1 | 1 hour each |
-| Chris Lindsay | SME #2 | WK1-2, WK2-2, WK3-2, WK4-2 | 1 hour each |
+| Name | Role | Sessions Per Week | Total Sessions | Total Hours |
+|---|---|---|---|---|
+| John Wagner | SME #1 | 2 sessions (different days) | 8 sessions (WK1-1, WK1-2, WK2-1, WK2-2, WK3-1, WK3-2, WK4-1, WK4-2) | 8 hours |
+| Chris Lindsay | SME #2 | 2 sessions (different days) | 8 sessions (WK1-1, WK1-2, WK2-1, WK2-2, WK3-1, WK3-2, WK4-1, WK4-2) | 8 hours |
 
 **Validation Period:** 4 weeks (TBD - to be scheduled per availability)
-**Total Sessions:** 8 (2 per week × 4 weeks)
-**Total Hours:** 16 (1 hr × 2 SMEs × 8 sessions)
+**Total Weekly Sessions:** 4 sessions/week (2 per SME on different days)
+**Total Sessions Across 4 Weeks:** 16 sessions
+**Total Hours:** 16 hours (2 SMEs × 8 hrs each)
 
 ---
 

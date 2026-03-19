@@ -1135,33 +1135,51 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ### Week 1: March 23-27, 2026 (4 sessions)
 - **Monday, March 23:** WK1-1 John (1 hr) - MDPA purpose, scope, 7-stage workflow
+  *Attendees: Yomar (PM), Bhavani (BI), Mwafaq (SM)*
 - **Tuesday, March 24:** WK1-1 Chris (1 hr) - Input data sources, field inventory
+  *Attendees: Venkat (TPA), Yomar (PM), Mwafaq (SM)*
 - **Thursday, March 26:** WK1-2 John (1 hr) - Workflow architecture, tool inventory
+  *Attendees: Yomar (PM), Bhavani (BI), Mwafaq (SM)*
 - **Friday, March 27:** WK1-2 Chris (1 hr) - Field transformations, 7-stage mappings
+  *Attendees: Venkat (TPA), Yomar (PM), Mwafaq (SM)*
 
 ### Week 2: March 30 - April 3, 2026 (4 sessions)
 - **Monday, March 30:** WK2-1 John (1 hr) - Macro inventory, usage frequency
+  *Attendees: Yomar (PM), Bhavani (BI), Preeti (QA), Mwafaq (SM)*
 - **Tuesday, March 31:** WK2-1 Chris (1 hr) - Data quality rules, validation gates
+  *Attendees: Venkat (TPA), Yomar (PM), Preeti (QA), Mwafaq (SM)*
 - **Thursday, April 2:** WK2-2 John (1 hr) - Macro nesting, complexity analysis
+  *Attendees: Yomar (PM), Bhavani (BI), Preeti (QA), Mwafaq (SM)*
 - **Friday, April 3:** WK2-2 Chris (1 hr) - Error handling, alert system
+  *Attendees: Venkat (TPA), Yomar (PM), Preeti (QA), Mwafaq (SM)*
 
 ### Week 3: April 6-10, 2026 (4 sessions)
 - **Monday, April 6:** WK3-1 John (1 hr) - Macro dependencies, external systems
+  *Attendees: Yomar (PM), Bhavani (BI), Preeti (QA), Mwafaq (SM)*
 - **Tuesday, April 7:** WK3-1 Chris (1 hr) - Dashboard validation, reporting
+  *Attendees: Venkat (TPA), Yomar (PM), Bhavani (BI), Mwafaq (SM)*
 - **Thursday, April 9:** WK3-2 John (1 hr) - Documentation completeness, accuracy
+  *Attendees: Yomar (PM), Bhavani (BI), Preeti (QA), Mwafaq (SM)*
 - **Friday, April 10:** WK3-2 Chris (1 hr) - Operational readiness, support
+  *Attendees: Venkat (TPA), Yomar (PM), Preeti (QA), Mwafaq (SM)*
 
 ### Week 4: April 13-14, 2026 (2 sessions - operations/integration focus)
 - **Monday, April 13:** WK4-1 John (1 hr) - Operations runbook walk-through
+  *Attendees: Yomar (PM), Preeti (QA), Mwafaq (SM)*
 - **Tuesday, April 14:** WK4-2 Chris (1 hr) - System integration & monitoring
+  *Attendees: Venkat (TPA), Yomar (PM), Preeti (QA), Mwafaq (SM)*
 
 ### Week 5: April 16-17, 2026 (2 sessions - final knowledge consolidation)
 - **Thursday, April 16:** WK5-1 John (1 hr) - Business decisions & Q&A
+  *Attendees: Yomar (PM), Bhavani (BI), Preeti (QA), Mwafaq (SM)*
 - **Friday, April 17:** WK5-2 Chris (1 hr) - Edge cases, workarounds, lessons learned
+  *Attendees: Venkat (TPA), Yomar (PM), Preeti (QA), Mwafaq (SM)*
 
-### Week 6: April 20-24, 2026 (2 combined sessions - handoff & sign-off - ALL TEAM MEMBERS ATTEND)
+### Week 6: April 20-24, 2026 (2 combined sessions - handoff & sign-off)
 - **Monday, April 20:** WK6-1 John + Chris (1 hr) - Product Playbook walkthrough + readiness confirmation
+  *Attendees: **All team members** (Venkat, Yomar, Bhavani, Preeti, Mwafaq)*
 - **Friday, April 24:** WK6-2 John + Chris (1 hr) - **Formal handoff & SME sign-off** ✓
+  *Attendees: **All team members** (Venkat, Yomar, Bhavani, Preeti, Mwafaq)*
 
 **Summary:**
 - **Start:** Monday, March 23, 2026

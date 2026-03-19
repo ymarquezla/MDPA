@@ -541,16 +541,28 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 ---
 
 ## Week 2: Macro Inventory & Dependencies
+**Dates:** Monday, March 30 - Friday, April 3, 2026
 
 **Objective:** Validate macro inventory, usage frequency, nesting analysis, and dependencies
 
-**Topics:** Macro documentation, macro usage patterns, nesting analysis, complexity ranking
+**John's Focus:** Macro inventory, usage frequency, business logic, impact analysis
+**Chris's Focus:** Data quality rules, validation gates, error handling, technical implementation
+
+**Weekly Deliverable:** Macro Inventory Reference + Data Quality & Validation Standards
+
+**Weekly Session Schedule:**
+- **Monday, March 30:** WK2-1 John Wagner - Macro Inventory & Usage Frequency
+- **Tuesday, March 31:** WK2-1 Chris Lindsay - Data Quality Rules & Validation Gates
+- **Thursday, April 2:** WK2-2 John Wagner - Macro Nesting & Complexity Analysis
+- **Friday, April 3:** WK2-2 Chris Lindsay - Error Handling & Alert System
 
 ---
 
 ### WK2-1 - John Wagner (1 hour)
 **Topic: Macro Inventory & Usage Frequency**
-**Day:** Monday (example)
+**Date:** Monday, March 30, 2026
+**Time:** [To be scheduled with John]
+**Team Attendees:** Yomar (PM), Bhavani (BI), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 3_MACROS_AND_DEPENDENCIES.md (macro inventory section)
@@ -578,7 +590,9 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ### WK2-1 - Chris Lindsay (1 hour)
 **Topic: Data Quality Rules & Validation Gates**
-**Day:** Tuesday (example - different day from John)
+**Date:** Tuesday, March 31, 2026
+**Time:** [To be scheduled with Chris]
+**Team Attendees:** Venkat (TPA), Yomar (PM), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 6_FIELD_MAPPING_AND_DATA_LINEAGE.md (Quality Metrics section)
@@ -607,7 +621,9 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ### WK2-2 - John Wagner (1 hour)
 **Topic: Macro Nesting & Complexity Analysis**
-**Day:** Thursday (example - different day from Monday)
+**Date:** Thursday, April 2, 2026
+**Time:** [To be scheduled with John]
+**Team Attendees:** Yomar (PM), Bhavani (BI), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 7_MACROS_DEEP_DIVE.md (Nesting Analysis section)
@@ -638,7 +654,9 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ### WK2-2 - Chris Lindsay (1 hour)
 **Topic: Error Handling & Alerts**
-**Day:** Friday (example - different day from Tuesday)
+**Date:** Friday, April 3, 2026
+**Time:** [To be scheduled with Chris]
+**Team Attendees:** Venkat (TPA), Yomar (PM), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 5_ALERTS_AND_NOTIFICATIONS.md
@@ -666,16 +684,28 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 ---
 
 ## Week 3: Macro Dependencies & System Integration
+**Dates:** Monday, April 6 - Friday, April 10, 2026
 
 **Objective:** Validate macro dependencies, system integrations, and overall architecture consistency
 
-**Topics:** Macro dependencies, external systems, cross-macro relationships, system integrations
+**John's Focus:** Macro dependencies, business system impacts, external dependencies
+**Chris's Focus:** Dashboard validation, reporting integrations, system performance
+
+**Weekly Deliverable:** Macro Dependencies Map + Dashboard Validation Report
+
+**Weekly Session Schedule:**
+- **Monday, April 6:** WK3-1 John Wagner - Macro Dependencies & External Systems
+- **Tuesday, April 7:** WK3-1 Chris Lindsay - Dashboard Validation & Reporting
+- **Thursday, April 9:** WK3-2 John Wagner - Documentation Completeness & Accuracy
+- **Friday, April 10:** WK3-2 Chris Lindsay - Operational Readiness & Support
 
 ---
 
 ### WK3-1 - John Wagner (1 hour)
 **Topic: Macro Dependencies & External Systems**
-**Day:** Monday (example)
+**Date:** Monday, April 6, 2026
+**Time:** [To be scheduled with John]
+**Team Attendees:** Yomar (PM), Bhavani (BI), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 24_MACRO_INVENTORY_WITH_LOGIC.md (Macro Nesting & Dependency Analysis section)
@@ -703,7 +733,9 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ### WK3-1 - Chris Lindsay (1 hour)
 **Topic: Dashboard & Reporting Validation**
-**Day:** Tuesday (example - different day from John)
+**Date:** Tuesday, April 7, 2026
+**Time:** [To be scheduled with Chris]
+**Team Attendees:** Venkat (TPA), Yomar (PM), Bhavani (BI), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 23_BUSINESS_FRIENDLY_TABLEAU_MACROS.md
@@ -732,7 +764,9 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ### WK3-2 - John Wagner (1 hour)
 **Topic: Documentation Completeness & Accuracy**
-**Day:** Thursday (example - different day from Monday)
+**Date:** Thursday, April 9, 2026
+**Time:** [To be scheduled with John]
+**Team Attendees:** Yomar (PM), Bhavani (BI), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: All major documentation files (summary review)
@@ -761,7 +795,9 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ### WK3-2 - Chris Lindsay (1 hour)
 **Topic: Operational Readiness & Support**
-**Day:** Friday (example - different day from Tuesday)
+**Date:** Friday, April 10, 2026
+**Time:** [To be scheduled with Chris]
+**Team Attendees:** Venkat (TPA), Yomar (PM), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 16_OPERATIONAL_TROUBLESHOOTING_GUIDE.md
@@ -789,16 +825,26 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 ---
 
 ## Week 4: Final Review & Sign-Off
+**Dates:** Monday, April 13 - Tuesday, April 14, 2026
 
 **Objective:** Comprehensive final review, validation of all previous findings, and formal sign-off
 
-**Topics:** End-to-end process validation, findings review, corrections verification, formal sign-off
+**John's Focus:** End-to-end business validation, recommendations integration, formal approval
+**Chris's Focus:** Implementation recommendations, technical improvements, technical sign-off
+
+**Weekly Deliverable:** Final Validation Report + Improvement Recommendations + Formal SME Sign-offs
+
+**Weekly Session Schedule:**
+- **Monday, April 13:** WK4-1 John Wagner - Operations Runbook Walk-through
+- **Tuesday, April 14:** WK4-2 Chris Lindsay - System Integration & Monitoring
 
 ---
 
 ### WK4-1 - John Wagner (1 hour)
-**Topic: End-to-End Process Validation**
-**Day:** Monday (example)
+**Topic: Operations Runbook Walk-through**
+**Date:** Monday, April 13, 2026
+**Time:** [To be scheduled with John]
+**Team Attendees:** Yomar (PM), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Review notes from all WK1-1, WK2-1, WK3-1 sessions
@@ -826,9 +872,11 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK4-1 - Chris Lindsay (1 hour)
-**Topic: Implementation Recommendations & Improvements**
-**Day:** Tuesday (example - different day from John)
+### WK4-2 - Chris Lindsay (1 hour)
+**Topic: System Integration & Monitoring**
+**Date:** Tuesday, April 14, 2026
+**Time:** [To be scheduled with Chris]
+**Team Attendees:** Venkat (TPA), Yomar (PM), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Review notes from all WK1-2, WK2-2, WK3-2 sessions
@@ -858,70 +906,8 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-### WK4-2 - John Wagner (1 hour)
-**Topic: Formal Sign-Off & Documentation Closure**
-**Day:** Thursday (example - different day from Monday)
-
-**Pre-Session Prep:** (15 min)
-- Review Chris's recommendations from Tuesday
-- Prepare for formal sign-off
-
-**Discussion Topics:** (45 min)
-1. Recommendations review (15 min)
-   - Chris's improvement recommendations evaluated?
-   - Implementation timeline agreed?
-   - Owner assignments clear?
-
-2. Final questions & clarifications (15 min)
-   - Any final questions before sign-off?
-   - All concerns addressed?
-
-3. **Formal Sign-Off** (15 min)
-   - Documentation accuracy validated ✓
-   - Ready for team distribution ✓
-   - **John Wagner formal SME sign-off**
-
-**Deliverables:**
-- Signed approval
-- Final validation report
-- **Formal SME sign-off signature (John)**
-
----
-
-### WK4-2 - Chris Lindsay (1 hour)
-**Topic: Formal Sign-Off & Project Closure**
-**Day:** Friday (example - different day from Tuesday)
-
-**Pre-Session Prep:** (15 min)
-- Review John's final session notes
-- Prepare for formal sign-off closure
-
-**Discussion Topics:** (45 min)
-1. Final findings compilation (15 min)
-   - All corrections completed?
-   - Documentation updated?
-   - No outstanding items?
-
-2. Release readiness (15 min)
-   - Ready to publish validated documentation?
-   - Team communication plan ready?
-   - Archives created ✓?
-
-3. **Formal Sign-Off & Closure** (15 min)
-   - Overall documentation accuracy validated ✓
-   - All validation objectives met ✓
-   - **Chris Lindsay formal SME sign-off**
-   - Project closure confirmed
-
-**Deliverables:**
-- Final corrections verification
-- Signed approval
-- **Formal SME sign-off signature (Chris)**
-- **Validation project closure**
-
----
-
 ## Week 5: Final Consolidation & Knowledge Completion
+**Dates:** Thursday, April 16 - Friday, April 17, 2026
 
 **Objective:** Capture remaining domain knowledge, edge cases, lessons learned, and finalize knowledge artifacts
 
@@ -930,14 +916,17 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 **Weekly Deliverable:** Decision Log (Business) + Technical FAQ & Workarounds Guide
 
-**Team Attendees:** Yomar (PM), Venkat (TPA), Preeti (QA), Mwafaq (SM)
+**Weekly Session Schedule:**
+- **Thursday, April 16:** WK5-1 John Wagner - Business Decisions & Q&A
+- **Friday, April 17:** WK5-2 Chris Lindsay - Edge Cases, Workarounds, Lessons Learned
 
 ---
 
 ### WK5-1 - John Wagner (1 hour)
-**Topic: Business Decision Context & Strategic Considerations**
-**Day:** Thursday (example)
-**Team Attendees:** Yomar (PM), Bhavani (BI), Mwafaq (SM)
+**Topic: Business Decisions & Q&A**
+**Date:** Thursday, April 16, 2026
+**Time:** [To be scheduled with John]
+**Team Attendees:** Yomar (PM), Bhavani (BI), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Review all previous session notes
@@ -972,9 +961,10 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 ---
 
 ### WK5-2 - Chris Lindsay (1 hour)
-**Topic: Technical Edge Cases, Workarounds & Optimization**
-**Day:** Friday (example - different day from Thursday)
-**Team Attendees:** Venkat (TPA), Preeti (QA), Yomar (PM), Mwafaq (SM)
+**Topic: Edge Cases, Workarounds, Lessons Learned**
+**Date:** Friday, April 17, 2026
+**Time:** [To be scheduled with Chris]
+**Team Attendees:** Venkat (TPA), Yomar (PM), Preeti (QA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Review all previous technical session notes
@@ -1011,19 +1001,25 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 ---
 
 ## Week 6: Final Handoff & Formal Sign-Off
+**Dates:** Monday, April 20 - Friday, April 24, 2026
 
-**Objective:** Complete Product Playbook walkthrough, confirm team readiness, and formally transfer product ownership to Sprintendo team
+**Objective:** Complete Product Playbook walkthrough, confirm team readiness, and formally transfer product ownership to Loan Analytics team
 
 **Topics:** Product Playbook review, readiness confirmation, formal sign-offs, post-handoff support setup
 
-**All Team Members Present:** John Wagner, Chris Lindsay, Venkat (TPA), Bhavani (BI), Preeti (QA), Yomar (PM), Mwafaq (SM)
+**All Team Members Present:** John Wagner (SME), Chris Lindsay (SME), Venkat (TPA), Bhavani (BI), Preeti (QA), Yomar (PM), Mwafaq (SM)
+
+**Weekly Session Schedule:**
+- **Monday, April 20:** WK6-1 - Product Playbook Walkthrough & Readiness Confirmation (Both SMEs + All Team)
+- **Friday, April 24:** WK6-2 - Formal Handoff & SME Sign-Off (Both SMEs + All Team)
 
 ---
 
 ### WK6-1 - Both SMEs (1 hour - Combined Session)
-**Topic: Full Product Playbook Walkthrough & Team Readiness Confirmation**
-**Day:** Monday (example)
-**All Team Members Present**
+**Topic: Product Playbook Walkthrough & Team Readiness Confirmation**
+**Date:** Monday, April 20, 2026
+**Time:** [To be scheduled with both SMEs]
+**All Team Members Present:** John Wagner, Chris Lindsay, Venkat (TPA), Bhavani (BI), Preeti (QA), Yomar (PM), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min - async before meeting)
 - All team members review complete Product Playbook
@@ -1055,8 +1051,9 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ### WK6-2 - Both SMEs (1 hour - Combined Session) ⭐ FORMAL HANDOFF
 **Topic: Formal Handoff & SME Sign-Off**
-**Day:** Friday (example)
-**All Team Members Present**
+**Date:** Friday, April 24, 2026
+**Time:** [To be scheduled with both SMEs]
+**All Team Members Present:** John Wagner, Chris Lindsay, Venkat (TPA), Bhavani (BI), Preeti (QA), Yomar (PM), Mwafaq (SM)
 
 **Session Structure:** (60 min)
 

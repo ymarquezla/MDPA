@@ -82,11 +82,9 @@ Plans:
   1. A Confluence page titled "Data Lineage Map" exists under MDPA parent page ID 4244045841 in the TREL space
   2. The page content matches the finalized lineage map from Phase 4
   3. A stakeholder with Confluence access can trace a field end-to-end using only the Confluence page
-**Plans:** 3 plans
+**Plans:** 1 plan
 Plans:
-- [ ] 04-01-PLAN.md — Create DATA_LINEAGE.md skeleton and populate Part 1 (Source Systems)
-- [ ] 04-02-PLAN.md — Populate Part 2: 7-stage processing transformation detail
-- [ ] 04-03-PLAN.md — Populate Parts 3-5: derived field formulas, output mapping, traceability examples + human review
+- [ ] 05-01-PLAN.md — Write publish-data-lineage.js script and publish DATA_LINEAGE.md to Confluence
 
 ### Phase 6: Macro Inventory — Cataloguing and Risk Rating
 **Goal**: Every macro in the workflow is fully catalogued with its purpose, logic, dependency chain, and deployment risk
@@ -97,11 +95,8 @@ Plans:
   2. Each macro entry includes a plain-language logic summary describing what transformation it performs
   3. Each macro has a deployment risk rating (embedded/external, path risk, CReW dependency) that an engineer could act on
   4. The full macro dependency map showing execution order is documented and readable in the repo
-**Plans:** 3 plans
-Plans:
-- [ ] 04-01-PLAN.md — Create DATA_LINEAGE.md skeleton and populate Part 1 (Source Systems)
-- [ ] 04-02-PLAN.md — Populate Part 2: 7-stage processing transformation detail
-- [ ] 04-03-PLAN.md — Populate Parts 3-5: derived field formulas, output mapping, traceability examples + human review
+**Plans:** TBD
+Plans: To be planned
 
 ### Phase 7: Macro Inventory — Confluence Publication
 **Goal**: The macro inventory is live and searchable in Confluence under the MDPA parent page
@@ -111,11 +106,8 @@ Plans:
   1. A Confluence page titled "Macro Inventory" exists under MDPA parent page ID 4244045841 in the TREL space
   2. The page content matches the finalized macro inventory from Phase 6
   3. A stakeholder with Confluence access can look up any macro and find its risk rating without accessing the repo
-**Plans:** 3 plans
-Plans:
-- [ ] 04-01-PLAN.md — Create DATA_LINEAGE.md skeleton and populate Part 1 (Source Systems)
-- [ ] 04-02-PLAN.md — Populate Part 2: 7-stage processing transformation detail
-- [ ] 04-03-PLAN.md — Populate Parts 3-5: derived field formulas, output mapping, traceability examples + human review
+**Plans:** TBD
+Plans: To be planned
 
 ### Phase 8: Validation Test Suite — Rules Authoring
 **Goal**: A complete set of testable assertions covers all documented validation logic, boundary conditions, and processing stages
@@ -126,11 +118,8 @@ Plans:
   2. All 14+ validation checks documented in 6_FIELD_MAPPING_AND_DATA_LINEAGE.md appear as discrete, verifiable rules in the suite
   3. Boundary conditions for all key calculated fields (LTV, Risk_Score, charge-off rates, and equivalents) are explicitly defined as assertions
   4. Rules are organized by processing stage so they can be applied one stage at a time during a workflow run
-**Plans:** 3 plans
-Plans:
-- [ ] 04-01-PLAN.md — Create DATA_LINEAGE.md skeleton and populate Part 1 (Source Systems)
-- [ ] 04-02-PLAN.md — Populate Part 2: 7-stage processing transformation detail
-- [ ] 04-03-PLAN.md — Populate Parts 3-5: derived field formulas, output mapping, traceability examples + human review
+**Plans:** TBD
+Plans: To be planned
 
 ### Phase 9: Validation Test Suite — Confluence Publication
 **Goal**: The validation test suite is live and usable in Confluence under the MDPA parent page
@@ -140,11 +129,8 @@ Plans:
   1. A Confluence page titled "Validation Test Suite" exists under MDPA parent page ID 4244045841 in the TREL space
   2. The page content matches the finalized validation suite from Phase 8
   3. A stakeholder with Confluence access can locate the test rules for any processing stage without accessing the repo
-**Plans:** 3 plans
-Plans:
-- [ ] 04-01-PLAN.md — Create DATA_LINEAGE.md skeleton and populate Part 1 (Source Systems)
-- [ ] 04-02-PLAN.md — Populate Part 2: 7-stage processing transformation detail
-- [ ] 04-03-PLAN.md — Populate Parts 3-5: derived field formulas, output mapping, traceability examples + human review
+**Plans:** TBD
+Plans: To be planned
 
 ## Progress
 
@@ -161,7 +147,7 @@ Phases execute with the following dependencies:
 | 2. Gap Analysis — Prioritization and Report | 0/1 | Complete    | 2026-03-18 |
 | 3. Gap Analysis — Confluence Publication | 1/1 | Complete    | 2026-03-19 |
 | 4. Data Lineage — Field Tracing and Stage Mapping | 1/3 | Complete    | 2026-03-19 |
-| 5. Data Lineage — Confluence Publication | 0/TBD | Not started | - |
+| 5. Data Lineage — Confluence Publication | 0/1 | Not started | - |
 | 6. Macro Inventory — Cataloguing and Risk Rating | 0/TBD | Not started | - |
 | 7. Macro Inventory — Confluence Publication | 0/TBD | Not started | - |
 | 8. Validation Test Suite — Rules Authoring | 0/TBD | Not started | - |

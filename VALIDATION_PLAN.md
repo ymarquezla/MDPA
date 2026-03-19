@@ -1,10 +1,45 @@
-# MDPA Documentation Validation Plan
+# MDPA Knowledge Transfer & Validation Plan
 
-**Duration:** 4 Weeks (TBD - to be scheduled per availability)
-**Subject Matter Experts:** John Wagner, Chris Lindsay
-**Session Format:** Two 1-hour sessions per SME per week (varied weekday schedule)
-**Weekly Schedule:** 2 sessions per week × 4 weeks = 8 total sessions
-**Total Available Hours:** 16 hours (2 hrs/week × 2 SMEs × 4 weeks)
+**Duration:** 6 Weeks (FIRM DEADLINE - Hard stop 2026-05-31)
+**Primary Objective:** Knowledge transfer from domain experts to Sprintendo team for product takeover
+**Secondary Objective:** Validate MDPA documentation accuracy
+**Subject Matter Experts (Knowledge Sources):** John Wagner, Chris Lindsay
+**Sprintendo Team (Knowledge Recipients):** Venkat (TPA), Bhavani (BI), Preeti (QA), Yomar (PM), Mwafaq (SM)
+**Session Format:** 2 sessions per SME per week (1 hour each) + rolling team member participation
+**Weekly Schedule:** 2 sessions per week × 6 weeks = 12 total SME sessions
+**Team Participation:** Targeted attendance by Sprintendo members based on role relevance
+**Total Available Hours:** 12 SME hours + 15-20 team member hours
+**Deadline:** Must complete all knowledge transfer by 2026-05-31
+
+---
+
+## Knowledge Transfer Context
+
+**Background:** The MDPA product owner recently left the company. John Wagner and Chris Lindsay (domain experts) are currently supporting operations but are overloaded with other work. The Sprintendo team must take full ownership within 6 weeks.
+
+**Strategy:** Combine validation with systematic knowledge transfer. Each session achieves TWO objectives:
+1. **Validate** documentation accuracy (primary)
+2. **Transfer** domain knowledge to team members (equally important)
+
+**Team Participation Model:**
+- **John & Chris:** SMEs who teach, explain **why** decisions were made
+- **Venkat (TPA):** Attends architecture/macro sessions → learns technical decisions
+- **Bhavani (BI):** Attends dashboard/reporting sessions → learns business logic
+- **Preeti (QA):** Attends quality/testing sessions → learns test strategy
+- **Yomar (PM):** Attends all sessions → learns product holistically
+- **Mwafaq (SM):** Coordinates schedule, captures action items
+
+**Deliverables (Knowledge Artifacts):**
+- Each session produces: Validation notes + **Decision Log** (why was X designed this way?)
+- Each week produces: **Role-specific Runbook** (what does [role] need to know?)
+- Week 6 produces: **Full Product Playbook** (how to operate MDPA independently)
+
+**Success Criteria:**
+- ✓ Documentation validated (≥90% accuracy)
+- ✓ All critical decisions documented with context
+- ✓ Each team member can explain their role's requirements
+- ✓ Operational runbooks ready for independent team operation
+- ✓ **SMEs can hand off with confidence; team ready to support independently**
 
 ---
 
@@ -328,39 +363,66 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
+## 6-Week Knowledge Transfer Timeline
+
+| Week | Focus | SME Sessions | Team Attendees | Deliverable |
+|------|-------|-------------|-----------------|-------------|
+| **1** | Foundation & Basics | 2 | Yomar, Venkat, Mwafaq | MDPA Overview + Decision Log |
+| **2** | Architecture & Data | 2 | Venkat, Yomar, Mwafaq | Architecture Guide + Data Lineage |
+| **3** | Macros & Technical | 2 | Venkat, Preeti, Yomar | Macro Guide + Complexity Matrix |
+| **4** | Operations & Support | 2 | Bhavani, Preeti, Yomar | Operations Runbook |
+| **5** | Systems & Integration | 2 | Venkat, Bhavani, Yomar | Integration Checklist |
+| **6** | Final Transfer & Handoff | 2 | All team members | **Full Product Playbook** + Sign-off |
+
+---
+
 ## Week 1: Foundation & Architecture Review
 
-**Objective:** Validate high-level workflow design, process flow accuracy, and overall architecture
+**Objective:** Validate high-level workflow design + transfer foundational knowledge to Sprintendo team
 
-**Topics:** MDPA purpose, 7-stage workflow, architecture overview, basic metrics
+**Topics:** MDPA purpose, 7-stage workflow, architecture overview, decision context
+
+**Team Attendees:** Yomar (PM), Venkat (TPA), Mwafaq (SM)
+
+**Knowledge Transfer Focus:** Why MDPA exists, what problems it solves, how decisions were made
 
 ---
 
 ### WK1-1 - John Wagner (1 hour)
-**Topic: MDPA Purpose, Scope & Overall Architecture**
+**Topic: MDPA Purpose, Scope & Business Context**
 **Day:** Monday (example)
+**Team Attendees:** Yomar (PM), Venkat (TPA), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 1_MDPA_PROCESS_DOCUMENTATION.md (Overview section)
+- Attendees: Note any questions about business context/requirements
 
-**Discussion Topics:** (45 min)
-1. MDPA mission & scope (15 min)
+**Discussion Topics:** (40 min)
+1. **MDPA mission & scope — WHY it exists** (15 min)
    - Purpose statement accurate?
+   - What business problems does MDPA solve?
+   - Why designed this way (not another way)?
    - Intended use cases clear?
-   - Scope boundaries correct?
 
-2. 7-stage processing pipeline (20 min)
+2. **7-stage pipeline — WHY this sequence** (15 min)
    - Stage names & sequence correct?
+   - Why these 7 stages (not 5 or 10)?
+   - Why this order?
    - Any missing stages?
-   - Stage purposes align with documentation?
 
-3. High-level questions (10 min)
-   - Any inaccuracies so far?
-   - Anything unclear?
+3. **Design decisions & constraints** (10 min)
+   - Key decisions that shaped MDPA?
+   - Technical constraints considered?
+   - Business requirements driving design?
+
+**Knowledge Transfer Artifacts:**
+- **Decision Log:** Document "why" answers (design decisions + context)
+- **Team Notes:** Attendees capture role-specific understanding
 
 **Deliverables:**
-- Notes on accuracy/gaps
-- List of clarifications needed
+- Validation: Accuracy checklist
+- **Knowledge:** MDPA Origin & Purpose document (why it exists, key decisions)
+- Team understanding of foundational concepts
 
 ---
 
@@ -877,11 +939,17 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 - **WK3-2 John (Thursday, 1 hr):** Documentation completeness, accuracy
 - **WK3-2 Chris (Friday, 1 hr):** Operational readiness, support
 
-### Week 4 (4 sessions on different days)
-- **WK4-1 John (Monday, 1 hr):** End-to-end validation, sign-off prep
-- **WK4-1 Chris (Tuesday, 1 hr):** Recommendations, final validation
-- **WK4-2 John (Thursday, 1 hr):** Formal sign-off, documentation closure
-- **WK4-2 Chris (Friday, 1 hr):** Formal sign-off, project closure
+### Week 4 (2 sessions - operations/integration focus)
+- **WK4-1 John (Monday, 1 hr):** Operations runbook walk-through
+- **WK4-2 Chris (Tuesday, 1 hr):** System integration & monitoring
+
+### Week 5 (2 sessions - final knowledge consolidation)
+- **WK5-1 John (Thursday, 1 hr):** Q&A with Sprintendo team + clarifications
+- **WK5-2 Chris (Friday, 1 hr):** Edge cases, workarounds, lessons learned
+
+### Week 6 (2 sessions - handoff & sign-off - ALL TEAM MEMBERS ATTEND)
+- **WK6-1 John + Chris (Monday, 1 hr):** Final Q&A + **Product Playbook walkthrough**
+- **WK6-2 John + Chris (Friday, 1 hr):** **Formal handoff & SME sign-off** ✓
 
 ---
 
@@ -923,14 +991,18 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ## Success Criteria
 
-✅ **Validation Complete When:**
-1. All 8 sessions completed (4 weeks × 2 sessions/week)
-2. All 7 documentation sections reviewed by both SMEs
-3. Accuracy confidence ≥ 90% (across all sections)
-4. All identified corrections completed
-5. No critical gaps remaining
-6. **Both SME formal sign-offs obtained**
-7. Final validation report documented
+✅ **Knowledge Transfer & Handoff Complete When (by 2026-05-31):**
+1. All 12 SME sessions completed (6 weeks × 2 sessions/week)
+2. **Documentation validated:** ≥90% accuracy across all sections
+3. **Knowledge transferred:** Each team member can explain their role's requirements
+4. **Artifacts created:**
+   - Decision logs documenting "why" for all critical decisions
+   - Role-specific runbooks (TPA, BI, QA guides)
+   - Operations playbook for independent execution
+   - Troubleshooting guide with known issues & workarounds
+5. **Team readiness:** Sprintendo team ready to support MDPA independently
+6. **SME sign-off:** Both John Wagner & Chris Lindsay formally approve handoff ✓
+7. **No critical gaps:** All unresolved questions answered, all dependencies understood
 
 ---
 
@@ -948,39 +1020,85 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-## Post-Validation (Week 5+)
+## Knowledge Transfer Handoff (Week 6 - 2026-05-31)
 
-**Immediate (Apr 21):**
-- Compile all corrections
-- Update GitHub documentation
-- Create "Validated" release tag
-- Share final report with Loan Analytics team
+**WK6-1 (Monday) - Product Playbook Walkthrough:**
+- All team members present
+- John & Chris walk through complete Product Playbook
+- Q&A on any remaining questions
+- Confirm team readiness for independent operation
 
-**Ongoing:**
-- Schedule quarterly review sessions
-- Update docs as workflow evolves
-- Maintain macro inventory
-- Track any new macros/changes
+**WK6-2 (Friday) - Formal Handoff & Sign-Off:**
+- All team members + SMEs
+- Venkat (TPA): Confirms technical readiness ✓
+- Bhavani (BI): Confirms dashboard/reporting readiness ✓
+- Preeti (QA): Confirms testing/QA readiness ✓
+- Yomar (PM): Confirms product knowledge readiness ✓
+- Mwafaq (SM): Confirms team coordination readiness ✓
+- **John Wagner: Formal sign-off of knowledge transfer** ✓
+- **Chris Lindsay: Formal sign-off of knowledge transfer** ✓
+- Sprintendo team officially takes ownership of MDPA
+
+**Post-Handoff (Ongoing):**
+- Sprintendo team operates MDPA independently
+- SMEs available for 30-day post-handoff support (as needed)
+- Monthly check-ins with John/Chris for first 3 months (optional)
+- Update documentation as workflow evolves
+- Maintain macro inventory and decision logs
+- Quarterly architecture reviews (Sprintendo team-led)
+
+---
+
+## Knowledge Transfer Artifacts by Week
+
+| Week | Focus | Knowledge Artifacts Produced |
+|------|-------|------------------------------|
+| **1** | Foundation | MDPA Origin & Purpose doc + Design decisions log |
+| **2** | Architecture | Architecture runbook + Data lineage guide |
+| **3** | Technical | Macro guide + Complexity matrix + Technical FAQ |
+| **4** | Operations | Operations runbook + Incident response guide |
+| **5** | Consolidation | Edge case documentation + Workarounds guide |
+| **6** | Handoff | **FULL PRODUCT PLAYBOOK** + Team checklists |
+
+**Product Playbook Contents (Created by WK6):**
+- Executive summary (1 page)
+- MDPA purpose & history
+- Architecture overview
+- 7-stage processing pipeline
+- 23 macros reference guide
+- Role-specific responsibilities
+- Operations & troubleshooting
+- Known issues & workarounds
+- Contact & escalation matrix
+- Quarterly review process
 
 ---
 
 ## Key Contacts & Schedule
 
-| Name | Role | Sessions Per Week | Total Sessions | Total Hours |
+| Name | Role | Sessions | Total Hours | Responsibility |
 |---|---|---|---|---|
-| John Wagner | SME #1 | 2 sessions (different days) | 8 sessions (WK1-1, WK1-2, WK2-1, WK2-2, WK3-1, WK3-2, WK4-1, WK4-2) | 8 hours |
-| Chris Lindsay | SME #2 | 2 sessions (different days) | 8 sessions (WK1-1, WK1-2, WK2-1, WK2-2, WK3-1, WK3-2, WK4-1, WK4-2) | 8 hours |
+| **John Wagner** | SME #1 | 12 sessions (6 weeks × 2 per week) | 12 hours | Technical domain knowledge transfer |
+| **Chris Lindsay** | SME #2 | 12 sessions (6 weeks × 2 per week) | 12 hours | Operations & systems knowledge transfer |
+| **Venkat** | TPA | 6 sessions (tech-focused) | 6 hours | Technical knowledge capture |
+| **Bhavani** | BI Analyst | 4 sessions (reporting-focused) | 4 hours | Tableau/BI knowledge capture |
+| **Preeti** | QA Analyst | 4 sessions (quality-focused) | 4 hours | QA/testing knowledge capture |
+| **Yomar** | PM | All 12 sessions | 12 hours | Overall product knowledge + coordination |
+| **Mwafaq** | Scrum Master | All 12 sessions | 12 hours | Schedule coordination + facilitation |
 
-**Validation Period:** 4 weeks (TBD - to be scheduled per availability)
-**Total Weekly Sessions:** 4 sessions/week (2 per SME on different days)
-**Total Sessions Across 4 Weeks:** 16 sessions
-**Total Hours:** 16 hours (2 SMEs × 8 hrs each)
+**Knowledge Transfer Period:** 6 weeks (Hard deadline: 2026-05-31)
+**Total SME Sessions:** 12 sessions (2 per week × 6 weeks)
+**Total Team Participation Hours:** ~40 hours across all members
+**Deliverable:** **Full Product Playbook + Team Readiness Sign-offs**
 
 ---
 
-**Document prepared for:** Yomar Marquez
-**Validation reviewers:** John Wagner, Chris Lindsay
-**Status:** Ready to schedule
-**Last updated:** 2026-03-17
+**Document prepared for:** Yomar Marquez (PM, Sprintendo/Loan Analytics)
+**Knowledge Transfer SMEs:** John Wagner, Chris Lindsay
+**Recipient Team:** Venkat (TPA), Bhavani (BI), Preeti (QA), Mwafaq (SM)
+**Execution Timeline:** 6 weeks (2026-04-07 to 2026-05-31) — FIRM DEADLINE
+**Status:** Ready to schedule with SMEs
+**Last updated:** 2026-03-18
+**Purpose:** Knowledge transfer + validation to enable Sprintendo team to take full ownership of MDPA product
 
 ---

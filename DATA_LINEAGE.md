@@ -195,53 +195,208 @@ All four staging files --> Stage 1 processing (Data Input / JSON Entry Point)
 
 ## Part 2: Processing Stage Transformations
 
-*Stub — to be fully populated in Plan 04-02*
-
 **Stage boundaries confirmed from XML ToolContainer annotations and TextBox labels.**
+**All formulas quoted verbatim from XML `FormulaField` expressions (HTML entities decoded).**
 
-### Stage 1: Data Input and JSON Routing
+---
 
-*Stub — to be populated in Plan 04-02*
+### Stage 1: Data Input / JSON Entry Point
 
-**Entry point:** JSON_Input → JSONParse → RegEx/Filter → DynamicInput → `LoanFileTmp.yxdb` / `ChargeOffTmp.yxdb`
-**Key routing field:** `FileGroupNum` (institution identifier extracted from JSON metadata)
+**XML Container / Annotation:** "This will be the entry point to the API in which the portal will supply the JSON object directing Alteryx where the uploaded files are located, how the headers should map and the loan type lookups."
+**Tool types:** JSONParse, DynamicInput (multiple instances), RegEx, Filter, DbFileOutput (staging write)
+**Function:** Receives a JSON metadata object from the TTA web portal, extracts the file routing key (`FileGroupNum`), and uses it to dynamically load the institution-specific CU-uploaded files into staging `.yxdb` files.
 
-### Stage 2: PreProcess and Field Standardization
+**Key field transformations:**
 
-*Stub — to be populated in Plan 04-02*
+| Field | Transformation | Input(s) | Output | Notes |
+|-------|----------------|----------|--------|-------|
+| `FileGroupNum` | JSONParse → RegEx extract | JSON metadata (`Info`, `RowNum`, `Header`) | `FileGroupNum` (routing key) | Identifies which institution's file to load; drives DynamicInput routing |
+| `Report Date` | Coalesce formula | `Report Date`, `ReportingPeriodDate` | `Report Date` (normalized) | `if isempty([Report Date]) then [ReportingPeriodDate] else [Report Date] endif` — ensures every record has a reporting period date |
+| All Source 1 fields | DynamicInput load | `FileGroupNum` → institution file path | All Loan Portfolio fields | CU-uploaded loan file loaded as primary record stream |
+| All Source 2 fields | DynamicInput load | `FileGroupNum` → charge-off file path | All Charge-Off fields | CU-uploaded charge-off file loaded as secondary stream |
 
-**Key tools:** PreProcess_Iterative macro; MultiFieldFormula bulk standardization (uppercase/trim); Contingent File Input (8 instances)
+**Fields entering this stage:** JSON metadata only (`FileGroupNum`, `Info`, `RowNum`, `Header`)
+**Fields exiting this stage:** Full Loan Portfolio field set + full Charge-Off field set, written to staging files (`LoanFileTmp.yxdb`, `ChargeOffTmp.yxdb`). `Report Date` is resolved at this point.
+
+---
+
+### Stage 2: PreProcess / Field Standardization
+
+**XML Container / Annotation:** "After the 'PreProcess' macro is complete, it would output file paths to where it placed the processed files. These are fed into the Dynamic Input tools and will read in as many 'Loan Files' that were uploaded by the CU." / "PreProcess_Iterative macro" annotation.
+**Tool types:** PreProcess_Iterative macro (invoked once per institution), MultiFieldFormula (bulk field standardization), Contingent File Input (8 instances — conditional file loading), Select tools, DynamicInput (reads processed output of macro)
+**Function:** Applies bulk data standardization across all fields using the PreProcess_Iterative macro; conditionally loads supplementary reference files; normalizes string fields to uppercase/trimmed format and numeric fields to null-safe values.
+
+**Key field transformations:**
+
+| Field | Transformation | Input(s) | Output | Notes |
+|-------|----------------|----------|--------|-------|
+| All string classification fields | MultiFieldFormula bulk uppercase+trim | `Loan Group`, `Loan Subgroup`, `Allowance Group`, `PeerGroupName` | Normalized string values | Formula applied to each: `Trim(Uppercase([_CurrentField_]))` |
+| `Loan Group` | `Trim(Uppercase([Loan Group]))` | `Loan Group` (raw) | `Loan Group` (standardized) | Prevents case-mismatch grouping errors downstream |
+| `Loan Subgroup` | `Trim(Uppercase([Loan Subgroup]))` | `Loan Subgroup` (raw) | `Loan Subgroup` (standardized) | Same pattern |
+| `Allowance Group` | `Trim(Uppercase([Allowance Group]))` | `Allowance Group` (raw) | `Allowance Group` (standardized) | Same pattern |
+| `PeerGroupName` | `Trim(Uppercase([PeerGroupName]))` | `PeerGroupName` (raw) | `PeerGroupName` (standardized) | Same pattern |
+| All numeric fields (incl. `LTV`, `Current LTV`, `Original LTV`, `Days Past Due`, `Average Interest Rates`) | MultiFieldFormula null-coalesce | Raw numeric value or empty | 0 when empty; raw value otherwise | `IIF(IsEmpty([_CurrentField_]),0,[_CurrentField_])` — prevents null-propagation errors in downstream formulas |
+| Contingent file inputs (8 instances) | Conditional file load | Institution type / configuration flags | Supplementary reference data joined to stream | Refer to macro XML for file-load conditions; each instance loads a different supplementary file type (e.g., impaired loans, participations) |
+
+**Fields entering this stage:** All staging file fields from Stage 1 (raw, heterogeneous CU-uploaded values)
+**Fields exiting this stage:** All fields standardized — string fields uppercase/trimmed; numeric fields null-coalesced to 0; `Report Date` confirmed resolved. Processed files written to output paths consumed by DynamicInput downstream.
+
+---
 
 ### Stage 3: Data Matching and Consolidation
 
-*Stub — to be populated in Plan 04-02*
+**XML Container / Annotation:** "Append Charge Offs and Matching", "Append RE Values", "Union Subset Prior Period (347)", "Only Prior Period (346)"
+**Tool types:** Join (charge-off matching by loan identifier), Append Fields (RE Values macro), Union (prior period records 346/347), Filter (subset separation)
+**Function:** Consolidates the loan portfolio stream with three additional data sources: charge-off records (joined by loan identifier), real estate valuations (appended via macro), and prior period loan records (unioned in). Produces the complete consolidated record set that enters Calculations.
 
-**Key operations:** Append Charge Offs and Matching; Append RE Values (Source 3 ingestion); Union Subset Prior Period; Only Prior Period join
+**Key field transformations:**
+
+| Field | Transformation | Input(s) | Output | Notes |
+|-------|----------------|----------|--------|-------|
+| `Loan Type` | Coalesce: right-side join value takes priority | `Loan Type` (left/loan stream), `Right_Loan Type` (charge-off join) | `Loan Type` (resolved) | `if [Right_Loan Type] not in (Null(),'','Null') then [Right_Loan Type] else [Loan Type] endif` |
+| `Loan Description` | Coalesce: right-side value when left is 'NULL' | `Loan Description` (loan stream), `Right_Loan Description` (charge-off join) | `Loan Description` (resolved) | `if !IsNull([Right_Loan Description]) and [Loan Description] = 'NULL' then [Right_Loan Description] else [Loan Description] endif` |
+| `Charge Off Amount` | Pass-through join | Charge-off file (Source 2) → Join to loan record | `Charge Off Amount` appended to loan record | Joined by loan identifier; charge-off fields are null for non-charged-off loans |
+| `Charge Off Date` | Pass-through join | Charge-off file (Source 2) → Join to loan record | `Charge Off Date` appended | Same join as Charge Off Amount |
+| `LTV`, `Current LTV`, `Original LTV` | Append Fields (macro) | `Append RE Values.yxmc` macro output | RE valuation fields appended to each loan record | Macro internals not confirmed from main XML — requires Phase 6 macro inspection |
+| Prior period records | Union (tools 346/347) | Prior period client file | All prior period loan records added to current stream | "Added a bypass for prior period data so it does not get rerun" — prior period records carry their pre-computed vintage values through without recalculation |
+
+**Fields entering this stage:** Standardized loan portfolio fields from Stage 2 (current period only)
+**Fields exiting this stage:** Loan records + charge-off fields + RE valuation fields + prior period loan records. This is the full consolidated input to Stage 4 Calculations.
+
+**Stage 3 → Stage 4 link:** The Union of charge-off-appended current records + prior period join produces the complete record set. Prior period records bypass recalculation (XML annotation: "we want to keep the vintage related values in prior periods static and only run the calcs for the current project").
+
+---
 
 ### Stage 4: Calculations and Enrichment
 
-*Stub — to be populated in Plan 04-02*
+**XML Container / Annotation:** "Added Formula Tool (746) to prioritize loan file data fields over impairment file data fields" / "Added Years until Charge off formula tool (860) here to push through to Tableau reporting"
+**Tool types:** Formula tools (60 instances across the workflow — concentrated in this stage), Select tools, Join (Call Report / PD data), Summarize (Max_Report Date determination)
+**Function:** Applies all record-level derived field calculations. Produces the core analytical metrics used in static pool construction, fair lending analysis, and output reporting. This is the heaviest computation stage in the workflow.
 
-**Key derived fields:** `Net Charge Off Amount`, `Gross Charge Off Amount`, `Years until Charge off`, `Days from Origination`, `Origination Quarter`, `Vintage Year`, `Term Grouping`, `Vehicle Age at Origination`, `Probability of Default`, `Charged off past 36 Months?`
+**Key field transformations:**
 
-### Stage 5: Static Pool and Vintage Cohort Construction
+| Field | Transformation | Input(s) | Output | Notes |
+|-------|----------------|----------|--------|-------|
+| `Net Charge Off Amount` | Conditional: `if !IsEmpty([Max_Report Date]) then [Net Charge Off Amount] else [Charge Offs] endif` | `Max_Report Date` (Summarize), `Charge Offs` | `Net Charge Off Amount` | Active formula. Commented-out inactive formula: `[Charge Off Amount]-[Recovery Amount]`. Uses `Charge Offs` (not `Charge Off Amount`) when `Max_Report Date` is empty |
+| `Gross Charge Off Amount` | Pass-through: `[Charge Off Amount]` | `Charge Off Amount` | `Gross Charge Off Amount` | Direct assignment — no transformation |
+| `Years until Charge off` | `if [Charge Off Amount] > 0 then max(min(7,floor(DateTimeDiff([Charge Off Date],[Origination Date],"days")/365)),0) else Null() endif` | `Charge Off Amount`, `Charge Off Date`, `Origination Date` | `Years until Charge off` (0–7 integer, or Null) | Capped at 7 years; returns Null for non-charged-off loans. XML note: "Removed Years until Charge off from multi field formula tool (738) so tool won't create zeros in unwanted cells" |
+| `Days from Origination` | `abs(DateTimeDiff([Origination Date],[Charge Off Date],"day"))` | `Origination Date`, `Charge Off Date` | `Days from Origination` (integer days) | Commented-out alternate formula using `Months from Origination` is inactive |
+| `Origination Quarter` | `Left([Origination Date],4)+' Q'+IIF(Substring([Origination Date],5,2) IN ('01','02','03'),'1',IIF(Substring([Origination Date],5,2) IN ('04','05','06'),'2',IIF(Substring([Origination Date],5,2) IN ('07','08','09'),'3',IIF(Substring([Origination Date],5,2) IN ('10','11','12'),'4',Null()))))` | `Origination Date` | `Origination Quarter` (e.g., "2019 Q2") | String concatenation of year + quarter |
+| `Vintage Year` | `datetimeyear([Origination Date])` | `Origination Date` | `Vintage Year` (4-digit integer) | Used as cohort grouping key in Stage 5 |
+| `Rounded Term` | `round([Term],12)` | `Term` | `Rounded Term` | Rounds loan term to nearest 12-month boundary |
+| `Term Grouping` | `if [Term] <= ToNumber(Right([Term1],2)) then [Term1] elseif [Term] <= ToNumber(Right([Term2],2)) then [Term2] elseif [Term] <= ToNumber(Right([Term3],2)) then [Term3] elseif [Term] <= ToNumber(Right([Term4],2)) then [Term4] else [Term5] endif` | `Term`, TextInput threshold values (`Term1`–`Term5`) | `Term Grouping` (categorical bucket label) | Thresholds sourced from TextInput tool; bucket boundaries are configurable without workflow modification |
+| `Model Year` | `IIF([Model Year]!='NOT AVAILABLE',[Model Year],Null())` | `Model Year` (string, raw) | `Model Year` (string or Null) | Cleans 'NOT AVAILABLE' sentinel value to Null |
+| `Vehicle Age at Origination` | `if IsEmpty([Model Year]) or [Model Year]='0' or IsEmpty([Origination Date]) then Null() else datetimeyear([Origination Date])-tonumber([Model Year]) endif` | `Model Year`, `Origination Date` | `Vehicle Age at Origination` (integer years, or Null) | Auto loan field; Null for non-auto loans or when model year unavailable |
+| `Probability of Default` | `IIF(IsEmpty([Probability of Default]),0,[Probability of Default])` | `Probability of Default` (from Call Report / PD join) | `Probability of Default` (null-safe Double) | Joined from `CallReportDataShort.yxdb` or PD lookup table; set to 0 when no join match |
+| `Charged off past 36 Months?` | `if DateTimeDiff([Report_Date],[Charge Off Date],'months') < 36 then 1 else 0 endif` | `Report_Date`, `Charge Off Date` | `Charged off past 36 Months?` (0/1 flag) | Recency flag for charge-off eligibility in analysis |
+| `Average Annual Loss Rate` | `0` | (none) | `Average Annual Loss Rate` = 0 | Static default. XML note: "Default if client does not have Fair Lending Parameters set up." Set to 0 as a placeholder when no historical loss rate data exists for the institution |
+| `OutputFilePath_Dropped` | `'\\10.2.7.56\Shared\PortfolioAnalysis\03_Results\06_DROP_RECORDS\'+[PeerNo]+"_"+"19000101_DROPPED RECORDS"+'.yxdb'` | `PeerNo` | `OutputFilePath_Dropped` (UNC path string) | Used in Stage 7 to dynamically configure the dropped records output tool path |
+| `Originated Past 5 Years?` | `if DateTimeYear([Report_Date])-DateTimeYear([Origination Date]) < 6 then 1 else 0 endif` | `Report_Date`, `Origination Date` | `Originated Past 5 Years?` (0/1 flag) | Filters static pool to loans within recent vintage window |
+| `Charge Off % by FICO_Vintage_Group` | `if isnull([Sum_Charge Off Amount]/[Sum_Original Balance]) then 0 else [Sum_Charge Off Amount]/[Sum_Original Balance] endif` | `Sum_Charge Off Amount`, `Sum_Original Balance` | `Charge Off % by FICO_Vintage_Group` | Computed via Summarize aggregation + Formula; feeds Vintage Adjustment calculation in Stage 5 |
+| `Charge Off % by Vintage_Group` | `if isnull([Sum_Charge Off Amount]/[Sum_Original Balance]) then 0 else [Sum_Charge Off Amount]/[Sum_Original Balance] endif` | `Sum_Charge Off Amount`, `Sum_Original Balance` | `Charge Off % by Vintage_Group` | Computed via Summarize aggregation + Formula |
 
-*Stub — to be populated in Plan 04-02*
+**Fields entering this stage:** Full consolidated record set from Stage 3 (loan + charge-off + RE + prior period records)
+**Fields exiting this stage:** All Stage 3 fields plus all derived fields listed above. This record set enters both Stage 5 (static pool) and Stage 6 (fair lending) in parallel streams.
 
-**Key derived fields:** `Year 0` through `Year 6` flags; `Expected Loss - Year 1` through `Year 7`; `Vintage Adjustment`; `Vintage Adjusted Expected Losses`; `PP Vintage Adjustment`; `Vintage Adjustment Flag`
+---
 
-### Stage 6: Fair Lending Analysis and Compliance Masking
+### Stage 5: Static Pool / Vintage Cohort Construction
 
-*Stub — to be populated in Plan 04-02*
+**XML Container / Annotation:** "Get the number of years to include for static pool and years until charge off" / "Generate a complete set of records based on allowance group, origination year and years until charge off" / "The tools in this container exist to adjust [Vintage Expected Losses] based on credit quality (Credit Score)."
+**Tool types:** Formula tools (Year 0-6 flag computation), Join (to prior period client file — carries in vintage values), Summarize (cohort aggregations: `Sum_Charge Off Amount`, `Sum_Original Balance`, `Max_0`–`Max_6`), Select tools
+**Function:** Constructs vintage cohort buckets using day-range flags (Year 0 through Year 6), then joins to the prior period client file to carry in pre-computed vintage adjustment values. The ±5% cap formula shown below was applied in a prior workflow run and is read as a static value in the current run.
 
-**Key derived fields:** `Decision FICO Grade`; `Rate Differential`; `Include in Fair Lending?`; `Predicted Ethnicity`; `Predicted Gender`
-**Key masking:** TransUnion Mask_FICO Only_v2 macro applied in this stage
+**Key field transformations:**
+
+| Field | Transformation | Input(s) | Output | Notes |
+|-------|----------------|----------|--------|-------|
+| `Year 0` | `If ([Days from Origination]) <366 then 1 else 0 endif` | `Days from Origination` | `Year 0` (0/1 boolean flag) | Loans originated within first year |
+| `Year 1` | `If ([Days from Origination])<731 and ([Days from Origination])>365 then 1 else 0 endif` | `Days from Origination` | `Year 1` (0/1 boolean flag) | 366–730 days from origination |
+| `Year 2` | `If ([Days from Origination])<1096 and ([Days from Origination])>730 then 1 else 0 endif` | `Days from Origination` | `Year 2` (0/1 boolean flag) | 731–1095 days from origination |
+| `Year 3` | `If ([Days from Origination])<1461 and ([Days from Origination])>1095 then 1 else 0 endif` | `Days from Origination` | `Year 3` (0/1 boolean flag) | 1096–1460 days from origination |
+| `Year 4` | `If ([Days from Origination])<1826 and ([Days from Origination])>1460 then 1 else 0 endif` | `Days from Origination` | `Year 4` (0/1 boolean flag) | 1461–1825 days from origination |
+| `Year 5` | `If ([Days from Origination])<2191 and ([Days from Origination])>1825 then 1 else 0 endif` | `Days from Origination` | `Year 5` (0/1 boolean flag) | 1826–2190 days from origination |
+| `Year 6` | `If ([Days from Origination])<2556 and ([Days from Origination])>2190 then 1 else 0 endif` | `Days from Origination` | `Year 6` (0/1 boolean flag) | 2191–2555 days from origination |
+| `Expected Loss - Year 1` | PRE-COMPUTED CARRY-IN: `[Right_Expected Loss - Year 1]` | Prior period client file (Join) | `Expected Loss - Year 1` | Value was calculated in a prior workflow run and is read as a static value in the current run |
+| `Expected Loss - Year 2` | PRE-COMPUTED CARRY-IN: `[Right_Expected Loss - Year 2]` | Prior period client file (Join) | `Expected Loss - Year 2` | Same — prior run value |
+| `Expected Loss - Year 3` | PRE-COMPUTED CARRY-IN: `[Right_Expected Loss - Year 3]` | Prior period client file (Join) | `Expected Loss - Year 3` | Same — prior run value |
+| `Expected Loss - Year 4` | PRE-COMPUTED CARRY-IN: `[Right_Expected Loss - Year 4]` | Prior period client file (Join) | `Expected Loss - Year 4` | Same — prior run value |
+| `Expected Loss - Year 5` | PRE-COMPUTED CARRY-IN: `[Right_Expected Loss - Year 5]` | Prior period client file (Join) | `Expected Loss - Year 5` | Same — prior run value |
+| `Expected Loss - Year 6` | PRE-COMPUTED CARRY-IN: `[Right_Expected Loss - Year 6]` | Prior period client file (Join) | `Expected Loss - Year 6` | Same — prior run value |
+| `Expected Loss - Year 7` | PRE-COMPUTED CARRY-IN: `[Right_Expected Loss - Year 7]` | Prior period client file (Join) | `Expected Loss - Year 7` | Same — prior run value |
+| `Vintage Expected Losses` | PRE-COMPUTED CARRY-IN: `[Right_Vintage Expected Losses]` | Prior period client file (Join) | `Vintage Expected Losses` | Same — prior run value |
+| `Vintage Adjustment` | PRE-COMPUTED CARRY-IN: `[Right_Vintage Adjustment]` | Prior period client file (Join) | `Vintage Adjustment` | **CRITICAL: PRE-COMPUTED CARRY-IN — value was calculated in a prior workflow run (applying the ±5% cap formula) and is read as a static value in the current run. The current run does NOT recalculate the ±5% cap.** For reference: the ±5% cap formula (applied in prior run) was: `if [Vintage Adjustment] > [PP Vintage Adjustment] then min([Vintage Adjustment],[PP Vintage Adjustment]+([PP Vintage Adjustment]*(.05))) elseif [Vintage Adjustment] < [PP Vintage Adjustment] then max([Vintage Adjustment],[PP Vintage Adjustment]-([PP Vintage Adjustment]*(.05))) else [Vintage Adjustment] endif` |
+| `Vintage Adjusted Expected Losses` | PRE-COMPUTED CARRY-IN: `[Right_Vintage Adjusted Expected Losses]` | Prior period client file (Join) | `Vintage Adjusted Expected Losses` | Same — prior run value. Formula in prior run: `[Vintage Expected Losses]*[Vintage Adjustment]` |
+| `PP Vintage Adjustment` | PRE-COMPUTED CARRY-IN: `[Right_PP Vintage Adjustment]` | Prior period client file (Join) | `PP Vintage Adjustment` | Same — prior run value |
+| `Vintage Adjustment Flag` | PRE-COMPUTED CARRY-IN: `[Right_Vintage Adjustment Flag]` | Prior period client file (Join) | `Vintage Adjustment Flag` | Categorical: "First Value" / "Prior +5%" / "Actual Increase" / "Prior -5%" / "Actual Decrease" / "Same". Same — prior run value |
+| `Static Pool Provision Required` | `If [First Formula]=-1 then 1 else [Second Part] Endif` (derived from `[Origination Year]+[Years until Charge off]-[Report Year]+1`) | `Origination Year`, `Years until Charge off`, `Report Year` | `Static Pool Provision Required` | Intermediate computation for cohort sizing |
+
+**Fields entering this stage:** Stage 4 output fields (all calculation fields) + prior period client file (via Join)
+**Fields exiting this stage:** All Stage 4 fields + Year 0–6 flags + all Expected Loss Year 1–7 fields + Vintage Adjustment chain fields + Static Pool Provision Required. This is the complete record for output.
+
+---
+
+### Stage 6: Fair Lending / Compliance Masking
+
+**XML Container / Annotation:** "Fair Lending ToolContainer" (self-contained compliance analysis unit) / "Default if client does not have Fair Lending Parameters set up" / "10/16/19, JGo"
+**Tool types:** Fair Lending ToolContainer (wrapper), TransUnion Mask_FICO Only_v2 macro (demographic enrichment + masking), Formula tools (Decision FICO Grade, Rate Differential, Include in Fair Lending?), Summarize (Average Interest Rates computation), Join (peer group average join-back), Append Fields (Zip Code Ethnicity lookup)
+**Function:** A self-contained compliance analysis unit that grades loans by credit quality, computes rate differentials for fair lending outlier detection, applies two-phase outlier elimination, and enriches records with demographic proxies (ethnicity from zip code, gender from TransUnion). Results feed Tableau outputs used in fair lending review.
+
+**Key field transformations:**
+
+| Field | Transformation | Input(s) | Output | Notes |
+|-------|----------------|----------|--------|-------|
+| `Average Interest Rates` | Summarize: `Avg` of `Interest Rate` grouped by `Loan Subgroup`, `Term Grouping`, `Decision FICO Grade`, `Vehicle Age at Origination`, `Origination Quarter` → renamed from `Avg_Interest Rate` via Select | `Interest Rate` (all records in peer group) | `Average Interest Rates` (Double) | Peer group average rate. Computed as `Avg_Interest Rate` in Summarize, then renamed to `Average Interest Rates` in Select tool (field: `Right_Avg_Interest Rate` → `Average Interest Rates`) |
+| `Decision FICO Grade` | `IF ([Original Credit Score]=[NR] or IsEmpty([Original Credit Score])) then "NR" elseiF [Original Credit Score]>[A+] then "A+" elseIF [Original Credit Score]>[A] then "A" elseIF [Original Credit Score]>[B] then "B" elseIF [Original Credit Score]>[C] then "C" elseIF [Original Credit Score]>[D] then "D" else "E" endif` | `Original Credit Score` (TransUnion macro output), TextInput threshold values (`NR`, `A+`, `A`, `B`, `C`, `D`) | `Decision FICO Grade` (categorical: NR/A+/A/B/C/D/E) | Thresholds sourced from TextInput tools — configurable without workflow modification. "NR" = No Rating |
+| `Rate Differential (Pre)` | `abs([Average Interest Rates]-[Interest Rate])` | `Average Interest Rates`, `Interest Rate` | `Rate Differential (Pre)` (absolute value Double) | Pre-outlier-elimination rate spread; used in outlier detection phase 1 |
+| `Outlier?` (phase 1) | `0` then `1` (two-step formula) | `Rate Differential (Pre)`, threshold | `Outlier?` (0/1 flag) | Two-phase elimination: first marks all as 0, then marks outliers as 1 based on rate spread threshold |
+| `Include in Fair Lending?` (phase 1) | `1` then `0` (two-step formula) | `Outlier?` flag | `Include in Fair Lending?` (0/1 flag) | Inverse of Outlier?: `1` = included in fair lending model; `0` = excluded as outlier |
+| `Rate Differential` | `[Average Interest Rates]-[Interest Rate]` | `Average Interest Rates`, `Interest Rate` | `Rate Differential` (signed Double) | Signed rate spread (positive = above average). Note: `Average Interest Rates` dropped from output stream after this calculation (Select tool 998 deselects it) |
+| `Predicted Ethnicity` | Zip Code Ethnicity Index.csv lookup + BISG-style max-probability assignment | Zip code field, `Zip Code Ethnicity Index.csv` | `Predicted Ethnicity` (categorical: White/Black/Asian/American Indian/Multi Race/Hispanic/Exclude From Model) | Demographic proxy method using geographic ethnicity distribution. "Exclude From Model" assigned when all probability values = 0 |
+| `Predicted Gender` | TransUnion Mask_FICO Only_v2 macro output | TransUnion data (masked — only gender and credit score pass through) | `Predicted Gender` (categorical: gender label or "Exclude From Model") | Null/empty values coerced to "Exclude From Model" |
+
+**Fields entering this stage:** Stage 4/5 output fields including `Original Credit Score`, `Interest Rate`, `Loan Subgroup`, `Term Grouping`, `Origination Quarter`, `Vehicle Age at Origination`, zip code field
+**Fields exiting this stage:** All incoming fields plus `Decision FICO Grade`, `Average Interest Rates`, `Rate Differential (Pre)`, `Rate Differential`, `Include in Fair Lending?`, `Outlier?`, `Predicted Ethnicity`, `Predicted Gender`. Note: `Average Interest Rates` and `Rate Differential (Pre)` are deselected in downstream Select tool (tool 998) and do not propagate to Stage 7.
+
+---
 
 ### Stage 7: Output Preparation and Publication
 
-*Stub — to be populated in Plan 04-02*
+**XML Container / Annotation:** "Generate a distinct output file path..." / "The formula tools before the output tools create a distinct output file path that will be used to replace the existing 'PLACEHOLDER.ext' path the Output tool is configured with." / "Adding 3 fields from the call report data each quarter (total assets, net worth, ALLL)"
+**Tool types:** Formula tools (output path construction), DbFileOutput (Client File, Call Report), Tableau New Macro 1055 (Client Hyper file), Tableau New Macro Dropped 1056 (Dropped Records), Tableau New Macro Securities 1057 (Securities), PortfolioComposerTable (1 instance — summary table generation)
+**Function:** Constructs institution-specific output file paths using `PeerNo`-based dynamic naming, then writes the final record set to five distinct output destinations. Tableau output uses `.hyper` format (migrated from legacy `.tde` format via Tableau New Macro tools).
 
-**Key operations:** Output file path construction for each institution (`PeerNo`-based naming); Tableau New Macro 1055 (Client Hyper); Tableau New Macro Dropped 1056 (Dropped Records); Tableau New Macro Securities 1057 (Securities); DbFileOutput (Client File); DbFileOutput (Call Report)
+**Key field transformations:**
+
+| Field | Transformation | Input(s) | Output | Notes |
+|-------|----------------|----------|--------|-------|
+| `OutputFilePath_Dropped` | (computed in Stage 4 — see Stage 4 table) | `PeerNo` | UNC path string | Path used to configure the Dropped Records output tool dynamically |
+| Output path fields | Formula: string construction with hardcoded UNC prefix + `[PeerNo]` + date suffix | `PeerNo` | Dynamic UNC file path strings | Same pattern as `OutputFilePath_Dropped` — each output tool has its path overridden at runtime |
+
+**Output destinations (all 5 confirmed from XML):**
+
+| Output Type | UNC Path Pattern | Format | Tool |
+|-------------|-----------------|--------|------|
+| Client File | `\\10.2.7.56\Shared\PortfolioAnalysis\03_Results\01_CLIENT_FILES\[PeerNo]_[YYYYMMDD]_CLIENT_FILE.yxdb` | Alteryx binary (.yxdb) | DbFileOutput |
+| Tableau Extract (Client) | `\\10.2.7.56\Shared\PortfolioAnalysis\03_Results\02_TDE\[PeerNo]_[YYYYMMDD]_CLIENT_FILE.hyper` | Tableau Hyper (.hyper) | Tableau New Macro 1055 |
+| Dropped Records | `\\10.2.7.56\Shared\PortfolioAnalysis\03_Results\06_DROP_RECORDS\[PeerNo]_19000101_DROPPED RECORDS.yxdb` | Alteryx binary (.yxdb) | Tableau New Macro 1056 |
+| Securities | `\\10.2.7.56\Shared\PortfolioAnalysis\03_Results\14_SECURITIES\[PeerNo]_19000101_SECURITIES.yxdb` | Alteryx binary (.yxdb) | Tableau New Macro 1057 |
+| Call Report | `\\10.2.7.56\Shared\Prod\Outputs\Call Report Files\Twb Data Source Files\CallReportDataShort.yxdb` | Alteryx binary (.yxdb) | DbFileOutput |
+
+**Tableau format migration note:** Output was migrated from legacy `.tde` format to current `.hyper` format. The folder path still shows `02_TDE` (legacy name) but the actual file format is `.hyper`. This is a known naming inconsistency.
+
+**PortfolioComposerTable tool (1 instance — tool ID 954):**
+This tool generates a summary table with the following fields: `Project Name`, `Credit Union`, `PeerNo`, `Project Date`, `Timestamp`, `Username`, `PeerGroupName`, `Vintage Adjustment Flag`, `Count`. Output is an HTML-formatted table string (field `Table`, type `V_WString`). The destination of this table output is not confirmed from the main XML — it may represent the "Executive Summary" output referenced in requirements, or it may feed an email notification workflow (XML annotation: "Email functionality"). **Flagged as open question — requires further inspection.**
+
+**Fields entering this stage:** Complete record set from Stage 5/6 (all calculated fields, vintage fields, fair lending fields)
+**Fields exiting this stage:** Written to 5 output files listed above. No further downstream processing in this workflow.
+
+---
+
+**Open Question — LTV and Delinquency_Rate:**
+Neither `LTV`/`Current LTV`/`Original LTV` aggregation formulas nor a `Delinquency_Rate` field were found in the `FormulaField` scan or in the `SummarizeField` configuration of any Summarize tool. Specifically:
+- `LTV`, `Current LTV`, `Original LTV`: Present as pass-through field metadata (confirmed in Part 1, Section 1.1); the internal computation formula lives inside the `Append RE Values.yxmc` macro. Phase 6 macro inspection required.
+- `Delinquency_Rate`: Not found as a `FormulaField` target or `SummarizeField` in the main XML. Delinquency tracking at the record level is handled via `Days Past Due` (a CU-source field). If a `Delinquency_Rate` aggregate exists, it is either inside a macro or in a downstream Tableau calculation. This cannot be traced further without macro XML inspection (Phase 6).
 
 ---
 

@@ -66,28 +66,88 @@ function formatInlineText(text) {
   return text;
 }
 
+// Priority → Confluence status macro colour map
+const PRIORITY_COLOURS = {
+  'critical': 'Red',
+  'medium':   'Yellow',
+  'low':      'Green',
+};
+
+function priorityBadge(text) {
+  const key = text.trim().toLowerCase();
+  if (PRIORITY_COLOURS[key]) {
+    return `<ac:structured-macro ac:name="status"><ac:parameter ac:name="colour">${PRIORITY_COLOURS[key]}</ac:parameter><ac:parameter ac:name="title">${escapeHtml(text.trim())}</ac:parameter></ac:structured-macro>`;
+  }
+  return escapeHtml(text.trim());
+}
+
+function formatCellContent(headerName, cellText) {
+  const header = (headerName || '').toLowerCase().trim();
+  const text   = cellText.trim();
+  if (header === 'priority') return priorityBadge(text);
+  const escaped = escapeHtml(text);
+  return formatInlineText(escaped);
+}
+
 function convertTable(rows) {
   if (rows.length === 0) return '';
 
-  let html = '<table><tbody>\n';
+  // Extract header names so we can apply per-column formatting
+  const headerCells = rows[0].split('|').filter(c => c.trim() !== '').map(c => c.trim());
+
+  let html = '<table data-table-width="900"><colgroup>';
+  // Distribute column widths — Priority column narrower, others flexible
+  const colCount = headerCells.length;
+  headerCells.forEach(h => {
+    const key = h.toLowerCase();
+    const width = key === 'priority' ? '80' : key === 'gap id' || key === 'req id' ? '90' : '';
+    html += width ? `<col style="width: ${width}px;" />` : '<col />';
+  });
+  html += '</colgroup><tbody>\n';
 
   for (let i = 0; i < rows.length; i++) {
     const cells = rows[i].split('|').filter(c => c.trim() !== '');
-    const tag = i === 0 ? 'th' : 'td';
+    const isHeader = i === 0;
+    const tag = isHeader ? 'th' : 'td';
 
     html += '<tr>\n';
-    for (const cell of cells) {
-      // escapeHtml FIRST (handles > characters in cells like "> 0", "> 70%"),
-      // then formatInlineText for bold/italic/code markup
-      const escaped = escapeHtml(cell.trim());
-      html += `<${tag}>${formatInlineText(escaped)}</${tag}>\n`;
-    }
+    cells.forEach((cell, ci) => {
+      const colHeader = isHeader ? null : headerCells[ci];
+      const content = isHeader
+        ? `<strong>${escapeHtml(cell.trim())}</strong>`
+        : formatCellContent(colHeader, cell);
+      html += `<${tag}>${content}</${tag}>\n`;
+    });
     html += '</tr>\n';
   }
 
   html += '</tbody></table>\n';
   return html;
 }
+
+// REM-### headings get turned into expand macros (collapsible)
+function isRemHeading(heading) {
+  return /^REM-\d+/i.test(heading.trim());
+}
+
+// Derive expand title for a REM heading — extract priority tag
+function remExpandTitle(heading) {
+  // e.g. "REM-001 [Critical] — Relocate 15 hard-path..."
+  const match = heading.match(/^(REM-\d+)\s*\[([^\]]+)\]\s*[—-]+\s*(.+)/);
+  if (match) {
+    const [, id, priority, desc] = match;
+    const colour = PRIORITY_COLOURS[priority.toLowerCase()] || 'Grey';
+    const badge = `<ac:structured-macro ac:name="status"><ac:parameter ac:name="colour">${colour}</ac:parameter><ac:parameter ac:name="title">${escapeHtml(priority)}</ac:parameter></ac:structured-macro>`;
+    return `${escapeHtml(id)} ${badge} ${escapeHtml(desc.trim())}`;
+  }
+  return escapeHtml(heading);
+}
+
+// Section colours for h2 panel-style headers
+const SECTION_PANELS = {
+  'executive summary':             true,
+  'prioritized findings summary':  true,
+};
 
 // ---------------------------------------------------------------------------
 // Markdown -> Confluence storage format converter
@@ -100,6 +160,7 @@ function markdownToConfluence(markdown) {
   let tableRows = [];
   let inList = false;
   let listType = 'ul';
+  let inExpand = false;  // tracks open REM expand macro
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -152,11 +213,33 @@ function markdownToConfluence(markdown) {
       continue;
     }
     if (line.startsWith('### ')) {
-      html += `<h3>${escapeHtml(line.slice(4))}</h3>\n`;
+      const title = line.slice(4).trim();
+      // Close any open REM expand
+      if (inExpand) {
+        html += '</ac:rich-text-body></ac:structured-macro>\n';
+        inExpand = false;
+      }
+      if (isRemHeading(title)) {
+        // REM items: collapsible expand macro with priority badge in title
+        html += `<ac:structured-macro ac:name="expand"><ac:parameter ac:name="title">${remExpandTitle(title)}</ac:parameter><ac:rich-text-body>\n`;
+        inExpand = true;
+      } else {
+        html += `<h3>${escapeHtml(title)}</h3>\n`;
+      }
       continue;
     }
     if (line.startsWith('## ')) {
-      html += `<h2>${escapeHtml(line.slice(3))}</h2>\n`;
+      const title = line.slice(3).trim();
+      // Close any open REM expand
+      if (inExpand) {
+        html += '</ac:rich-text-body></ac:structured-macro>\n';
+        inExpand = false;
+      }
+      // Special sections get a blue heading panel for visual hierarchy
+      if (SECTION_PANELS[title.toLowerCase()]) {
+        html += `<ac:structured-macro ac:name="panel"><ac:parameter ac:name="borderColor">#0052CC</ac:parameter><ac:parameter ac:name="titleBGColor">#0052CC</ac:parameter><ac:parameter ac:name="titleColor">#FFFFFF</ac:parameter><ac:parameter ac:name="title">${escapeHtml(title)}</ac:parameter><ac:rich-text-body></ac:rich-text-body></ac:structured-macro>\n`;
+      }
+      html += `<h2>${escapeHtml(title)}</h2>\n`;
       continue;
     }
     if (line.startsWith('# ')) {
@@ -221,6 +304,9 @@ function markdownToConfluence(markdown) {
   }
   if (inList) {
     html += listType === 'ol' ? '</ol>\n' : '</ul>\n';
+  }
+  if (inExpand) {
+    html += '</ac:rich-text-body></ac:structured-macro>\n';
   }
 
   return html;
@@ -346,7 +432,7 @@ async function main() {
   <ac:rich-text-body>
     <p><strong>Document Status:</strong> Phase 2 — Prioritized Gap Analysis (Final)</p>
     <p><strong>Source File:</strong> GAP_ANALYSIS.md in MDPA repository (498 lines)</p>
-    <p><strong>Generated:</strong> 2026-03-18 from 2020_DataProcess_v5.2.yxmd (49,082 lines XML) and 14 documentation files</p>
+    <p><strong>Generated:</strong> 2026-03-19 from 2020_DataProcess_v5.2.yxmd (49,082 lines XML) and 14 documentation files</p>
     <p>This page contains the complete MDPA gap analysis report with 41 prioritized findings across GAP-01, GAP-02, and GAP-03 categories, plus 25 remediation items (REM-001 through REM-025) and a Coverage Matrix.</p>
   </ac:rich-text-body>
 </ac:structured-macro>

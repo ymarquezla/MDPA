@@ -365,92 +365,107 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ## 6-Week Knowledge Transfer Timeline
 
-| Week | Focus | SME Sessions | Team Attendees | Deliverable |
-|------|-------|-------------|-----------------|-------------|
-| **1** | Foundation & Basics | 2 | Yomar, Venkat, Mwafaq | MDPA Overview + Decision Log |
-| **2** | Architecture & Data | 2 | Venkat, Yomar, Mwafaq | Architecture Guide + Data Lineage |
-| **3** | Macros & Technical | 2 | Venkat, Preeti, Yomar | Macro Guide + Complexity Matrix |
-| **4** | Operations & Support | 2 | Bhavani, Preeti, Yomar | Operations Runbook |
-| **5** | Systems & Integration | 2 | Venkat, Bhavani, Yomar | Integration Checklist |
-| **6** | Final Transfer & Handoff | 2 | All team members | **Full Product Playbook** + Sign-off |
+**SME Specialization:**
+- **John Wagner:** Business-oriented (use cases, requirements, metrics, quality standards, reporting)
+- **Chris Lindsay:** Business + Technical (all technical aspects, systems, operations, optimization)
+
+| Week | John Wagner Focus | Chris Lindsay Focus | Team Attendees | Deliverable |
+|------|------------------|-------------------|-----------------|-------------|
+| **1** | Business purpose, use cases, requirements | Technical architecture, 7-stage pipeline | Yomar, Venkat, Bhavani, Mwafaq | MDPA Purpose + Architecture docs |
+| **2** | Data quality standards, field requirements | Data sources, field transformations, mapping | Yomar, Bhavani, Preeti, Mwafaq | Data Quality Guide + Field Lineage |
+| **3** | Metrics & KPIs, reporting requirements | Macro implementation, complexity, nesting | Yomar, Venkat, Preeti, Mwafaq | KPI Guide + Macro Reference |
+| **4** | Quality acceptance criteria, business rules | Operations, monitoring, troubleshooting | Yomar, Preeti, Venkat, Mwafaq | Quality Standards + Ops Runbook |
+| **5** | Business decisions & trade-offs | Technical edge cases & optimizations | Yomar, Venkat, Preeti, Mwafaq | Decision Log + Technical FAQ |
+| **6** | Final business validation | Final technical validation + handoff | **All team members** | **Full Product Playbook** + Sign-off |
 
 ---
 
-## Week 1: Foundation & Architecture Review
+## Week 1: Foundation & Business/Technical Overview
 
-**Objective:** Validate high-level workflow design + transfer foundational knowledge to Sprintendo team
+**Objective:** Validate MDPA purpose and architecture + transfer foundational knowledge to team
 
-**Topics:** MDPA purpose, 7-stage workflow, architecture overview, decision context
+**John's Focus:** Business purpose, requirements, intended use cases, business decisions
+**Chris's Focus:** Technical architecture, 7-stage pipeline, design patterns, technical decisions
 
-**Team Attendees:** Yomar (PM), Venkat (TPA), Mwafaq (SM)
-
-**Knowledge Transfer Focus:** Why MDPA exists, what problems it solves, how decisions were made
+**Weekly Deliverable:** MDPA Purpose Document + Architecture Overview
 
 ---
 
 ### WK1-1 - John Wagner (1 hour)
-**Topic: MDPA Purpose, Scope & Business Context**
+**Topic: MDPA Business Purpose, Scope & Requirements**
 **Day:** Monday (example)
-**Team Attendees:** Yomar (PM), Venkat (TPA), Mwafaq (SM)
+**Team Attendees:** Yomar (PM), Bhavani (BI), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 1_MDPA_PROCESS_DOCUMENTATION.md (Overview section)
-- Attendees: Note any questions about business context/requirements
+- Attendees: Note questions about business requirements & use cases
 
 **Discussion Topics:** (40 min)
-1. **MDPA mission & scope — WHY it exists** (15 min)
-   - Purpose statement accurate?
+1. **Business Purpose — WHY MDPA exists** (15 min)
    - What business problems does MDPA solve?
-   - Why designed this way (not another way)?
-   - Intended use cases clear?
+   - What decisions does it support?
+   - Who are the primary users/stakeholders?
+   - What outcomes should it achieve?
 
-2. **7-stage pipeline — WHY this sequence** (15 min)
-   - Stage names & sequence correct?
-   - Why these 7 stages (not 5 or 10)?
-   - Why this order?
-   - Any missing stages?
+2. **Requirements & Success Measures** (15 min)
+   - What accuracy/quality standards required?
+   - What SLAs must be met?
+   - What are critical business constraints?
+   - How is success measured?
 
-3. **Design decisions & constraints** (10 min)
-   - Key decisions that shaped MDPA?
-   - Technical constraints considered?
-   - Business requirements driving design?
+3. **Business Decisions & Trade-offs** (10 min)
+   - Why this approach vs. alternatives?
+   - What business requirements drove design?
+   - Any ongoing business concerns?
 
 **Knowledge Transfer Artifacts:**
-- **Decision Log:** Document "why" answers (design decisions + context)
-- **Team Notes:** Attendees capture role-specific understanding
+- **Business Requirements Document:** Validated requirements & standards
+- **Decision Log:** Business reasoning for key decisions
+- **Use Case Scenarios:** Common use cases and expected outcomes
 
 **Deliverables:**
-- Validation: Accuracy checklist
-- **Knowledge:** MDPA Origin & Purpose document (why it exists, key decisions)
-- Team understanding of foundational concepts
+- Validation: Business requirements accuracy ✓
+- **Knowledge:** MDPA Business Purpose & Requirements document
+- Yomar/Bhavani understand business drivers and success criteria
 
 ---
 
 ### WK1-1 - Chris Lindsay (1 hour)
-**Topic: Input Data Sources & Field Inventory**
+**Topic: Technical Architecture & 7-Stage Pipeline Design**
 **Day:** Tuesday (example - different day from John)
+**Team Attendees:** Venkat (TPA), Yomar (PM), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
-- Read: 4_DATA_SOURCES_AND_LOCATIONS.md
+- Read: 2_WORKFLOW_ARCHITECTURE.md (Architecture section)
+- Attendees: Note technical design questions
 
-**Discussion Topics:** (45 min)
-1. Input data sources review (15 min)
-   - All 4 primary sources documented?
-   - Source system connections correct?
-   - File paths/locations accurate?
+**Discussion Topics:** (40 min)
+1. **Architecture Overview — HOW it works** (15 min)
+   - 7-stage pipeline design rationale?
+   - Why these stages in this sequence?
+   - 300+ tool breakdown accurate?
+   - Data flow logic correct?
 
-2. Field inventory validation (20 min)
-   - Required fields documented?
-   - Data types correct?
-   - Field purposes match actual usage?
+2. **Technical Design Decisions** (15 min)
+   - Key architectural patterns used?
+   - Why choose Alteryx vs. alternatives?
+   - Why TDE → Hyper migration (March 2026)?
+   - Performance considerations?
 
-3. Data quality baseline (10 min)
-   - Known issues documented?
-   - Data refresh cycles accurate?
+3. **Technical Constraints & Considerations** (10 min)
+   - System limitations?
+   - Scaling considerations?
+   - Integration dependencies?
+
+**Knowledge Transfer Artifacts:**
+- **Architecture Diagram & Documentation:** Validated design
+- **Technical Decision Log:** Architecture rationale
+- **Design Pattern Guide:** Key patterns and their use cases
 
 **Deliverables:**
-- Input source validation notes
-- Field inventory corrections (if needed)
+- Validation: Architecture design accuracy ✓
+- **Knowledge:** Technical Architecture & Design Patterns document
+- Venkat/Yomar understand technical foundation and design decisions
 
 ---
 

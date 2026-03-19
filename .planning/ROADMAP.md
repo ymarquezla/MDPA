@@ -15,7 +15,7 @@ This project produces four structured analysis artifacts for the MDPA Alteryx wo
 - [x] **Phase 3: Gap Analysis — Confluence Publication** - Publish finalized gap report to TREL space under MDPA parent page (completed 2026-03-19)
 - [x] **Phase 4: Data Lineage — Field Tracing and Stage Mapping** - Trace every key field from all 4 sources through 7 stages to all 5 output types (completed 2026-03-19)
 - [x] **Phase 5: Data Lineage — Confluence Publication** - Publish finalized lineage map to TREL space under MDPA parent page (completed 2026-03-19)
-- [ ] **Phase 6: Macro Inventory — Cataloguing and Risk Rating** - Catalogue all 15+ macros with purpose, logic, inputs/outputs, and deployment risk
+- [x] **Phase 6: Macro Inventory — Cataloguing and Risk Rating** - Catalogue all 15+ macros with purpose, logic, inputs/outputs, and deployment risk (completed 2026-03-19)
 - [ ] **Phase 7: Macro Inventory — Confluence Publication** - Publish finalized macro inventory to TREL space under MDPA parent page
 - [ ] **Phase 8: Validation Test Suite — Rules Authoring** - Author testable assertions covering all 14+ validation checks, boundary conditions, and stage organization
 - [ ] **Phase 9: Validation Test Suite — Confluence Publication** - Publish finalized validation suite to TREL space under MDPA parent page
@@ -95,7 +95,7 @@ Plans:
   2. Each macro entry includes a plain-language logic summary describing what transformation it performs
   3. Each macro has a deployment risk rating (embedded/external, path risk, CReW dependency) that an engineer could act on
   4. The full macro dependency map showing execution order is documented and readable in the repo
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 Plans:
 - [ ] 06-01-PLAN.md — Create MACRO_INVENTORY.md stub, full macro index, and 23 detailed catalogue entries with logic summaries (MAC-01, MAC-02)
 - [ ] 06-02-PLAN.md — Populate deployment risk register and dependency map; human review (MAC-03, MAC-04)
@@ -150,7 +150,7 @@ Phases execute with the following dependencies:
 | 3. Gap Analysis — Confluence Publication | 1/1 | Complete    | 2026-03-19 |
 | 4. Data Lineage — Field Tracing and Stage Mapping | 1/3 | Complete    | 2026-03-19 |
 | 5. Data Lineage — Confluence Publication | 1/1 | Complete    | 2026-03-19 |
-| 6. Macro Inventory — Cataloguing and Risk Rating | 0/TBD | Not started | - |
+| 6. Macro Inventory — Cataloguing and Risk Rating | 0/TBD | Complete    | 2026-03-19 |
 | 7. Macro Inventory — Confluence Publication | 0/TBD | Not started | - |
 | 8. Validation Test Suite — Rules Authoring | 0/TBD | Not started | - |
 | 9. Validation Test Suite — Confluence Publication | 0/TBD | Not started | - |

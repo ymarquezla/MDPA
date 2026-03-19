@@ -968,39 +968,56 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-## Documentation Validation Checklist
+## 6-Week Knowledge Transfer Checklist
 
-### WK1-1 & WK1-2: Foundation ✓
-- [ ] MDPA purpose & scope validated
-- [ ] 7-stage workflow verified
-- [ ] 300+ tools breakdown confirmed
-- [ ] Data flow sequence approved
-- [ ] No critical gaps identified
-- [ ] Architecture sign-off obtained
+### Week 1: Foundation (John: Business | Chris: Technical Architecture)
+**Knowledge Transfer Objectives:**
+- [ ] **John Sessions:** Business purpose, requirements, use cases validated
+- [ ] **Chris Sessions:** Technical architecture, 7-stage design, 300+ tools validated
+- [ ] Business Purpose document created
+- [ ] Architecture Guide document created
+- [ ] Team understands foundational concepts
 
-### WK2-1 & WK2-2: Data ✓
-- [ ] All 4 input data sources confirmed
-- [ ] Field inventory complete & accurate
-- [ ] 7-stage transformation chain validated
-- [ ] Output field mappings correct
-- [ ] Data quality baseline established
-- [ ] Field mapping sign-off obtained
+### Week 2: Data & Transformations (John: Quality Standards | Chris: Data Mapping)
+**Knowledge Transfer Objectives:**
+- [ ] **John Sessions:** Data quality standards, validation rules approved
+- [ ] **Chris Sessions:** Data sources, field mappings, 7-stage transformations validated
+- [ ] Data Quality Standards document created
+- [ ] Field Lineage Guide document created
+- [ ] Team understands data flow and quality gates
 
-### WK3-1 & WK3-2: Macros ✓
-- [ ] 23 unique macros identified & documented
-- [ ] Macro usage frequency accurate
-- [ ] Macro nesting analysis validated
-- [ ] Macro complexity ranking confirmed
-- [ ] Dependencies identified
-- [ ] Macro sign-off obtained
+### Week 3: Macros & Complexity (John: Metrics/KPIs | Chris: Macro Implementation)
+**Knowledge Transfer Objectives:**
+- [ ] **John Sessions:** KPI definitions, metrics, reporting requirements validated
+- [ ] **Chris Sessions:** Macro implementation, nesting, complexity analysis validated
+- [ ] KPI Guide document created
+- [ ] Macro Reference & Complexity Matrix document created
+- [ ] Team understands macro architecture and metrics
 
-### WK4-1 & WK4-2: QA & Sign-Off ✓
-- [ ] Validation rules complete
-- [ ] Quality gates appropriate
-- [ ] Error handling documented
-- [ ] Alert/notification system understood
-- [ ] Overall accuracy ≥ 90%
-- [ ] **Both SME formal sign-offs obtained** ✓
+### Week 4: Operations & Systems (John: Quality Acceptance | Chris: Operations)
+**Knowledge Transfer Objectives:**
+- [ ] **John Sessions:** Quality acceptance criteria, business rules validated
+- [ ] **Chris Sessions:** Operations, monitoring, troubleshooting procedures validated
+- [ ] Quality Acceptance Criteria document created
+- [ ] Operations Runbook document created
+- [ ] Team understands day-to-day operations
+
+### Week 5: Consolidation (John: Business Decisions | Chris: Technical Edge Cases)
+**Knowledge Transfer Objectives:**
+- [ ] **John Sessions:** Business decision context and trade-offs captured
+- [ ] **Chris Sessions:** Edge cases, workarounds, technical optimizations documented
+- [ ] Decision Log (business perspective) completed
+- [ ] Technical FAQ & Edge Cases Guide created
+- [ ] All remaining questions answered
+
+### Week 6: Final Handoff & Sign-Off (All Team Members Present)
+**Knowledge Transfer Objectives:**
+- [ ] **WK6-1:** Full Product Playbook walkthrough
+- [ ] **WK6-2:** Formal sign-offs from both SMEs
+- [ ] Full Product Playbook completed & approved
+- [ ] Team readiness confirmations obtained (Venkat, Bhavani, Preeti, Yomar)
+- [ ] Post-handoff support model documented
+- [ ] **Formal knowledge transfer complete ✓**
 
 ---
 
@@ -1023,15 +1040,26 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ## Communication Between Sessions
 
-**John → Chris Handoff (Mon evening):**
-- John's session notes shared
-- Key findings/corrections highlighted
-- Chris reads relevant docs + John's notes before Wed session
+**After John's Monday Session:**
+- John's session notes shared with Chris by Mon evening
+- Key findings, questions, corrections highlighted
+- Chris reviews before his Tuesday session
 
-**Chris → John Handoff (Wed evening):**
-- Chris's session notes shared
-- Validation sign-offs documented
-- John reviews before next Mon session
+**After Chris's Tuesday Session:**
+- Chris's session notes shared with John by Tue evening
+- Knowledge transfer artifacts noted
+- John reviews before next week's sessions
+
+**Weekly Synchronization (Wed evening):**
+- Mwafaq (Scrum Master) compiles weekly summary
+- Cross-SME notes shared (Chris reviews John's takeaways, vice versa)
+- Any conflicting feedback noted for next sessions
+- Team member learnings captured
+
+**Pre-Session for Thursday/Friday:**
+- John and Chris review previous sessions' team notes
+- Prepare for next-week topics based on feedback
+- Identify any knowledge gaps to address
 
 ---
 

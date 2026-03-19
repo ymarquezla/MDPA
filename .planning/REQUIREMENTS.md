@@ -21,7 +21,7 @@
 - [x] **LIN-02**: Analyst can see the transformation applied at each of the 7 processing stages for every key field
 - [x] **LIN-03**: Analyst can see which output files (Client File, QA Report, Tableau Extract, Archive, Executive Summary) each field appears in
 - [x] **LIN-04**: Lineage map covers all calculated/derived fields (Risk_Score, LTV, Delinquency_Rate, Charge_Off_Rate, etc.) with formulas
-- [ ] **LIN-05**: Lineage map is published to Confluence TREL space under MDPA parent page
+- [x] **LIN-05**: Lineage map is published to Confluence TREL space under MDPA parent page
 
 ### Macro Inventory
 
@@ -80,7 +80,7 @@
 | LIN-02 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Complete |
 | LIN-03 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Complete |
 | LIN-04 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Complete |
-| LIN-05 | Phase 5 — Data Lineage: Confluence Publication | Pending |
+| LIN-05 | Phase 5 — Data Lineage: Confluence Publication | Complete |
 | MAC-01 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |
 | MAC-02 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |
 | MAC-03 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |

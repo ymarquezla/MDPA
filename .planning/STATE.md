@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v5.2
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-01-PLAN.md — DATA_LINEAGE.md skeleton created with Part 1 fully populated
-last_updated: "2026-03-19T12:20:29.468Z"
+stopped_at: Completed 04-02-PLAN.md — DATA_LINEAGE.md Part 2 fully populated with 7-stage transformation detail
+last_updated: "2026-03-19T12:27:26.452Z"
 last_activity: "2026-03-18 — Plan 01-01 complete: GAP_ANALYSIS.md created with 11 GAP-01 findings"
 progress:
   total_phases: 9
   completed_phases: 3
   total_plans: 7
-  completed_plans: 5
+  completed_plans: 6
   percent: 100
 ---
 
@@ -56,6 +56,7 @@ Progress: [██████████] 100%
 | Phase 03-gap-analysis-confluence-publication P01 | 3 | 1 tasks | 1 files |
 | Phase 03-gap-analysis-confluence-publication P01 | 30 | 2 tasks | 1 files |
 | Phase 04-data-lineage-field-tracing-and-stage-mapping P01 | 2 | 1 tasks | 1 files |
+| Phase 04-data-lineage-field-tracing-and-stage-mapping P02 | 4 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,9 @@ Progress: [██████████] 100%
 - [Phase 04-data-lineage-field-tracing-and-stage-mapping]: LTV fields (LTV, Current LTV, Original LTV) confirmed present in XML field metadata — pass-through from CU-uploaded files via Append RE Values macro; formula internals require Phase 6 macro XML inspection
 - [Phase 04-data-lineage-field-tracing-and-stage-mapping]: Days Past Due confirmed in XML field metadata — record-level field from CU source file, not a derived formula; Delinquency_Rate not found in FormulaField scan, likely Summarize aggregation
 - [Phase 04-data-lineage-field-tracing-and-stage-mapping]: DATA_LINEAGE.md uses XML-confirmed field names throughout; Risk_Score confirmed absent; Decision FICO Grade documented as XML-equivalent categorical field
+- [Phase 04-data-lineage-field-tracing-and-stage-mapping]: Vintage Adjustment documented as PRE-COMPUTED CARRY-IN from prior period Join — ±5% cap formula was applied in prior run; current run reads [Right_Vintage Adjustment] as static value
+- [Phase 04-data-lineage-field-tracing-and-stage-mapping]: Average Interest Rates computed as Summarize Avg of Interest Rate (5-dimension GroupBy) renamed via Select (Right_Avg_Interest Rate → Average Interest Rates) — not a direct source field
+- [Phase 04-data-lineage-field-tracing-and-stage-mapping]: PortfolioComposerTable (tool 954) confirmed as run-summary table with project metadata fields; output destination unconfirmed — flagged as open question for Phase 6
 
 ### Pending Todos
 
@@ -94,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T12:20:29.464Z
-Stopped at: Completed 04-01-PLAN.md — DATA_LINEAGE.md skeleton created with Part 1 fully populated
+Last session: 2026-03-19T12:27:26.449Z
+Stopped at: Completed 04-02-PLAN.md — DATA_LINEAGE.md Part 2 fully populated with 7-stage transformation detail
 Resume file: None

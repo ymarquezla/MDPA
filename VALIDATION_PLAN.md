@@ -365,22 +365,27 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ## 6-Week Knowledge Transfer Timeline
 
+**Start Date:** Monday, March 23, 2026
+**Completion Date:** Friday, May 3, 2026 (within hard deadline of May 31, 2026)
+**Business Week:** Monday-Friday (skipping Wednesdays for schedule spacing)
+
 **SME Specialization:**
 - **John Wagner:** Business-oriented (use cases, requirements, metrics, quality standards, reporting)
 - **Chris Lindsay:** Business + Technical (all technical aspects, systems, operations, optimization)
 
-| Week | John Wagner Focus | Chris Lindsay Focus | Team Attendees | Deliverable |
-|------|------------------|-------------------|-----------------|-------------|
-| **1** | Business purpose, use cases, requirements | Technical architecture, 7-stage pipeline | Yomar, Venkat, Bhavani, Mwafaq | MDPA Purpose + Architecture docs |
-| **2** | Data quality standards, field requirements | Data sources, field transformations, mapping | Yomar, Bhavani, Preeti, Mwafaq | Data Quality Guide + Field Lineage |
-| **3** | Metrics & KPIs, reporting requirements | Macro implementation, complexity, nesting | Yomar, Venkat, Preeti, Mwafaq | KPI Guide + Macro Reference |
-| **4** | Quality acceptance criteria, business rules | Operations, monitoring, troubleshooting | Yomar, Preeti, Venkat, Mwafaq | Quality Standards + Ops Runbook |
-| **5** | Business decisions & trade-offs | Technical edge cases & optimizations | Yomar, Venkat, Preeti, Mwafaq | Decision Log + Technical FAQ |
-| **6** | Final business validation | Final technical validation + handoff | **All team members** | **Full Product Playbook** + Sign-off |
+| Week | Dates | John Wagner Focus | Chris Lindsay Focus | Team Attendees | Deliverable |
+|------|-------|------------------|-------------------|-----------------|-------------|
+| **Week 1** | Mar 23-27 | Business purpose, use cases, requirements | Technical architecture, 7-stage pipeline | Yomar, Venkat, Bhavani, Mwafaq | MDPA Purpose + Architecture docs |
+| **Week 2** | Mar 30-Apr 3 | Data quality standards, field requirements | Data sources, field transformations, mapping | Yomar, Bhavani, Preeti, Mwafaq | Data Quality Guide + Field Lineage |
+| **Week 3** | Apr 6-10 | Metrics & KPIs, reporting requirements | Macro implementation, complexity, nesting | Yomar, Venkat, Preeti, Mwafaq | KPI Guide + Macro Reference |
+| **Week 4** | Apr 13-14 | Quality acceptance criteria, business rules | Operations, monitoring, troubleshooting | Yomar, Preeti, Venkat, Mwafaq | Quality Standards + Ops Runbook |
+| **Week 5** | Apr 16-17 | Business decisions & trade-offs | Technical edge cases & optimizations | Yomar, Venkat, Preeti, Mwafaq | Decision Log + Technical FAQ |
+| **Week 6** | Apr 20-24 | Final business validation | Final technical validation + handoff | **All team members** | **Full Product Playbook** + Sign-off |
 
 ---
 
 ## Week 1: Foundation & Business/Technical Overview
+**Dates:** Monday, March 23 - Friday, March 27, 2026
 
 **Objective:** Validate MDPA purpose and architecture + transfer foundational knowledge to team
 
@@ -389,11 +394,18 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 **Weekly Deliverable:** MDPA Purpose Document + Architecture Overview
 
+**Weekly Session Schedule:**
+- **Monday, March 23:** WK1-1 John Wagner - Business Purpose & Requirements
+- **Tuesday, March 24:** WK1-1 Chris Lindsay - Technical Architecture & Design
+- **Thursday, March 26:** WK1-2 John Wagner - Workflow Architecture Details
+- **Friday, March 27:** WK1-2 Chris Lindsay - Data Flow & System Integration
+
 ---
 
 ### WK1-1 - John Wagner (1 hour)
 **Topic: MDPA Business Purpose, Scope & Requirements**
-**Day:** Monday (example)
+**Date:** Monday, March 23, 2026
+**Time:** [To be scheduled with John]
 **Team Attendees:** Yomar (PM), Bhavani (BI), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
@@ -432,7 +444,8 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ### WK1-1 - Chris Lindsay (1 hour)
 **Topic: Technical Architecture & 7-Stage Pipeline Design**
-**Day:** Tuesday (example - different day from John)
+**Date:** Tuesday, March 24, 2026
+**Time:** [To be scheduled with Chris]
 **Team Attendees:** Venkat (TPA), Yomar (PM), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
@@ -1118,37 +1131,43 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 
 ---
 
-## Weekly Session Schedule
+## Weekly Session Schedule (All Dates & Times)
 
-### Week 1 (4 sessions on different days)
-- **WK1-1 John (Monday, 1 hr):** MDPA purpose, scope, 7-stage workflow
-- **WK1-1 Chris (Tuesday, 1 hr):** Input data sources, field inventory
-- **WK1-2 John (Thursday, 1 hr):** Workflow architecture, tool inventory
-- **WK1-2 Chris (Friday, 1 hr):** Field transformations, 7-stage mappings
+### Week 1: March 23-27, 2026 (4 sessions)
+- **Monday, March 23:** WK1-1 John (1 hr) - MDPA purpose, scope, 7-stage workflow
+- **Tuesday, March 24:** WK1-1 Chris (1 hr) - Input data sources, field inventory
+- **Thursday, March 26:** WK1-2 John (1 hr) - Workflow architecture, tool inventory
+- **Friday, March 27:** WK1-2 Chris (1 hr) - Field transformations, 7-stage mappings
 
-### Week 2 (4 sessions on different days)
-- **WK2-1 John (Monday, 1 hr):** Macro inventory, usage frequency
-- **WK2-1 Chris (Tuesday, 1 hr):** Data quality rules, validation gates
-- **WK2-2 John (Thursday, 1 hr):** Macro nesting, complexity analysis
-- **WK2-2 Chris (Friday, 1 hr):** Error handling, alert system
+### Week 2: March 30 - April 3, 2026 (4 sessions)
+- **Monday, March 30:** WK2-1 John (1 hr) - Macro inventory, usage frequency
+- **Tuesday, March 31:** WK2-1 Chris (1 hr) - Data quality rules, validation gates
+- **Thursday, April 2:** WK2-2 John (1 hr) - Macro nesting, complexity analysis
+- **Friday, April 3:** WK2-2 Chris (1 hr) - Error handling, alert system
 
-### Week 3 (4 sessions on different days)
-- **WK3-1 John (Monday, 1 hr):** Macro dependencies, external systems
-- **WK3-1 Chris (Tuesday, 1 hr):** Dashboard validation, reporting
-- **WK3-2 John (Thursday, 1 hr):** Documentation completeness, accuracy
-- **WK3-2 Chris (Friday, 1 hr):** Operational readiness, support
+### Week 3: April 6-10, 2026 (4 sessions)
+- **Monday, April 6:** WK3-1 John (1 hr) - Macro dependencies, external systems
+- **Tuesday, April 7:** WK3-1 Chris (1 hr) - Dashboard validation, reporting
+- **Thursday, April 9:** WK3-2 John (1 hr) - Documentation completeness, accuracy
+- **Friday, April 10:** WK3-2 Chris (1 hr) - Operational readiness, support
 
-### Week 4 (2 sessions - operations/integration focus)
-- **WK4-1 John (Monday, 1 hr):** Operations runbook walk-through
-- **WK4-2 Chris (Tuesday, 1 hr):** System integration & monitoring
+### Week 4: April 13-14, 2026 (2 sessions - operations/integration focus)
+- **Monday, April 13:** WK4-1 John (1 hr) - Operations runbook walk-through
+- **Tuesday, April 14:** WK4-2 Chris (1 hr) - System integration & monitoring
 
-### Week 5 (2 sessions - final knowledge consolidation)
-- **WK5-1 John (Thursday, 1 hr):** Q&A with Sprintendo team + clarifications
-- **WK5-2 Chris (Friday, 1 hr):** Edge cases, workarounds, lessons learned
+### Week 5: April 16-17, 2026 (2 sessions - final knowledge consolidation)
+- **Thursday, April 16:** WK5-1 John (1 hr) - Business decisions & Q&A
+- **Friday, April 17:** WK5-2 Chris (1 hr) - Edge cases, workarounds, lessons learned
 
-### Week 6 (2 sessions - handoff & sign-off - ALL TEAM MEMBERS ATTEND)
-- **WK6-1 John + Chris (Monday, 1 hr):** Final Q&A + **Product Playbook walkthrough**
-- **WK6-2 John + Chris (Friday, 1 hr):** **Formal handoff & SME sign-off** ✓
+### Week 6: April 20-24, 2026 (2 combined sessions - handoff & sign-off - ALL TEAM MEMBERS ATTEND)
+- **Monday, April 20:** WK6-1 John + Chris (1 hr) - Product Playbook walkthrough + readiness confirmation
+- **Friday, April 24:** WK6-2 John + Chris (1 hr) - **Formal handoff & SME sign-off** ✓
+
+**Summary:**
+- **Start:** Monday, March 23, 2026
+- **Completion:** Friday, April 24, 2026 (6 weeks, within May 31 hard deadline)
+- **Total SME Sessions:** 12 hours (6 John + 6 Chris)
+- **Total Team Participation:** ~40 hours across all members
 
 ---
 

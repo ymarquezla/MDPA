@@ -25,8 +25,8 @@
 
 ### Macro Inventory
 
-- [ ] **MAC-01**: Every macro (15+ unique) is catalogued with: name, category, purpose, inputs, outputs, instance count
-- [ ] **MAC-02**: Each macro has a logic summary describing what transformation it performs
+- [x] **MAC-01**: Every macro (15+ unique) is catalogued with: name, category, purpose, inputs, outputs, instance count
+- [x] **MAC-02**: Each macro has a logic summary describing what transformation it performs
 - [ ] **MAC-03**: Each macro has a deployment risk rating (embedded/external, path risk, CReW dependency)
 - [ ] **MAC-04**: Macro inventory includes the full dependency map showing execution order
 - [ ] **MAC-05**: Macro inventory is published to Confluence TREL space under MDPA parent page
@@ -81,8 +81,8 @@
 | LIN-03 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Complete |
 | LIN-04 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Complete |
 | LIN-05 | Phase 5 — Data Lineage: Confluence Publication | Complete |
-| MAC-01 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |
-| MAC-02 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |
+| MAC-01 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Complete |
+| MAC-02 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Complete |
 | MAC-03 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |
 | MAC-04 | Phase 6 — Macro Inventory: Cataloguing and Risk Rating | Pending |
 | MAC-05 | Phase 7 — Macro Inventory: Confluence Publication | Pending |

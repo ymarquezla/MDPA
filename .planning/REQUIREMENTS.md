@@ -13,7 +13,7 @@
 - [x] **GAP-02**: Analyst can see a list of broken or at-risk dependencies (macro paths, CReW library, deployment blockers)
 - [x] **GAP-03**: Analyst can see coverage gaps — areas where documentation exists but is incomplete, ambiguous, or contradicts the workflow XML
 - [x] **GAP-04**: Analyst can see a prioritized remediation list (critical / medium / low gaps)
-- [ ] **GAP-05**: Gap report is published to Confluence TREL space under MDPA parent page
+- [x] **GAP-05**: Gap report is published to Confluence TREL space under MDPA parent page
 
 ### Data Lineage
 
@@ -75,7 +75,7 @@
 | GAP-02 | Phase 1 — Gap Analysis: Documentation Audit | Complete |
 | GAP-03 | Phase 1 — Gap Analysis: Documentation Audit | Complete |
 | GAP-04 | Phase 2 — Gap Analysis: Prioritization and Report | Complete |
-| GAP-05 | Phase 3 — Gap Analysis: Confluence Publication | Pending |
+| GAP-05 | Phase 3 — Gap Analysis: Confluence Publication | Complete |
 | LIN-01 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Pending |
 | LIN-02 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Pending |
 | LIN-03 | Phase 4 — Data Lineage: Field Tracing and Stage Mapping | Pending |

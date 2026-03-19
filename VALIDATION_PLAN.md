@@ -483,8 +483,10 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 ---
 
 ### WK1-2 - John Wagner (1 hour)
-**Topic: Workflow Architecture Deep Dive**
-**Day:** Thursday (example - different day from Monday)
+**Topic: Workflow Architecture Details**
+**Date:** Thursday, March 26, 2026
+**Time:** [To be scheduled with John]
+**Team Attendees:** Yomar (PM), Bhavani (BI), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 2_WORKFLOW_ARCHITECTURE.md
@@ -512,8 +514,10 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 ---
 
 ### WK1-2 - Chris Lindsay (1 hour)
-**Topic: Field Transformations & 7-Stage Pipeline**
-**Day:** Friday (example - different day from Tuesday)
+**Topic: Data Flow & System Integration**
+**Date:** Friday, March 27, 2026
+**Time:** [To be scheduled with Chris]
+**Team Attendees:** Venkat (TPA), Yomar (PM), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min)
 - Read: 6_FIELD_MAPPING_AND_DATA_LINEAGE.md (first half)
@@ -1019,7 +1023,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 **Topic: Product Playbook Walkthrough & Team Readiness Confirmation**
 **Date:** Monday, April 20, 2026
 **Time:** [To be scheduled with both SMEs]
-**All Team Members Present:** John Wagner, Chris Lindsay, Venkat (TPA), Bhavani (BI), Preeti (QA), Yomar (PM), Mwafaq (SM)
+**Team Attendees:** John Wagner (SME), Chris Lindsay (SME), Venkat (TPA), Bhavani (BI), Preeti (QA), Yomar (PM), Mwafaq (SM)
 
 **Pre-Session Prep:** (15 min - async before meeting)
 - All team members review complete Product Playbook
@@ -1053,7 +1057,7 @@ STAGE 7 (2:15-2:30): DELIVERY & PUBLICATION
 **Topic: Formal Handoff & SME Sign-Off**
 **Date:** Friday, April 24, 2026
 **Time:** [To be scheduled with both SMEs]
-**All Team Members Present:** John Wagner, Chris Lindsay, Venkat (TPA), Bhavani (BI), Preeti (QA), Yomar (PM), Mwafaq (SM)
+**Team Attendees:** John Wagner (SME), Chris Lindsay (SME), Venkat (TPA), Bhavani (BI), Preeti (QA), Yomar (PM), Mwafaq (SM)
 
 **Session Structure:** (60 min)
 

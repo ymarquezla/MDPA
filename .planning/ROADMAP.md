@@ -95,8 +95,10 @@ Plans:
   2. Each macro entry includes a plain-language logic summary describing what transformation it performs
   3. Each macro has a deployment risk rating (embedded/external, path risk, CReW dependency) that an engineer could act on
   4. The full macro dependency map showing execution order is documented and readable in the repo
-**Plans:** TBD
-Plans: To be planned
+**Plans:** 2 plans
+Plans:
+- [ ] 06-01-PLAN.md — Create MACRO_INVENTORY.md stub, full macro index, and 23 detailed catalogue entries with logic summaries (MAC-01, MAC-02)
+- [ ] 06-02-PLAN.md — Populate deployment risk register and dependency map; human review (MAC-03, MAC-04)
 
 ### Phase 7: Macro Inventory — Confluence Publication
 **Goal**: The macro inventory is live and searchable in Confluence under the MDPA parent page

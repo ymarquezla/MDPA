@@ -4,7 +4,7 @@
 
 **Project Location:** `/home/ymarquez/Projects/MDPA/`
 **GitHub Repository:** https://github.com/ymarquezla/MDPA.git
-**Last Updated:** 2026-03-18
+**Last Updated:** 2026-03-23
 
 ---
 
@@ -12,10 +12,11 @@
 
 Comprehensive technical and operational documentation suite for the MDPA (Monthly Data Process Assessment) Alteryx workflow used for loan portfolio analysis, regulatory compliance, and peer group benchmarking at credit union institutions.
 
-**Status:** ✅ Documentation Complete + Portal Content Integrated - Ready for Knowledge Transfer
+**Status:** ✅ Documentation Complete + Portal Content Integrated - Organized (Files 1-32) - Ready for Knowledge Transfer
 
-**Total Documentation:** 29 files (20 internal + 6 portal sources + 3 analysis docs), 1000+ pages
+**Total Documentation:** 32 files (9 core + 2 models + 3 client-facing + 8 operational + 2 technical additions + 8 portal/knowledge transfer), 1000+ pages
 **Portal Content Integrated:** 2026-03-23 (Fair Lending, CECL, System Changes, Benchmarking guides)
+**File Organization:** Standardized numbering convention (01_..._32.md) with duplicates removed
 
 ---
 
@@ -41,7 +42,7 @@ Comprehensive technical and operational documentation suite for the MDPA (Monthl
 13. **13_OUTPUT_TO_DASHBOARD_LINEAGE.md** - Output to dashboard data flow
 14. **14_SECURITIES_COLLATERAL_GUIDE.md** - Securities handling guide
 
-### Operational & Support Documentation (6 files)
+### Operational & Support Documentation (8 files)
 15. **15_MISSING_SECURITIES_SCENARIOS.md** - Missing collateral scenarios
 16. **16_OPERATIONAL_TROUBLESHOOTING_GUIDE.md** - 7-stage troubleshooting (28 issues)
 17. **17_QUICK_REF_COLLATERAL_VALUATION.md** - Quick reference
@@ -51,23 +52,37 @@ Comprehensive technical and operational documentation suite for the MDPA (Monthl
 21. **21_QUICK_REF_LOAN_LIFECYCLE.md** - Quick reference
 22. **22_FAQ_COMMON_QUESTIONS.md** - 23 Q&As for validation/client support
 
-### Portal Content & Knowledge Transfer Artifacts (6 files + analysis docs)
-**Portal Source Documents (Client-Facing Guides - External References):**
-- **PORTAL_FAIR_LENDING_USER_GUIDE.pdf** - BISG ethnicity prediction, fair lending analysis, regulatory compliance
-- **PORTAL_CECL_USER_GUIDE.pdf** - 159 pages: CECL methodologies, calculations, formulas, scenario weighting
-- **PORTAL_CECL_MODEL_CERTIFICATION.pdf** - MountainView validation, model assurance, regulatory compliance
-- **PORTAL_UPDATES_Q3_2023.pdf** - System changes: PD null credit scores, gross vs. net charge-offs, weighted scenarios
-- **PORTAL_ADVANCED_BENCHMARKING_GUIDE.pdf** - Benchmarking tools, HMDA, Metro reports, WARM methodology
-- **PORTAL_TTADATA_VISION_V2022.1_RELEASE_NOTES.pdf** - System enhancements, breaking changes, calculation fixes
+### Additional Technical Documentation (2 files)
+23. **23_BUSINESS_FRIENDLY_TABLEAU_MACROS.md** - Tableau macro reference
+24. **24_MACRO_INVENTORY_WITH_LOGIC.md** - Complete macro inventory with logic flow
 
-**Knowledge Transfer Analysis & Planning (Internal Project Documents):**
-23. **PORTAL_CONTENT_ANALYSIS_FRAMEWORK.md** - Methodology for portal doc comparative analysis
-24. **PORTAL_CONTENT_GAPS.md** - Detailed gap analysis (14 sections), validation priorities, 14-session plan
-25. **PORTAL_CONTENT_SUMMARY.md** - Executive summary, critical findings, next actions
-26. **VALIDATION_PLAN_UPDATED.md** - Detailed 6-week knowledge transfer schedule (14 sessions)
-27. **WEEK_1_SESSION_OUTLINES.md** - Ready-to-execute Session 1A & 1B materials
-28. **DECISION_LOG_TEMPLATE.md** - Template for capturing design decisions during knowledge transfer
-29. **MDPA_DOCS_UPDATE_CHECKLIST.md** - List of MDPA docs needing Q3 2023 changes
+### Portal Documentation & Knowledge Transfer (8 files)
+
+**Consolidated Portal Reference:**
+25. **25_PORTAL_USE_GUIDES_CONSOLIDATED.md** - Master reference: 6 portal guides in 1 document
+   - Part 1: Fair Lending User Guide (BISG algorithm, ethnicity prediction)
+   - Part 2: CECL User Guide (4 methodologies, formulas, calculations)
+   - Part 3: CECL Model Certification (MountainView validation, regulatory compliance)
+   - Part 4: Portal Updates Q3 2023 (System changes - PD null, gross vs. net, weighted scenarios)
+   - Part 5: Advanced Benchmarking Guide (Peer comparison, HMDA, WARM)
+   - Part 6: TTAData Vision v2022.1 Release Notes (System enhancements, breaking changes)
+
+**Knowledge Transfer Planning & Analysis (7 files):**
+26. **26_PORTAL_CONTENT_SUMMARY.md** - Executive summary: 3 critical gaps, findings, next actions
+27. **27_PORTAL_CONTENT_GAPS.md** - Detailed gap analysis (14 sections), validation priorities
+28. **28_PORTAL_CONTENT_ANALYSIS_FRAMEWORK.md** - Methodology for comparative analysis, gap categories
+29. **29_VALIDATION_PLAN_UPDATED.md** - 6-week knowledge transfer (14 sessions, success criteria, timeline)
+30. **30_WEEK_1_SESSION_OUTLINES.md** - Session 1A & 1B ready-to-execute materials
+31. **31_DECISION_LOG_TEMPLATE.md** - Template + example for capturing design decisions
+32. **32_MDPA_DOCS_UPDATE_CHECKLIST.md** - 9 MDPA docs needing Q3 2023 changes (15-23 hours effort)
+
+**Portal Source Documents (External References):**
+- **PORTAL_FAIR_LENDING_USER_GUIDE.pdf** - BISG ethnicity prediction, fair lending compliance
+- **PORTAL_CECL_USER_GUIDE.pdf** - 159 pages: CECL methodologies, formulas, scenarios
+- **PORTAL_CECL_MODEL_CERTIFICATION.pdf** - MountainView validation, model assurance
+- **PORTAL_UPDATES_Q3_2023.pdf** - System changes (Aug-Sept 2023)
+- **PORTAL_ADVANCED_BENCHMARKING_GUIDE.pdf** - Peer benchmarking, HMDA, WARM
+- **PORTAL_TTADATA_VISION_V2022.1_RELEASE_NOTES.pdf** - System enhancements, fixes
 
 ---
 
@@ -161,6 +176,7 @@ Comprehensive technical and operational documentation suite for the MDPA (Monthl
 
 ---
 
-**Project Status:** ✅ Complete and ready for deployment
-**Documentation Coverage:** 928 pages across 20 comprehensive documents
-**Last Review:** 2026-03-18
+**Project Status:** ✅ Complete, organized (files 1-32), and ready for knowledge transfer deployment
+**Documentation Coverage:** 1000+ pages across 32 comprehensive documents
+**File Organization:** All documents numbered 1-32 with standard naming convention
+**Last Review:** 2026-03-23

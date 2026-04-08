@@ -1,0 +1,2088 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2024.2" RunE2="T">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="JupyterCode">
+        <Position x="220" y="154" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <WorkflowName>s:\users\jtodd\inputs\dw integration\workflow(s)\production testing\check refresh and query working.yxmd</WorkflowName>
+          <JupyterProduction>false</JupyterProduction>
+          <vEnvName>designerbasetools_venv</vEnvName>
+          <DefaultVenv>1</DefaultVenv>
+          <productionModeScript />
+          <Port>50370</Port>
+          <JupyterGuidDir>25a679afcfaf53b90f8f5f9cc8dd6371</JupyterGuidDir>
+          <JupyterGuidCopy />
+          <LastExecutedByEngineVersion>2024.2.1.162</LastExecutedByEngineVersion>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output3">
+          <RecordInfo>
+            <Field name="TENANT_ID" size="1073741823" source="PythonTool:" type="V_WString" />
+            <Field name="AllRequiredTablesTrue" source="PythonTool:" type="Bool" />
+            <Field name="Report Date" size="1073741823" source="PythonTool:" type="V_WString" />
+            <Field name="PEER_NUMBER" size="1073741823" source="PythonTool:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxJupyterPluginEngine.dll" EngineDllEntryPoint="AlteryxJupyter" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="342" y="154" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>D:\ProgramData\Alteryx\Engine\Engine_13372_2dcacbf7c5774616b1d715f0b8356dc3_\Engine_13372_ecfabec31a7647b9b8dc00ee5adf3446~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="78" y="202" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="env" />
+          </Fields>
+          <Data>
+            <r>
+              <c>P</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="20">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="318" y="248" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>//[TENANT_ID] in ('65736','71109','81870')
+
+//[TENANT_ID] in ('23279','43336','63522','65736','68598','68607','81870','90130','97134','99136')
+
+[TENANT_ID]!='65735'</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>//[TENANT_ID] in ('65736','71109','81870')
+
+//[TENANT_ID] in ('23279','43336','6...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="39">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="561" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File />
+          <FormatSpecificOptions UseDcm="true" Format="23" RecordLimit="">
+            <SingleRowFetch>False</SingleRowFetch>
+            <Query>select [org].[Id],
+	[org].[Name],
+	[org].[PeerCode],
+	[org].[IsEnabled],
+	[ltl].[OrganizationId],
+	[ltlv].[Name] as [LoanTypeName],
+	[ltlv].[LoanSubgroup],
+	[ltlv].[LoanAllowanceGroup],
+	[lpg].[LoanGroup] as [LoanGroup],
+	[lpg].[Name] as [PeerGroup] 
+from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] 
+	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 
+	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 
+	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 
+where [org].[IsEnabled] = 1 
+order by [org].[Id]</Query>
+            <TableStyle>Quoted</TableStyle>
+            <CacheData>False</CacheData>
+            <Table />
+            <SessionReadOnly>True</SessionReadOnly>
+            <ReadUncommitted>False</ReadUncommitted>
+            <Connection DcmType="ConnectionId">efae9847-1906-4eff-9b2c-b8d669b5cfaf</Connection>
+            <NoProgress>False</NoProgress>
+            <PostSQL />
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <PreSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>dcm:Microsoft SQL Server ODBC — sa
+Query=select [org].[Id],
+	[org].[...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Id" source="File: select [org].[Id],&#xA;	[org].[Name],&#xA;	[org].[PeerCode],&#xA;	[org].[IsEnabled],&#xA;	[ltl].[OrganizationId],&#xA;	[ltlv].[Name] as [LoanTypeName],&#xA;	[ltlv].[LoanSubgroup],&#xA;	[ltlv].[LoanAllowanceGroup],&#xA;	[lpg].[LoanGroup] as [LoanGroup],&#xA;	[lpg].[Name] as [PeerGroup] &#xA;from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 &#xA;where [org].[IsEnabled] = 1 &#xA;order by [org].[Id]" type="Int32" />
+            <Field name="Name" size="200" source="File: select [org].[Id],&#xA;	[org].[Name],&#xA;	[org].[PeerCode],&#xA;	[org].[IsEnabled],&#xA;	[ltl].[OrganizationId],&#xA;	[ltlv].[Name] as [LoanTypeName],&#xA;	[ltlv].[LoanSubgroup],&#xA;	[ltlv].[LoanAllowanceGroup],&#xA;	[lpg].[LoanGroup] as [LoanGroup],&#xA;	[lpg].[Name] as [PeerGroup] &#xA;from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 &#xA;where [org].[IsEnabled] = 1 &#xA;order by [org].[Id]" type="V_WString" />
+            <Field name="PeerCode" size="200" source="File: select [org].[Id],&#xA;	[org].[Name],&#xA;	[org].[PeerCode],&#xA;	[org].[IsEnabled],&#xA;	[ltl].[OrganizationId],&#xA;	[ltlv].[Name] as [LoanTypeName],&#xA;	[ltlv].[LoanSubgroup],&#xA;	[ltlv].[LoanAllowanceGroup],&#xA;	[lpg].[LoanGroup] as [LoanGroup],&#xA;	[lpg].[Name] as [PeerGroup] &#xA;from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 &#xA;where [org].[IsEnabled] = 1 &#xA;order by [org].[Id]" type="V_WString" />
+            <Field name="IsEnabled" source="File: select [org].[Id],&#xA;	[org].[Name],&#xA;	[org].[PeerCode],&#xA;	[org].[IsEnabled],&#xA;	[ltl].[OrganizationId],&#xA;	[ltlv].[Name] as [LoanTypeName],&#xA;	[ltlv].[LoanSubgroup],&#xA;	[ltlv].[LoanAllowanceGroup],&#xA;	[lpg].[LoanGroup] as [LoanGroup],&#xA;	[lpg].[Name] as [PeerGroup] &#xA;from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 &#xA;where [org].[IsEnabled] = 1 &#xA;order by [org].[Id]" type="Bool" />
+            <Field name="OrganizationId" source="File: select [org].[Id],&#xA;	[org].[Name],&#xA;	[org].[PeerCode],&#xA;	[org].[IsEnabled],&#xA;	[ltl].[OrganizationId],&#xA;	[ltlv].[Name] as [LoanTypeName],&#xA;	[ltlv].[LoanSubgroup],&#xA;	[ltlv].[LoanAllowanceGroup],&#xA;	[lpg].[LoanGroup] as [LoanGroup],&#xA;	[lpg].[Name] as [PeerGroup] &#xA;from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 &#xA;where [org].[IsEnabled] = 1 &#xA;order by [org].[Id]" type="Int32" />
+            <Field name="LoanTypeName" size="200" source="File: select [org].[Id],&#xA;	[org].[Name],&#xA;	[org].[PeerCode],&#xA;	[org].[IsEnabled],&#xA;	[ltl].[OrganizationId],&#xA;	[ltlv].[Name] as [LoanTypeName],&#xA;	[ltlv].[LoanSubgroup],&#xA;	[ltlv].[LoanAllowanceGroup],&#xA;	[lpg].[LoanGroup] as [LoanGroup],&#xA;	[lpg].[Name] as [PeerGroup] &#xA;from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 &#xA;where [org].[IsEnabled] = 1 &#xA;order by [org].[Id]" type="V_WString" />
+            <Field name="LoanSubgroup" size="200" source="File: select [org].[Id],&#xA;	[org].[Name],&#xA;	[org].[PeerCode],&#xA;	[org].[IsEnabled],&#xA;	[ltl].[OrganizationId],&#xA;	[ltlv].[Name] as [LoanTypeName],&#xA;	[ltlv].[LoanSubgroup],&#xA;	[ltlv].[LoanAllowanceGroup],&#xA;	[lpg].[LoanGroup] as [LoanGroup],&#xA;	[lpg].[Name] as [PeerGroup] &#xA;from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 &#xA;where [org].[IsEnabled] = 1 &#xA;order by [org].[Id]" type="V_WString" />
+            <Field name="LoanAllowanceGroup" size="200" source="File: select [org].[Id],&#xA;	[org].[Name],&#xA;	[org].[PeerCode],&#xA;	[org].[IsEnabled],&#xA;	[ltl].[OrganizationId],&#xA;	[ltlv].[Name] as [LoanTypeName],&#xA;	[ltlv].[LoanSubgroup],&#xA;	[ltlv].[LoanAllowanceGroup],&#xA;	[lpg].[LoanGroup] as [LoanGroup],&#xA;	[lpg].[Name] as [PeerGroup] &#xA;from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 &#xA;where [org].[IsEnabled] = 1 &#xA;order by [org].[Id]" type="V_WString" />
+            <Field name="LoanGroup" size="200" source="File: select [org].[Id],&#xA;	[org].[Name],&#xA;	[org].[PeerCode],&#xA;	[org].[IsEnabled],&#xA;	[ltl].[OrganizationId],&#xA;	[ltlv].[Name] as [LoanTypeName],&#xA;	[ltlv].[LoanSubgroup],&#xA;	[ltlv].[LoanAllowanceGroup],&#xA;	[lpg].[LoanGroup] as [LoanGroup],&#xA;	[lpg].[Name] as [PeerGroup] &#xA;from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 &#xA;where [org].[IsEnabled] = 1 &#xA;order by [org].[Id]" type="V_WString" />
+            <Field name="PeerGroup" size="200" source="File: select [org].[Id],&#xA;	[org].[Name],&#xA;	[org].[PeerCode],&#xA;	[org].[IsEnabled],&#xA;	[ltl].[OrganizationId],&#xA;	[ltlv].[Name] as [LoanTypeName],&#xA;	[ltlv].[LoanSubgroup],&#xA;	[ltlv].[LoanAllowanceGroup],&#xA;	[lpg].[LoanGroup] as [LoanGroup],&#xA;	[lpg].[Name] as [PeerGroup] &#xA;from [TTA-CustomerPortal-Prod].[dbo].[Organizations] [org] &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookups] [ltl] on [ltl].[OrganizationId] = [org].[Id] and [ltl].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanTypeLookupValues] [ltlv] on [ltlv].[LoanTypeLookupId] = [ltl].[Id] and [ltlv].[IsEnabled] = 1 &#xA;	join [TTA-CustomerPortal-Prod].[dbo].[LoanPeerGroups] [lpg] on [lpg].[Id] = [ltlv].[LoanPeerGroupId] and [lpg].[IsEnabled] = 1 &#xA;where [org].[IsEnabled] = 1 &#xA;order by [org].[Id]" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="40">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="174" y="561" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="Id" selected="False" />
+            <SelectField field="Name" selected="False" />
+            <SelectField field="PeerCode" selected="True" />
+            <SelectField field="IsEnabled" selected="False" />
+            <SelectField field="OrganizationId" selected="False" />
+            <SelectField field="LoanTypeName" selected="True" rename="LookupName" />
+            <SelectField field="LoanGroup" selected="True" rename="PeerGroupLoanGroup" />
+            <SelectField field="PeerGroup" selected="True" rename="PeerGroupName" />
+            <SelectField field="LoanSubgroup" selected="True" />
+            <SelectField field="LoanAllowanceGroup" selected="True" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="42">
+      <GuiSettings>
+        <Position x="282" y="561" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Fields">PeerGroupCode</Value>
+          <Value name="FieldType">V_WString</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings Macro="CReW_EnsureFields.yxmc" />
+    </Node>
+    <Node ToolID="44">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AppendFields.AppendFields">
+        <Position x="402" y="573" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <CartesianMode>Error</CartesianMode>
+          <SelectConfiguration>
+            <Configuration outputConnection="Output">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Source_PeerNo" selected="True" rename="Run_PeerNo" input="Source_" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxAppendFields" />
+    </Node>
+    <Node ToolID="45">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="281" y="633" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="PEER_NUMBER" action="GroupBy" rename="PeerNo" />
+            <SummarizeField field="REPORT_DATE" action="GroupBy" rename="REPORT_DATE" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="43">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="617" y="562" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="PeerCode" action="GroupBy" rename="PeerCode" />
+            <SummarizeField field="LookupName" action="GroupBy" rename="LookupName" />
+            <SummarizeField field="PeerGroupLoanGroup" action="GroupBy" rename="PeerGroupLoanGroup" />
+            <SummarizeField field="PeerGroupName" action="First" rename="PeerGroupName" />
+            <SummarizeField field="LoanSubgroup" action="GroupBy" rename="LoanSubgroup" />
+            <SummarizeField field="LoanAllowanceGroup" action="GroupBy" rename="LoanAllowanceGroup" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="41">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="509" y="572" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>[PeerCode]=[Run_PeerNo]</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[PeerCode]=[Run_PeerNo]</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="46">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="726" y="562" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="/*if [LookupName] not in ('4005040-VISA','4005045-VISA','Commercial Participation','CONSUMER PARTICIPATION','CONV','CRE','DEBIT.C-VISA','Drop','NEGATIVE SHARES','PSCU')&#xA;then &quot;L&quot;+PadLeft([LookupName],4,&quot;0&quot;) else [LookupName] endif */&#xA;[LookupName]" field="LookupName" size="200" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>LookupName = /*if [LookupName] not in ('4005040-VISA','4005045-VISA','Commercial...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="54">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="186" y="418" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="40" />
+          <Fields>
+            <Field name="Fields" />
+            <Field name="Value" />
+          </Fields>
+          <Data>
+            <r>
+              <c>Original Collateral Value</c>
+              <c />
+            </r>
+            <r>
+              <c>Appraised Value</c>
+              <c />
+            </r>
+            <r>
+              <c>Appraisal Date</c>
+              <c />
+            </r>
+            <r>
+              <c>Balloon Amount</c>
+              <c />
+            </r>
+            <r>
+              <c>Balloon Date</c>
+              <c />
+            </r>
+            <r>
+              <c>City</c>
+              <c />
+            </r>
+            <r>
+              <c>Collateral Description</c>
+              <c />
+            </r>
+            <r>
+              <c>Current Business Loan Risk Rating</c>
+              <c />
+            </r>
+            <r>
+              <c>Current Collateral Value</c>
+              <c />
+            </r>
+            <r>
+              <c>Current Real Estate Value</c>
+              <c />
+            </r>
+            <r>
+              <c>Current Superior Mortgage</c>
+              <c />
+            </r>
+            <r>
+              <c>Custom String_1</c>
+              <c />
+            </r>
+            <r>
+              <c>Custom String_2</c>
+              <c />
+            </r>
+            <r>
+              <c>Dealer Name</c>
+              <c />
+            </r>
+            <r>
+              <c>External Status Code</c>
+              <c />
+            </r>
+            <r>
+              <c>Impairment_Amount</c>
+              <c />
+            </r>
+            <r>
+              <c>Interest Rate (APR) Code</c>
+              <c />
+            </r>
+            <r>
+              <c>Last Payment Amount</c>
+              <c />
+            </r>
+            <r>
+              <c>Last Payment Date</c>
+              <c />
+            </r>
+            <r>
+              <c>Lien Position</c>
+              <c />
+            </r>
+            <r>
+              <c>NAICS Code</c>
+              <c />
+            </r>
+            <r>
+              <c>Original Business Loan Risk Rating</c>
+              <c />
+            </r>
+            <r>
+              <c>Original LTV</c>
+              <c />
+            </r>
+            <r>
+              <c>Original Superior Mortgage</c>
+              <c />
+            </r>
+            <r>
+              <c>Payment Frequency Code</c>
+              <c />
+            </r>
+            <r>
+              <c>PeerGroupCode</c>
+              <c />
+            </r>
+            <r>
+              <c>Percentage Guaranteed</c>
+              <c />
+            </r>
+            <r>
+              <c>Property Address 1</c>
+              <c />
+            </r>
+            <r>
+              <c>Property Address 2</c>
+              <c />
+            </r>
+            <r>
+              <c>Property City</c>
+              <c />
+            </r>
+            <r>
+              <c>Property State</c>
+              <c />
+            </r>
+            <r>
+              <c>Property Zip</c>
+              <c />
+            </r>
+            <r>
+              <c>Recovery Amount</c>
+              <c />
+            </r>
+            <r>
+              <c>Recovery Date</c>
+              <c />
+            </r>
+            <r>
+              <c>Skip End Date</c>
+              <c />
+            </r>
+            <r>
+              <c>Skip Start Date</c>
+              <c />
+            </r>
+            <r>
+              <c>State</c>
+              <c />
+            </r>
+            <r>
+              <c>TDR_Status</c>
+              <c />
+            </r>
+            <r>
+              <c>Underwriter</c>
+              <c />
+            </r>
+            <r>
+              <c>VIN</c>
+              <c />
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="55">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
+        <Position x="306" y="417" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <GroupFields />
+          <HeaderField field="Fields" />
+          <DataField field="Value" />
+          <Methods>
+            <Method method="First" />
+          </Methods>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Appraisal_Date" source="TextInput:" type="Bool" />
+            <Field name="Appraised_Value" source="TextInput:" type="Bool" />
+            <Field name="Balloon_Amount" source="TextInput:" type="Bool" />
+            <Field name="Balloon_Date" source="TextInput:" type="Bool" />
+            <Field name="City" source="TextInput:" type="Bool" />
+            <Field name="Collateral_Description" source="TextInput:" type="Bool" />
+            <Field name="Current_Business_Loan_Risk_Rating" source="TextInput:" type="Bool" />
+            <Field name="Current_Collateral_Value" source="TextInput:" type="Bool" />
+            <Field name="Current_Real_Estate_Value" source="TextInput:" type="Bool" />
+            <Field name="Current_Superior_Mortgage" source="TextInput:" type="Bool" />
+            <Field name="Custom_String_1" source="TextInput:" type="Bool" />
+            <Field name="Custom_String_2" source="TextInput:" type="Bool" />
+            <Field name="Dealer_Name" source="TextInput:" type="Bool" />
+            <Field name="External_Status_Code" source="TextInput:" type="Bool" />
+            <Field name="Impairment_Amount" source="TextInput:" type="Bool" />
+            <Field name="Interest_Rate__APR__Code" source="TextInput:" type="Bool" />
+            <Field name="Last_Payment_Amount" source="TextInput:" type="Bool" />
+            <Field name="Last_Payment_Date" source="TextInput:" type="Bool" />
+            <Field name="Lien_Position" source="TextInput:" type="Bool" />
+            <Field name="NAICS_Code" source="TextInput:" type="Bool" />
+            <Field name="Original_Business_Loan_Risk_Rating" source="TextInput:" type="Bool" />
+            <Field name="Original_Collateral_Value" source="TextInput:" type="Bool" />
+            <Field name="Original_LTV" source="TextInput:" type="Bool" />
+            <Field name="Original_Superior_Mortgage" source="TextInput:" type="Bool" />
+            <Field name="Payment_Frequency_Code" source="TextInput:" type="Bool" />
+            <Field name="PeerGroupCode" source="TextInput:" type="Bool" />
+            <Field name="Percentage_Guaranteed" source="TextInput:" type="Bool" />
+            <Field name="Property_Address_1" source="TextInput:" type="Bool" />
+            <Field name="Property_Address_2" source="TextInput:" type="Bool" />
+            <Field name="Property_City" source="TextInput:" type="Bool" />
+            <Field name="Property_State" source="TextInput:" type="Bool" />
+            <Field name="Property_Zip" source="TextInput:" type="Bool" />
+            <Field name="Recovery_Amount" source="TextInput:" type="Bool" />
+            <Field name="Recovery_Date" source="TextInput:" type="Bool" />
+            <Field name="Skip_End_Date" source="TextInput:" type="Bool" />
+            <Field name="Skip_Start_Date" source="TextInput:" type="Bool" />
+            <Field name="State" source="TextInput:" type="Bool" />
+            <Field name="TDR_Status" source="TextInput:" type="Bool" />
+            <Field name="Underwriter" source="TextInput:" type="Bool" />
+            <Field name="VIN" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxCrossTab" />
+    </Node>
+    <Node ToolID="56">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DynamicRename.DynamicRename">
+        <Position x="426" y="430" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <RenameMode>Formula</RenameMode>
+          <Fields orderChanged="False">
+            <Field name="Address_2" />
+            <Field name="Appraisal_Date" />
+            <Field name="Appraised_Value" />
+            <Field name="Balloon_Amount" />
+            <Field name="Balloon_Date" />
+            <Field name="City" />
+            <Field name="CoBorrower_Current_Credit_Score" />
+            <Field name="CoBorrower_Original_Credit_Score" />
+            <Field name="Collateral_Code" />
+            <Field name="Collateral_Description" />
+            <Field name="Current_Business_Loan_Risk_Rating" />
+            <Field name="Current_Collateral_Value" />
+            <Field name="Current_Credit_Score" />
+            <Field name="Current_Real_Estate_Value" />
+            <Field name="Current_Superior_Mortgage" />
+            <Field name="Custom_String_1" />
+            <Field name="Custom_String_2" />
+            <Field name="Dealer_Name" />
+            <Field name="External_Status_Code" />
+            <Field name="Impairment_Amount" />
+            <Field name="Interest_Rate__APR__Code" />
+            <Field name="Last_Payment_Amount" />
+            <Field name="Last_Payment_Date" />
+            <Field name="Lien_Position" />
+            <Field name="NAICS_Code" />
+            <Field name="Original_Business_Loan_Risk_Rating" />
+            <Field name="Original_Collateral_Value" />
+            <Field name="Original_LTV" />
+            <Field name="Original_Superior_Mortgage" />
+            <Field name="Payment_Frequency_Code" />
+            <Field name="PeerGroupCode" />
+            <Field name="Percentage_Guaranteed" />
+            <Field name="Property_Address_1" />
+            <Field name="Property_Address_2" />
+            <Field name="Property_City" />
+            <Field name="Property_State" />
+            <Field name="Property_Zip" />
+            <Field name="Recovery_Amount" />
+            <Field name="Recovery_Date" />
+            <Field name="Skip_End_Date" />
+            <Field name="Skip_Start_Date" />
+            <Field name="State" />
+            <Field name="TDR_Status" />
+            <Field name="Underwriter" />
+            <Field name="VIN" />
+            <Field name="*Unknown" />
+          </Fields>
+          <Expression>Replace([_CurrentField_],"_"," ")</Expression>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Appraisal Date" source="TextInput:" type="Bool" />
+            <Field name="Appraised Value" source="TextInput:" type="Bool" />
+            <Field name="Balloon Amount" source="TextInput:" type="Bool" />
+            <Field name="Balloon Date" source="TextInput:" type="Bool" />
+            <Field name="City" source="TextInput:" type="Bool" />
+            <Field name="Collateral Description" source="TextInput:" type="Bool" />
+            <Field name="Current Business Loan Risk Rating" source="TextInput:" type="Bool" />
+            <Field name="Current Collateral Value" source="TextInput:" type="Bool" />
+            <Field name="Current Real Estate Value" source="TextInput:" type="Bool" />
+            <Field name="Current Superior Mortgage" source="TextInput:" type="Bool" />
+            <Field name="Custom String 1" source="TextInput:" type="Bool" />
+            <Field name="Custom String 2" source="TextInput:" type="Bool" />
+            <Field name="Dealer Name" source="TextInput:" type="Bool" />
+            <Field name="External Status Code" source="TextInput:" type="Bool" />
+            <Field name="Impairment Amount" source="TextInput:" type="Bool" />
+            <Field name="Interest Rate  APR  Code" source="TextInput:" type="Bool" />
+            <Field name="Last Payment Amount" source="TextInput:" type="Bool" />
+            <Field name="Last Payment Date" source="TextInput:" type="Bool" />
+            <Field name="Lien Position" source="TextInput:" type="Bool" />
+            <Field name="NAICS Code" source="TextInput:" type="Bool" />
+            <Field name="Original Business Loan Risk Rating" source="TextInput:" type="Bool" />
+            <Field name="Original Collateral Value" source="TextInput:" type="Bool" />
+            <Field name="Original LTV" source="TextInput:" type="Bool" />
+            <Field name="Original Superior Mortgage" source="TextInput:" type="Bool" />
+            <Field name="Payment Frequency Code" source="TextInput:" type="Bool" />
+            <Field name="PeerGroupCode" source="TextInput:" type="Bool" />
+            <Field name="Percentage Guaranteed" source="TextInput:" type="Bool" />
+            <Field name="Property Address 1" source="TextInput:" type="Bool" />
+            <Field name="Property Address 2" source="TextInput:" type="Bool" />
+            <Field name="Property City" source="TextInput:" type="Bool" />
+            <Field name="Property State" source="TextInput:" type="Bool" />
+            <Field name="Property Zip" source="TextInput:" type="Bool" />
+            <Field name="Recovery Amount" source="TextInput:" type="Bool" />
+            <Field name="Recovery Date" source="TextInput:" type="Bool" />
+            <Field name="Skip End Date" source="TextInput:" type="Bool" />
+            <Field name="Skip Start Date" source="TextInput:" type="Bool" />
+            <Field name="State" source="TextInput:" type="Bool" />
+            <Field name="TDR Status" source="TextInput:" type="Bool" />
+            <Field name="Underwriter" source="TextInput:" type="Bool" />
+            <Field name="VIN" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDynamicRename" />
+    </Node>
+    <Node ToolID="57">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="66" y="430" width="120" height="40" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Add fields not included in DW</Text>
+          <Font name="Calibri" size="12" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="Yellow" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="66">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="426" y="236" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[TENANT_ID]" field="TENANT_ID" size="1073741823" type="V_WString" />
+            <FormulaField expression="[PEER_NUMBER]" field="PEER_NUMBER" size="1073741823" type="V_WString" />
+            <FormulaField expression="[Report Date]" field="Report Date" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[TENANT_ID = [TENANT_ID]
+PEER_NUMBER = [PEER_NUMBER]
+Report Date = [Report Date]
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="99">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="870" y="608" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>D:\Users\vnekkanti\AppData\Local\Temp\1\Alteryx\Engine_10844_a0cb689ef6a54080917136455bd934e5_\Engine_10844_7fce285b36094d97aa745fcdc607e57b~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="102">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="78" y="284" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="Report Date" />
+            <Field name="TENANT_ID" />
+            <Field name="PEER_NUMBER" />
+            <Field name="AllRequiredTablesTrue" />
+          </Fields>
+          <Data>
+            <r>
+              <c>2026-01-31</c>
+              <c>65740</c>
+              <c>4140</c>
+              <c>True</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="103">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="174" y="284" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="Report Date" selected="True" type="V_WString" size="2147483647" />
+            <SelectField field="TENANT_ID" selected="True" type="V_WString" size="2147483647" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="521" y="54" width="1968" height="489" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Container 6</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="3">
+          <GuiSettings Plugin="JupyterCode">
+            <Position x="546" y="198" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <WorkflowName>s:\users\jtodd\inputs\dw integration\workflow(s)\production testing\check refresh and query working.yxmd</WorkflowName>
+              <JupyterProduction>false</JupyterProduction>
+              <vEnvName>designerbasetools_venv</vEnvName>
+              <DefaultVenv>1</DefaultVenv>
+              <productionModeScript />
+              <Port>56903</Port>
+              <JupyterGuidDir>a4e1847530a4f8d48388968f6dfd3814</JupyterGuidDir>
+              <JupyterGuidCopy />
+              <LastExecutedByEngineVersion>2024.2.1.162</LastExecutedByEngineVersion>
+           </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output3">
+              <RecordInfo>
+                <Field name="ROW_BEGIN_DATE" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="account number" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="member id" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="ssn" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="name" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="current credit score" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="original credit score" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="coborrowerid" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="coborrower ssn" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="coborrower name" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="days past due" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="available credit" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="charge off date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="maturity date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="next payment due date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="origination date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="address 1" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="address 2" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="branch" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="charge off amount" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="collateral code" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="credit limit" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="current balance" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="dealer name" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="external status code" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="interest rate" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="loan description" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="loan id" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="product type" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="loan type" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="lien position" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="original balance" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="payment amount" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="percentage_owned" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="tenant_id" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="term" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="underwriter" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="unique id" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="zip" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="close date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="account status code" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="delinquency begin date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="delinquency end date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="PEER_NUMBER" size="1073741823" source="PythonTool:" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxJupyterPluginEngine.dll" EngineDllEntryPoint="AlteryxJupyter" />
+        </Node>
+        <Node ToolID="4">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="677" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFile>D:\Users\vnekkanti\AppData\Local\Temp\1\Alteryx\Engine_10844_a0cb689ef6a54080917136455bd934e5_\Engine_10844_1ee32f526332485b9c2805f1e4f77d7f~.yxdb</TempFile>
+              <TempFileDataProfiling />
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Profile</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="12">
+          <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+            <Position x="2094" y="127" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="Run_Date" action="GroupBy" rename="Run_Date" />
+                <SummarizeField field="Report_Date" action="GroupBy" rename="Report_Date" />
+                <SummarizeField field="TENANT_ID" action="GroupBy" rename="TENANT_ID" />
+                <SummarizeField field="PEER_NUMBER" action="GroupBy" rename="PEER_NUMBER" />
+                <SummarizeField field="UNIQUE ID" action="Count" rename="Count" />
+                <SummarizeField field="File" action="GroupBy" rename="File" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+        </Node>
+        <Node ToolID="14">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1962" y="224" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="//if Left([Loan Type],1)=&quot;L&quot; then ToString(ToNumber(Replace([Loan Type],&quot;L&quot;,&quot;&quot;))) else [Loan Type] endif&#xA;[Loan Type]" field="Loan Type" size="1073741823" type="V_WString" />
+                <FormulaField expression="DateTimeNow()" field="Run_Date" size="19" type="DateTime" />
+                <FormulaField expression="[Peer_Number] +&quot;_&quot;+[REPORT_DATE]+&quot;_&quot;+&quot;SnowflakeOutput&quot;+&quot;.yxdb&quot;" field="FileName" size="2048" type="V_WString" />
+                <FormulaField expression="&quot;\\10.2.7.56\Shared\PortfolioAnalysis\01_CU_Files\03_DataWarehouse\&quot;+[FileName]+&quot;&quot;" field="File" size="2048" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Create Output FileName</AnnotationText>
+              <DefaultAnnotationText>Loan Type = //if Left([Loan Type],1)="L" then ToString(ToNumber(Replace([Loan Ty...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="16">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+            <Position x="2214" y="226" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SortInfo locale="0">
+                <Field field="Run_Date" order="Descending" />
+                <Field field="Tenant_ID" order="Ascending" />
+                <Field field="Unique ID" order="Ascending" />
+              </SortInfo>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Run_Date - Descending
+Tenant_ID - Ascending
+Unique ID - Ascending</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+        </Node>
+        <Node ToolID="17">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="1446" y="272" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Right_PEER_NUMBER" selected="False" />
+                <SelectField field="PeerCode" selected="False" />
+                <SelectField field="LookupName" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="30">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="2345" y="175" width="119" height="133" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>Output</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="15">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+                <Position x="2370" y="224" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <File FileFormat="19" MaxRecords="">\\10.2.7.56\Shared\Users\JTodd\Inputs\DW Integration\Files\Test SF Outputs\0000_SnowflakeOutput.yxdb</File>
+                  <Passwords />
+                  <Disable>False</Disable>
+                  <FormatSpecificOptions>
+                    <NoSpatialIndex>False</NoSpatialIndex>
+                    <SaveSource>True</SaveSource>
+                    <WriteCompatibleVersion>False</WriteCompatibleVersion>
+                  </FormatSpecificOptions>
+                  <MultiFile value="True" />
+                  <MultiFileType>Path</MultiFileType>
+                  <MultiFileField>File</MultiFileField>
+                  <KeepField value="False" />
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <AnnotationText>Write UDAP data to tenant specific file located \\10.2.7.56\Shared\PortfolioAnalysis\01_CU_Files\02_Processed</AnnotationText>
+                  <DefaultAnnotationText>0000_SnowflakeOutput.yxdb</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="31">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+            <Position x="774" y="224" />
+          </GuiSettings>
+          <Properties>
+            <Configuration joinByRecordPos="False">
+              <JoinInfo connection="Left">
+                <Field field="Tenant_Id" />
+              </JoinInfo>
+              <JoinInfo connection="Right">
+                <Field field="TENANT_ID" />
+              </JoinInfo>
+              <SelectConfiguration>
+                <Configuration outputConnection="Join">
+                  <OrderChanged value="False" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="Left_Member Id" selected="True" rename="Member ID" input="Left_" />
+                    <SelectField field="Left_Ssn" selected="True" rename="SSN" input="Left_" />
+                    <SelectField field="Left_Coborrower Ssn" selected="True" rename="CoBorrower SSN" input="Left_" />
+                    <SelectField field="Left_Coborrower Name" selected="True" rename="CoBorrower Name" input="Left_" />
+                    <SelectField field="Left_Loan Id" selected="True" rename="Loan ID" input="Left_" />
+                    <SelectField field="Left_Tenant_Id" selected="True" rename="Tenant_ID" input="Left_" />
+                    <SelectField field="Left_Unique Id" selected="True" rename="Unique ID" input="Left_" />
+                    <SelectField field="Left_Delinquency Begin Date" selected="False" input="Left_" />
+                    <SelectField field="Left_Delinquency End Date" selected="False" input="Left_" />
+                    <SelectField field="Right_TENANT_ID" selected="False" rename="Right_TENANT_ID" input="Right_" />
+                    <SelectField field="Right_AllRequiredTablesTrue" selected="False" input="Right_" />
+                    <SelectField field="Right_Report Date" selected="True" rename="REPORT_DATE" input="Right_" />
+                    <SelectField field="Right_PEER_NUMBER" selected="True" rename="Right_PEER_NUMBER" input="Right_" />
+                    <SelectField field="Left_Coborrower Current Credit Score" selected="True" rename="CoBorrower Current Credit Score" input="Left_" />
+                    <SelectField field="Left_Coborrower Original Credit Score" selected="True" rename="CoBorrower Original Credit Score" input="Left_" />
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+        </Node>
+        <Node ToolID="47">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+            <Position x="1254" y="236" />
+          </GuiSettings>
+          <Properties>
+            <Configuration joinByRecordPos="False">
+              <JoinInfo connection="Left">
+                <Field field="Peer_Number" />
+                <Field field="Loan Type" />
+              </JoinInfo>
+              <JoinInfo connection="Right">
+                <Field field="PeerCode" />
+                <Field field="LookupName" />
+              </JoinInfo>
+              <SelectConfiguration>
+                <Configuration outputConnection="Join">
+                  <OrderChanged value="False" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+        </Node>
+        <Node ToolID="48">
+          <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+            <Position x="1326" y="104" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="REPORT_DATE" action="GroupBy" rename="REPORT_DATE" />
+                <SummarizeField field="Tenant_ID" action="GroupBy" rename="Tenant_ID" />
+                <SummarizeField field="Peer_Number" action="GroupBy" rename="Peer_Number" />
+                <SummarizeField field="LOAN TYPE" action="GroupBy" rename="LOAN TYPE" />
+                <SummarizeField field="LOAN DESCRIPTION" action="GroupBy" rename="LOAN DESCRIPTION" />
+                <SummarizeField field="LOAN TYPE" action="Count" rename="Count" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+        </Node>
+        <Node ToolID="49">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="1794" y="103" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFile>D:\Users\vnekkanti\AppData\Local\Temp\1\Alteryx\Engine_10844_a0cb689ef6a54080917136455bd934e5_\Engine_10844_fe737e542a1c420085b545d2fe98832b~.yxdb</TempFile>
+              <TempFileDataProfiling />
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Profile</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="50">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1326" y="176" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="if [LOAN DESCRIPTION]='UNIMPROVED LAND' then 'R/E - Other'&#xA;elseif (IsEmpty([LOAN DESCRIPTION]) or [LOAN DESCRIPTION] in ('COLLATERAL IN LIQUIDATION','REPORT WRITER USE ONLY')) then 'Charged Off'&#xA;elseif [LOAN DESCRIPTION]='MOBILE HOME W/ LAND' then 'Manufactured Homes'&#xA;else Null() endif &#xA;//Null()" field="PeerGroupName" size="200" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>PeerGroupName = if [LOAN DESCRIPTION]='UNIMPROVED LAND' then 'R/E - Other'
+elsei...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="51">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+            <Position x="1662" y="224" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ByName_ErrorMode>Warning</ByName_ErrorMode>
+              <ByName_OutputMode>All</ByName_OutputMode>
+              <Mode>ByName</Mode>
+              <SetOutputOrder value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+        </Node>
+        <Node ToolID="52">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="1446" y="177" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Right_PEER_NUMBER" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="58">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+            <Position x="1146" y="222" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ByName_ErrorMode>Warning</ByName_ErrorMode>
+              <ByName_OutputMode>All</ByName_OutputMode>
+              <Mode>ByName</Mode>
+              <SetOutputOrder value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+        </Node>
+        <Node ToolID="59">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="1026" y="223" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="60">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DynamicRename.DynamicRename">
+            <Position x="653" y="210" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <RenameMode>Formula</RenameMode>
+              <Fields orderChanged="False">
+                <Field name="*Unknown" />
+              </Fields>
+              <Expression>TitleCase([_CurrentField_])</Expression>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Row_Begin_Date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Account Number" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Member Id" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Ssn" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Name" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Current Credit Score" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Original Credit Score" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Coborrowerid" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Coborrower Ssn" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Coborrower Name" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Days Past Due" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Available Credit" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Charge Off Date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Maturity Date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Next Payment Due Date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Origination Date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Address 1" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Address 2" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Branch" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Charge Off Amount" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Collateral Code" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Credit Limit" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Current Balance" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Dealer Name" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="External Status Code" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Interest Rate" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Loan Description" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Loan Id" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Product Type" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Loan Type" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Lien Position" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Original Balance" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Payment Amount" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Percentage_Owned" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Tenant_Id" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Term" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Underwriter" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Unique Id" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Zip" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Close Date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Account Status Code" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Delinquency Begin Date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Delinquency End Date" size="1073741823" source="PythonTool:" type="V_WString" />
+                <Field name="Peer_Number" size="1073741823" source="PythonTool:" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDynamicRename" />
+        </Node>
+        <Node ToolID="61">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="676" y="427" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Interest Rate  APR  Code" selected="True" rename="Interest Rate (APR) Code" />
+                <SelectField field="CoBorrower Current Credit Score" selected="False" />
+                <SelectField field="CoBorrower Original Credit Score" selected="False" />
+                <SelectField field="Collateral Code" selected="False" />
+                <SelectField field="Current Credit Score" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="62">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.MultiFieldFormula.MultiFieldFormula">
+            <Position x="556" y="427" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FieldType>All</FieldType>
+              <Fields orderChanged="False">
+                <Field name="Address 2" />
+                <Field name="Appraisal Date" />
+                <Field name="Appraised Value" />
+                <Field name="Balloon Amount" />
+                <Field name="Balloon Date" />
+                <Field name="City" />
+                <Field name="CoBorrower Current Credit Score" />
+                <Field name="CoBorrower Original Credit Score" />
+                <Field name="Collateral Code" />
+                <Field name="Collateral Description" />
+                <Field name="Current Business Loan Risk Rating" />
+                <Field name="Current Collateral Value" />
+                <Field name="Current Credit Score" />
+                <Field name="Current Real Estate Value" />
+                <Field name="Current Superior Mortgage" />
+                <Field name="Custom String 1" />
+                <Field name="Custom String 2" />
+                <Field name="Dealer Name" />
+                <Field name="External Status Code" />
+                <Field name="Impairment Amount" />
+                <Field name="Interest Rate  APR  Code" />
+                <Field name="Last Payment Amount" />
+                <Field name="Last Payment Date" />
+                <Field name="Lien Position" />
+                <Field name="NAICS Code" />
+                <Field name="Original Business Loan Risk Rating" />
+                <Field name="Original Collateral Value" />
+                <Field name="Original LTV" />
+                <Field name="Original Superior Mortgage" />
+                <Field name="Payment Frequency Code" />
+                <Field name="PeerGroupCode" />
+                <Field name="Percentage Guaranteed" />
+                <Field name="Property Address 1" />
+                <Field name="Property Address 2" />
+                <Field name="Property City" />
+                <Field name="Property State" />
+                <Field name="Property Zip" />
+                <Field name="Recovery Amount" />
+                <Field name="Recovery Date" />
+                <Field name="Skip End Date" />
+                <Field name="Skip Start Date" />
+                <Field name="State" />
+                <Field name="TDR Status" />
+                <Field name="Underwriter" />
+                <Field name="VIN" />
+                <Field name="*Unknown" />
+              </Fields>
+              <CopyOutput value="False" />
+              <Expression>[_CurrentFieldType_]</Expression>
+              <ChangeFieldType value="True" />
+              <OutputFieldType type="V_WString" size="2048" scale="0" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[_CurrentFieldType_]</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiFieldFormula" />
+        </Node>
+        <Node ToolID="63">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="1554" y="178" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Expression>!IsEmpty([Tenant_ID])
+&amp;&amp; [Loan Type] not in ("L0098")</Expression>
+              <Mode>Custom</Mode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>!IsEmpty([Tenant_ID])
+&amp;&amp; [Loan Type] not in ("L0098")</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="64">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="2094" y="226" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="True" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Row_Begin_Date" selected="False" />
+                <SelectField field="Account Number" selected="True" />
+                <SelectField field="Member ID" selected="False" />
+                <SelectField field="SSN" selected="True" />
+                <SelectField field="Name" selected="True" />
+                <SelectField field="Current Credit Score" selected="True" />
+                <SelectField field="Original Credit Score" selected="True" />
+                <SelectField field="Coborrowerid" selected="False" />
+                <SelectField field="CoBorrower SSN" selected="True" />
+                <SelectField field="CoBorrower Name" selected="True" />
+                <SelectField field="coborrower current credit score" selected="True" />
+                <SelectField field="coborrower original credit score" selected="True" />
+                <SelectField field="Days Past Due" selected="True" />
+                <SelectField field="Available Credit" selected="True" />
+                <SelectField field="Charge Off Date" selected="True" />
+                <SelectField field="Maturity Date" selected="True" />
+                <SelectField field="Next Payment Due Date" selected="True" />
+                <SelectField field="Origination Date" selected="True" />
+                <SelectField field="Address 1" selected="True" />
+                <SelectField field="Address 2" selected="True" />
+                <SelectField field="Branch" selected="True" />
+                <SelectField field="Charge Off Amount" selected="True" />
+                <SelectField field="Collateral Code" selected="True" />
+                <SelectField field="Credit Limit" selected="True" />
+                <SelectField field="Current Balance" selected="True" />
+                <SelectField field="External Status Code" selected="True" />
+                <SelectField field="Interest Rate" selected="True" />
+                <SelectField field="Loan Description" selected="True" />
+                <SelectField field="Loan ID" selected="True" />
+                <SelectField field="Product Type" selected="True" />
+                <SelectField field="Loan Type" selected="True" />
+                <SelectField field="Original Balance" selected="True" />
+                <SelectField field="Payment Amount" selected="True" />
+                <SelectField field="Percentage Owned" selected="True" />
+                <SelectField field="Percentage_Owned" selected="True" />
+                <SelectField field="Tenant_ID" selected="True" />
+                <SelectField field="Term" selected="True" />
+                <SelectField field="Underwriter" selected="True" />
+                <SelectField field="Unique ID" selected="True" />
+                <SelectField field="Zip" selected="True" />
+                <SelectField field="Close Date" selected="True" />
+                <SelectField field="Account Status Code" selected="True" />
+                <SelectField field="Peer_Number" selected="False" />
+                <SelectField field="REPORT_DATE" selected="False" />
+                <SelectField field="Appraisal Date" selected="True" />
+                <SelectField field="Appraised Value" selected="True" />
+                <SelectField field="Balloon Amount" selected="True" />
+                <SelectField field="Balloon Date" selected="True" />
+                <SelectField field="City" selected="True" />
+                <SelectField field="Collateral Description" selected="True" />
+                <SelectField field="Current Business Loan Risk Rating" selected="True" />
+                <SelectField field="Current Collateral Value" selected="True" />
+                <SelectField field="Current Real Estate Value" selected="True" />
+                <SelectField field="Current Superior Mortgage" selected="True" />
+                <SelectField field="Custom String 1" selected="True" />
+                <SelectField field="Custom String 2" selected="True" />
+                <SelectField field="Dealer Name" selected="True" />
+                <SelectField field="Impairment Amount" selected="True" />
+                <SelectField field="Interest Rate (APR) Code" selected="True" />
+                <SelectField field="Last Payment Amount" selected="True" />
+                <SelectField field="Last Payment Date" selected="True" />
+                <SelectField field="Lien Position" selected="True" />
+                <SelectField field="NAICS Code" selected="True" />
+                <SelectField field="Original Business Loan Risk Rating" selected="True" />
+                <SelectField field="Original Collateral Value" selected="True" />
+                <SelectField field="Original LTV" selected="True" />
+                <SelectField field="Original Superior Mortgage" selected="True" />
+                <SelectField field="Payment Frequency Code" selected="True" />
+                <SelectField field="PeerGroupCode" selected="True" />
+                <SelectField field="Percentage Guaranteed" selected="True" />
+                <SelectField field="Property Address 1" selected="True" />
+                <SelectField field="Property Address 2" selected="True" />
+                <SelectField field="Property City" selected="True" />
+                <SelectField field="Property State" selected="True" />
+                <SelectField field="Property Zip" selected="True" />
+                <SelectField field="Recovery Amount" selected="True" />
+                <SelectField field="Recovery Date" selected="True" />
+                <SelectField field="Skip End Date" selected="True" />
+                <SelectField field="Skip Start Date" selected="True" />
+                <SelectField field="State" selected="True" />
+                <SelectField field="TDR Status" selected="True" />
+                <SelectField field="VIN" selected="True" />
+                <SelectField field="PeerGroupLoanGroup" selected="True" />
+                <SelectField field="PeerGroupName" selected="True" />
+                <SelectField field="LoanSubgroup" selected="True" />
+                <SelectField field="LoanAllowanceGroup" selected="True" />
+                <SelectField field="Run_Date" selected="True" />
+                <SelectField field="FileName" selected="True" />
+                <SelectField field="File" selected="True" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="65">
+          <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+            <Position x="2106" y="309" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="REPORT_DATE" action="GroupBy" rename="REPORT_DATE" />
+                <SummarizeField field="Tenant_ID" action="GroupBy" rename="Tenant_ID" />
+                <SummarizeField field="Peer_Number" action="GroupBy" rename="Peer_Number" />
+                <SummarizeField field="PeerGroupName" action="GroupBy" rename="PeerGroupName" />
+                <SummarizeField field="LOAN TYPE" action="GroupBy" rename="LOAN TYPE" />
+                <SummarizeField field="LOAN DESCRIPTION" action="GroupBy" rename="LOAN DESCRIPTION" />
+                <SummarizeField field="LOAN TYPE" action="Count" rename="Count" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+        </Node>
+        <Node ToolID="67">
+          <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+            <Position x="1146" y="135" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="Loan Type" action="GroupBy" rename="Loan Type" />
+                <SummarizeField field="Product Type" action="GroupBy" rename="Product Type" />
+                <SummarizeField field="Loan Description" action="GroupBy" rename="Loan Description" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+        </Node>
+        <Node ToolID="68">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="894" y="223" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="/*if Left([Loan Type],4) in ('5899') then &quot;PSCU&quot; else&#xA;Substring([Loan Type],3,Length([Loan Type])) endif*/&#xA;[Loan Type]" field="Loan Type" size="1073741823" type="V_WString" />
+                <FormulaField expression="//ToString(Tonumber([Loan Type]))&#xA;[Loan Type]" field="Loan Type" size="1073741823" type="V_WString" />
+                <FormulaField expression="Null()" field="coborrower current credit score" size="1073741823" type="V_WString" />
+                <FormulaField expression="Null()" field="coborrower original credit score" size="1073741823" type="V_WString" />
+                <FormulaField expression="IIF(!IsEmpty([Percentage_Owned]),(ToNumber([Current Balance])*ToNumber([Percentage_Owned])),[Current Balance])" field="Current Balance" size="1073741823" type="V_WString" />
+                <FormulaField expression="IIF(!IsEmpty([Percentage_Owned]),(ToNumber([Original Balance])*ToNumber([Percentage_Owned])),[Original Balance])" field="Original Balance" size="1073741823" type="V_WString" enabled="false" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Loan Type = /*if Left([Loan Type],4) in ('5899') then "PSCU" else
+Substring([Loa...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="100">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="870" y="139" width="120" height="84" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>Remove coborrower fields when they are added to the query</Text>
+              <Font name="Arial" size="9.75" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="Yellow" />
+              <Shape shape="0" />
+              <Justification Justification="1" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="104">
+          <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+            <Position x="2154" y="380" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="PeerGroupName" action="GroupBy" rename="PeerGroupName" />
+                <SummarizeField field="LoanSubgroup" action="GroupBy" rename="LoanSubgroup" />
+                <SummarizeField field="Current Balance" action="Sum" rename="Sum_Current Balance" />
+                <SummarizeField field="Unique ID" action="Count" rename="Count" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+        </Node>
+        <Node ToolID="105">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="2058" y="368" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Current Balance" selected="True" type="Double" size="8" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="106">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="966" y="356" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Expression>!IsEmpty([Percentage_Owned])</Expression>
+              <Mode>Custom</Mode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>!IsEmpty([Percentage_Owned])</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="107">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1062" y="344" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="IIF(!IsEmpty([Percentage_Owned]),(ToNumber([Current Balance])*ToNumber([Percentage_Owned])),[Current Balance])" field="Current Balance" size="1073741823" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Current Balance = IIF(!IsEmpty([Percentage_Owned]),(ToNumber([Current Balance])*...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="108">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="870" y="354" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Account Number" selected="True" />
+                <SelectField field="Member ID" selected="True" />
+                <SelectField field="Name" selected="True" />
+                <SelectField field="Origination Date" selected="True" />
+                <SelectField field="Charge Off Amount" selected="True" />
+                <SelectField field="Credit Limit" selected="True" />
+                <SelectField field="Current Balance" selected="True" />
+                <SelectField field="Loan Type" selected="True" />
+                <SelectField field="Percentage_Owned" selected="True" />
+                <SelectField field="Tenant_ID" selected="True" />
+                <SelectField field="Term" selected="True" />
+                <SelectField field="Unique ID" selected="True" />
+                <SelectField field="Close Date" selected="True" />
+                <SelectField field="REPORT_DATE" selected="True" />
+                <SelectField field="Percentage Owned" selected="True" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="109">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="1794" y="224" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Expression>[Account Status Code] != "DENI"</Expression>
+              <Mode>Custom</Mode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[Account Status Code] != "DENI"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="110">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="1770" y="320" width="156" height="84" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>Added code to remove denied (DENI) loans from the UDAP data before processing further</Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="Yellow" />
+              <Shape shape="0" />
+              <Justification Justification="1" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="111">
+          <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+            <Position x="1794" y="164" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="Tenant_ID" action="GroupBy" rename="Tenant_ID" />
+                <SummarizeField field="Peer_Number" action="GroupBy" rename="Peer_Number" />
+                <SummarizeField field="REPORT_DATE" action="GroupBy" rename="REPORT_DATE" />
+                <SummarizeField field="Account Status Code" action="GroupBy" rename="Account Status Code" />
+                <SummarizeField field="Account Status Code" action="Count" rename="Count" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output3" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="1" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="66" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="20" Connection="True" />
+      <Destination ToolID="66" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="39" Connection="Output" />
+      <Destination ToolID="40" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="40" Connection="Output" />
+      <Destination ToolID="42" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="42" Connection="Output" />
+      <Destination ToolID="44" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="45" Connection="Output" />
+      <Destination ToolID="44" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="44" Connection="Output" />
+      <Destination ToolID="41" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="43" Connection="Output" />
+      <Destination ToolID="46" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="41" Connection="True" />
+      <Destination ToolID="43" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="46" Connection="Output" />
+      <Destination ToolID="47" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="58" Connection="Output" />
+      <Destination ToolID="47" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="46" Connection="Output" />
+      <Destination ToolID="99" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="54" Connection="Output" />
+      <Destination ToolID="55" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="55" Connection="Output" />
+      <Destination ToolID="56" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="56" Connection="Output" />
+      <Destination ToolID="62" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="66" Connection="Output" />
+      <Destination ToolID="31" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="60" Connection="Output" />
+      <Destination ToolID="31" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="102" Connection="Output" />
+      <Destination ToolID="103" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="103" Connection="Output" />
+      <Destination ToolID="20" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output3" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output3" />
+      <Destination ToolID="60" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="64" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="65" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="105" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="Output" />
+      <Destination ToolID="15" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="17" Connection="Output" />
+      <Destination ToolID="51" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Join" />
+      <Destination ToolID="45" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Join" />
+      <Destination ToolID="68" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Join" />
+      <Destination ToolID="108" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="47" Connection="Join" />
+      <Destination ToolID="17" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="47" Connection="Left" />
+      <Destination ToolID="48" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="47" Connection="Left" />
+      <Destination ToolID="50" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="50" Connection="Output" />
+      <Destination ToolID="52" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="51" Connection="Output" />
+      <Destination ToolID="49" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="51" Connection="Output" />
+      <Destination ToolID="109" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="51" Connection="Output" />
+      <Destination ToolID="111" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="52" Connection="Output" />
+      <Destination ToolID="63" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="59" Connection="Output" />
+      <Destination ToolID="58" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="61" Connection="Output" />
+      <Destination ToolID="58" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="59" Connection="Output" />
+      <Destination ToolID="67" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="62" Connection="Output" />
+      <Destination ToolID="61" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="64" Connection="Output" />
+      <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="68" Connection="Output" />
+      <Destination ToolID="59" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="105" Connection="Output" />
+      <Destination ToolID="104" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="106" Connection="True" />
+      <Destination ToolID="107" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="108" Connection="Output" />
+      <Destination ToolID="106" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="109" Connection="True" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="True" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="False" />
+    <ZoomLevel value="-1" />
+    <LayoutType>Horizontal</LayoutType>
+    <IsTemplate value="False" />
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Check Refresh and Query Working</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="eabceb44-f4d6-4f01-92b0-65ce7bc7d440" />
+      <Telemetry>
+        <PreviousWorkflowId value="6eb56fee-aeaf-442d-b996-a534bf752e45" />
+        <OriginWorkflowId value="5a981ea2-073f-4372-b6ab-9993d890811a" />
+      </Telemetry>
+      <PlatformWorkflowId value="" />
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
